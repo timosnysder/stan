@@ -1,0 +1,94 @@
+---
+import { Icon } from 'astro-icon/components'
+import { Image } from 'astro:assets'
+
+
+/**
+ * Hero Component
+ *
+ * @description A component that displays a hero section with a title, description, and image
+ */
+interface Props {
+  /**
+   * The source URL for the image
+   */
+  src?: string
+}
+// const { src = '/astronaut-hero-img.webp' }: Props = Astro.props
+const { src = '/GifMerge_720x405.gif' }: Props = Astro.props
+
+---
+
+<section class="hero my-24">
+  <div class="container">
+
+
+    <div class="grid grid-cols-1 self-stretch items-center "> 
+
+      <!-- Headline -->
+      
+        <h1 class="text-center text-6xl lg:text-9xl lg:tracking-[.5rem] md:text-8xl md:tracking-[.25rem]">
+          <slot><span class="text-gradient">Sichtachsen</span></slot>
+        </h1>
+      
+      <!-- Subline -->
+      
+        <h4 class="text-center text-2xl lg:text-4xl mb-16">
+          <slot>UX / UI Konzept & Design</slot>
+        </h4>
+
+        <!-- Clain -->
+        <div class="claim-svg hidden justify-self-center flex-row md:block">
+          <Image class="hidden md:block" src={src} alt="" decoding="async" width={720} height={405} loading="eager" />
+        </div>
+
+        <div class="flex flex-col justify-center gap-3 min-[500px]:flex-row mt-16">
+          <a class="button has-icon" href="https://github.com/incluud/accessible-astro-starter">
+            <Icon name="lucide:star" />
+            Star on GitHub
+          </a>
+          <a class="button has-icon color-secondary" href="https://accessible-astro.incluud.dev/">
+            <Icon name="lucide:bookmark" />
+            Read the docs
+          </a>
+        </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  h1 {
+    text-wrap: unset;
+
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      315deg,
+      light-dark(var(--color-primary-300), var(--color-secondary-100)) 25%,
+      light-dark(var(--color-secondary-300), var(--color-primary-200))
+    );
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: var(--font-company);
+    text-transform: uppercase;
+  }
+
+  .claim-svg {
+    max-width: 720px;
+    max-height: 405px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: rgb(255, 95, 6);
+    background-repeat: no-repeat;
+    mask-image: url(../assets/img/sicht.svg);
+    -webkit-mask-image: url(../assets/img/sicht.svg);
+    mask-size: cover;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+  }
+
+</style>
