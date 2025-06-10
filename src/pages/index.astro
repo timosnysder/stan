@@ -7,6 +7,13 @@ import Counter from '@components/Counter.astro'
 import ContentMedia from '@components/ContentMedia.astro'
 import ExternalLink from '@components/ExternalLink.astro'
 import { Accordion, AccordionItem, Avatar, AvatarGroup } from 'accessible-astro-components'
+import { getCollection } from 'astro:content'
+
+// Hole die neuesten 3 Case Studies
+const allCaseStudies = await getCollection('casestudies')
+const recentCaseStudies = allCaseStudies
+  .sort((a, b) => new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime())
+  .slice(0, 3)
 ---
 
 <DefaultLayout title="Home">
@@ -49,7 +56,7 @@ import { Accordion, AccordionItem, Avatar, AvatarGroup } from 'accessible-astro-
   </section>
    -->
   
-  <ContentMedia imgSrc="/accessible-components.webp" showHeadline={true}>
+  <!-- <ContentMedia imgSrc="/accessible-components.webp" showHeadline={true}>
     <h4>UX/UI-Konzeption & Design</h4>
     <h2>DiGA „Tertia“ für Harninkontinenz</h2>
     <p class="text-2xl">
@@ -78,8 +85,49 @@ import { Accordion, AccordionItem, Avatar, AvatarGroup } from 'accessible-astro-
         Zum Projekt
       </a>
     </p>
-  </ContentMedia>
+  </ContentMedia> -->
 
+  <!-- Case Studies Sektion -->
+    {recentCaseStudies.map((caseStudy, index) => (
+      <ContentMedia 
+        imgSrc={caseStudy.data.image} 
+        reverseImg={index % 2 === 1}
+        showHeadline={index === 0}
+      >
+        <div>
+          <h3 class="text-3xl font-bold mb-4">{caseStudy.data.title}</h3>
+          <p class="text-lg mb-6">{caseStudy.data.description}</p>
+          {caseStudy.data.client && (
+            <p class="text-sm text-gray-600 mb-4">Client: {caseStudy.data.client}</p>
+          )}
+          {caseStudy.data.tags && (
+            <div class="flex flex-wrap gap-2 mb-6">
+              {caseStudy.data.tags.map(tag => (
+                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">{tag}</span>
+              ))}
+            </div>
+          )}
+          <a 
+            href={`/casestudies/${caseStudy.id}`}
+            class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
+          >
+            Case Study lesen
+          </a>
+        </div>
+      </ContentMedia>
+    ))}
+    
+    <!-- Link zur Übersichtsseite -->
+    <div class="text-center my-16">
+      <a 
+        href="/case-studies" 
+        class="inline-block bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-900 transition-colors text-lg"
+      >
+        Alle Case Studies ansehen
+      </a>
+    </div>
+
+  <!-- End -->
   <section class="my-64">
     <div class="container grid grid-cols-1 gap-12 md:grid-cols-2">
       <div class="flex flex-col items-start gap-4">
