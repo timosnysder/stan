@@ -2,7 +2,6 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
 
-// Bestehende projects Collection
 const projects = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/projects' }),
   schema: z.object({
@@ -12,7 +11,6 @@ const projects = defineCollection({
   }),
 })
 
-// Neue casestudies Collection
 const casestudies = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/casestudies' }),
   schema: z.object({
@@ -26,8 +24,38 @@ const casestudies = defineCollection({
   }),
 })
 
-// Export beider Collections
 export const collections = { projects, casestudies }
+
+// // src/content/content.config.mjs
+// import { defineCollection, z } from 'astro:content'
+// import { glob } from 'astro/loaders'
+
+// // Bestehende projects Collection
+// const projects = defineCollection({
+//   loader: glob({ pattern: '**/*.mdx', base: './src/content/projects' }),
+//   schema: z.object({
+//     title: z.string(),
+//     author: z.string(),
+//     description: z.string(),
+//   }),
+// })
+
+// // Neue casestudies Collection
+// const casestudies = defineCollection({
+//   loader: glob({ pattern: '**/*.mdx', base: './src/content/casestudies' }),
+//   schema: z.object({
+//     title: z.string(),
+//     description: z.string(),
+//     image: z.string(),
+//     client: z.string().optional(),
+//     date: z.date().optional(),
+//     tags: z.array(z.string()).optional(),
+//     featured: z.boolean().default(false),
+//   }),
+// })
+
+// // Export beider Collections
+// export const collections = { projects, casestudies }
 
 
 // // 1. Import utilities from `astro:content`

@@ -1,0 +1,210 @@
+---
+// src/pages/case-studies/[slug].astro
+import { getCollection } from 'astro:content'
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('casestudies')
+  
+  console.log('=== CASE STUDIES DEBUG ===')
+  caseStudies.forEach(cs => {
+    console.log(`ID: "${cs.id}", Title: "${cs.data.title}"`)
+  })
+  
+  return caseStudies.map((entry) => ({
+    params: { slug: entry.id.replace('.mdx', '') },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await entry.render()
+---
+
+<DefaultLayout title={`${entry.data.title} - Case Study`}>
+  <!-- Hero Section -->
+  <section style="padding: 5rem 0; background-color: #f9fafb;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <h1 style="font-size: 3rem; font-weight: bold; margin-bottom: 1.5rem; color: #111827;">{entry.data.title}</h1>
+        <p style="font-size: 1.25rem; color: #6b7280; margin-bottom: 2rem;">{entry.data.description}</p>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 0.875rem;">
+          {entry.data.client && (
+            <div style="background-color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              <strong>Client:</strong> {entry.data.client}
+            </div>
+          )}
+          {entry.data.date && (
+            <div style="background-color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+              <strong>Datum:</strong> {new Date(entry.data.date).toLocaleDateString('de-DE')}
+            </div>
+          )}
+        </div>
+        
+        {entry.data.tags && (
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 1.5rem;">
+            {entry.data.tags.map(tag => (
+              <span style="background-color: #dbeafe; color: #1e40af; padding: 0.75rem 1rem; border-radius: 1.5rem; font-size: 0.875rem;">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Image -->
+  {entry.data.image && (
+    <section style="padding: 4rem 0;">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+          <img 
+            src={entry.data.image} 
+            alt={entry.data.title}
+            style="width: 100%; border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1);"
+          />
+        </div>
+      </div>
+    </section>
+  )}
+  
+  <!-- Content -->
+  <section style="padding: 4rem 0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="content-wrapper">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Navigation -->
+  <section style="padding: 4rem 0; background-color: #f9fafb;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+        <a 
+          href="/case-studies" 
+          style="display: inline-block; background-color: #2563eb; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; margin-right: 1rem; transition: background-color 0.2s;"
+          onmouseover="this.style.backgroundColor='#1d4ed8'"
+          onmouseout="this.style.backgroundColor='#2563eb'"
+        >
+          ← Zurück zu allen Case Studies
+        </a>
+        <a 
+          href="/" 
+          style="display: inline-block; background-color: #6b7280; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; transition: background-color 0.2s;"
+          onmouseover="this.style.backgroundColor='#4b5563'"
+          onmouseout="this.style.backgroundColor='#6b7280'"
+        >
+          Zur Startseite
+        </a>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style>
+  .content-wrapper {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #374151;
+  }
+  
+  .content-wrapper h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    color: #111827;
+  }
+  
+  .content-wrapper h2 {
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+    color: #111827;
+  }
+  
+  .content-wrapper h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+    color: #111827;
+  }
+  
+  .content-wrapper p {
+    margin-bottom: 1rem;
+    line-height: 1.625;
+  }
+  
+  .content-wrapper ul, .content-wrapper ol {
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    padding-left: 1rem;
+  }
+  
+  .content-wrapper li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .content-wrapper ul li {
+    list-style-type: disc;
+  }
+  
+  .content-wrapper ol li {
+    list-style-type: decimal;
+  }
+  
+  .content-wrapper a {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+  
+  .content-wrapper a:hover {
+    color: #1d4ed8;
+  }
+  
+  .content-wrapper strong {
+    font-weight: 600;
+  }
+  
+  .content-wrapper em {
+    font-style: italic;
+  }
+  
+  .content-wrapper blockquote {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #6b7280;
+  }
+  
+  .content-wrapper code {
+    background-color: #f3f4f6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+  }
+  
+  .content-wrapper pre {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+  
+  .content-wrapper pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+  }
+</style>
