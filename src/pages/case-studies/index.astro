@@ -2,6 +2,7 @@
 // src/pages/case-studies/index.astro
 import { getCollection } from 'astro:content'
 import DefaultLayout from '@layouts/DefaultLayout.astro'
+import PageHeader from '@components/PageHeader.astro'
 import { Media } from 'accessible-astro-components'
 
 const allCaseStudies = await getCollection('casestudies')
@@ -15,16 +16,18 @@ sortedCaseStudies.forEach(cs => {
 })
 ---
 
-<DefaultLayout title="Case Studies - Alle Projekte">
-  <section class="my-32">
+<DefaultLayout 
+  title="Case Studies"
+  description="Entdecken Sie unsere erfolgreichen Projekte und erfahren Sie, wie wir unseren Kunden geholfen haben, ihre Ziele zu erreichen."
+>
+  <PageHeader
+    title="Case Studies"
+    subtitle="Entdecken Sie unsere erfolgreichen Projekte und erfahren Sie, wie wir unseren Kunden geholfen haben, ihre Ziele zu erreichen."
+    bgType="bordered"
+  />
+  
+  <section class="my-12">
     <div class="container">
-      <div class="text-center mb-16">
-        <h1 class="text-6xl font-bold mb-6">Case Studies</h1>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Entdecken Sie unsere erfolgreichen Projekte und erfahren Sie, wie wir unseren Kunden geholfen haben, ihre Ziele zu erreichen.
-        </p>
-      </div>
-      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {sortedCaseStudies.map((caseStudy) => (
           <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">

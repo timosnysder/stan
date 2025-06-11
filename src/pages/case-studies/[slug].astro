@@ -3,6 +3,8 @@
 import { getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import DefaultLayout from '@layouts/DefaultLayout.astro'
+import PageHeader from '@components/PageHeader.astro'
+import SocialShares from '@components/SocialShares.astro'
 
 export async function getStaticPaths() {
   const caseStudies = await getCollection('casestudies')
@@ -43,64 +45,73 @@ interface Props {
 
 const { entry, prevCaseStudy, nextCaseStudy }: Props = Astro.props
 const { Content } = await render(entry)
+
+const author = {
+  name: entry.data.client || 'Case Study',
+  image: '/images/test.jpg',
+  bio: 'Projekt Details',
+}
 ---
 
-<DefaultLayout title={`${entry.data.title} - Case Study`}>
-  <!-- Hero Section -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl font-bold mb-6 text-gray-900">{entry.data.title}</h1>
-        <p class="text-xl text-gray-600 mb-8">{entry.data.description}</p>
-        
-        <div class="flex flex-wrap justify-center gap-6 text-sm">
-          {entry.data.client && (
-            <div class="bg-white px-4 py-2 rounded shadow">
-              <strong>Client:</strong> {entry.data.client}
-            </div>
-          )}
-          {entry.data.date && (
-            <div class="bg-white px-4 py-2 rounded shadow">
-              <strong>Datum:</strong> {new Date(entry.data.date).toLocaleDateString('de-DE')}
-            </div>
-          )}
-        </div>
-        
-        {entry.data.tags && (
-          <div class="flex flex-wrap justify-center gap-2 mt-6">
-            {entry.data.tags.map((tag: string) => (
-              <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  </section>
+<DefaultLayout title={`${entry.data.title} - Case Study`} description={entry.data.description} url={entry.data.title}>
+  <PageHeader
+    title={entry.data.title}
+    subtitle={entry.data.description}
+    author={author}
+    bgType="bordered"
+    featuredImage="/images/test.jpg"
+  />
   
-  <!-- Featured Image -->
-  {entry.data.image && (
-    <section class="py-16">
+  <!-- Meta Information -->
+  {(entry.data.client || entry.data.date || entry.data.tags) && (
+    <section class="py-8 bg-gray-50">
       <div class="max-w-6xl mx-auto px-4">
-        <div class="max-w-5xl mx-auto">
-          <img 
-            src={entry.data.image} 
-            alt={entry.data.title}
-            class="w-full rounded-lg shadow-xl"
-          />
+        <div class="max-w-4xl mx-auto">
+          <div class="flex flex-wrap justify-center gap-6 text-sm">
+            {entry.data.client && (
+              <div class="bg-white px-4 py-2 rounded shadow">
+                <strong>Client:</strong> {entry.data.client}
+              </div>
+            )}
+            {entry.data.date && (
+              <div class="bg-white px-4 py-2 rounded shadow">
+                <strong>Datum:</strong> {new Date(entry.data.date).toLocaleDateString('de-DE')}
+              </div>
+            )}
+          </div>
+          
+          {entry.data.tags && (
+            <div class="flex flex-wrap justify-center gap-2 mt-6">
+              {entry.data.tags.map((tag: string) => (
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
   )}
   
   <!-- Content -->
-  <section class="py-16">
+  <section class="my-12">
     <div class="max-w-6xl mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="prose prose-lg prose-gray max-w-none">
           <Content />
         </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Share Section -->
+  <section class="my-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold mb-4">Diese Case Study teilen</h2>
+        <p class="text-gray-600 mb-4">Gefällt Ihnen diese Case Study? Teilen Sie sie mit Ihrem Netzwerk!</p>
+        <SocialShares />
       </div>
     </div>
   </section>
