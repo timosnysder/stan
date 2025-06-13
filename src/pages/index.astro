@@ -56,37 +56,6 @@ const recentCaseStudies = allCaseStudies
   </section>
    -->
   
-  <!-- <ContentMedia imgSrc="/accessible-components.webp" showHeadline={true}>
-    <h4>UX/UI-Konzeption & Design</h4>
-    <h2>DiGA „Tertia“ für Harninkontinenz</h2>
-    <p class="text-2xl">
-      <a class="button has-icon" href="#">
-        <Icon name="lucide:star" />
-        Zum Projekt
-      </a>
-    </p>
-  </ContentMedia>
-  <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={true}>
-    <h4>Produktdesign</h4>
-    <h2>Gründung eines Startup: Kidstrain</h2>
-    <p class="text-2xl">
-      <a class="button has-icon" href="#">
-        <Icon name="lucide:star" />
-        Zum Projekt
-      </a>
-    </p>
-  </ContentMedia>
-  <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={false}>
-    <h4>Produktdesign</h4>
-    <h2>Entwicklung einer Entertainment-Plattform: Sens Media</h2>
-    <p class="text-2xl">
-      <a class="button has-icon" href="#">
-        <Icon name="lucide:star" />
-        Zum Projekt
-      </a>
-    </p>
-  </ContentMedia> -->
-
   <!-- Case Studies Sektion -->
   {recentCaseStudies.map((caseStudy, index) => (
     <ContentMedia 
@@ -95,10 +64,10 @@ const recentCaseStudies = allCaseStudies
       showHeadline={index === 0}
     >
       <div>
-        <h3 class="text-3xl font-bold mb-4">{caseStudy.data.title}</h3>
-        <p class="text-lg mb-6">{caseStudy.data.description}</p>
+        <h4>{caseStudy.data.title}</h4>
+        <h2>{caseStudy.data.description}</h2>
         {caseStudy.data.client && (
-          <p class="text-sm text-gray-600 mb-4">Client: {caseStudy.data.client}</p>
+          <p class="text-2xl">Client: {caseStudy.data.client}</p>
         )}
         {caseStudy.data.tags && (
           <div class="flex flex-wrap gap-2 mb-6">
@@ -109,8 +78,9 @@ const recentCaseStudies = allCaseStudies
         )}
         <a 
           href={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
-          class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
+          class="button has-icon"
         >
+          <Icon name="lucide:star" />
           Case Study lesen
         </a>
       </div>

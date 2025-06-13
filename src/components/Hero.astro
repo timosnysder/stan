@@ -14,8 +14,10 @@ interface Props {
    */
   src?: string
 }
+
 const { src = '/transparent.gif' }: Props = Astro.props
 // const { src = '/GifMerge_720x405.gif' }: Props = Astro.props
+// const { src = '/sichtachsen.mp4' }: Props = Astro.props
 
 ---
 
@@ -40,6 +42,17 @@ const { src = '/transparent.gif' }: Props = Astro.props
         <!-- Clain -->
         <div class="claim-svg hidden justify-self-center flex-row md:block">
           <Image class="hidden md:block" src={src} alt="" decoding="async" width={720} height={405} loading="eager" />
+          <!-- <video muted autoplay transition:persist loop="true">
+            <source
+              src={src}  
+              width={720} 
+              height={405}
+              type="video/mp4"
+              aria-controls="hidden"
+
+              
+            />
+          </video> -->
         </div>
 
         <div class="flex flex-col justify-center gap-3 min-[500px]:flex-row mt-16">
