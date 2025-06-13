@@ -17,10 +17,10 @@ const casestudies = defineCollection({
     title: z.string(),
     description: z.string(),
     image: z.string(),
-    featuredImage: z.string().optional(), // Neues Feld für PageHeader
+    featuredImage: z.string().optional(), // Für PageHeader
     client: z.string().optional(),
-    date_start: z.date().optional(),
-    date_end: z.date().optional(),
+    date_start: z.date().optional(),      // Neues Feld
+    date_end: z.date().optional(),        // Neues Feld
     tags: z.array(z.string()).optional(),
     featured: z.boolean().default(false),
   }),

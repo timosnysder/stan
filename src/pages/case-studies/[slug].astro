@@ -48,8 +48,15 @@ const { Content } = await render(entry)
 
 const author = {
   name: entry.data.client || 'Case Study',
-  image: '/images/test.jpg',
-  bio: 'Projekt Details',
+  image: '/images/test.jpg', // Hier sollte später das Firmen-Logo stehen
+  bio: 'UX/UI Designer & Konzepter', // Meine Rolle
+}
+
+// Projekt-Metadaten für PageHeader
+const projectMeta = {
+  dateStart: entry.data.date_start,
+  dateEnd: entry.data.date_end,
+  tags: entry.data.tags,
 }
 
 // Featured Image: Verwende featuredImage falls vorhanden, sonst image als Fallback
