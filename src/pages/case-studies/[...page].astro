@@ -1,0 +1,146 @@
+---
+// src/pages/case-studies/[...page].astro
+import { getCollection } from 'astro:content'
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import PageHeader from '@components/PageHeader.astro'
+import { Card, Pagination } from 'accessible-astro-components'
+import type { GetStaticPaths, Page } from 'astro'
+import type { CollectionEntry } from 'astro:content'
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allCaseStudies = await getCollection('casestudies')
+  
+  const sortedCaseStudies = allCaseStudies.sort((a, b) => {
+    const dateA = a.data.date_end ? new Date(a.data.date_end).getTime() : (a.data.date_start ? new Date(a.data.date_start).getTime() : 0)
+    const dateB = b.data.date_end ? new Date(b.data.date_end).getTime() : (b.data.date_start ? new Date(b.data.date_start).getTime() : 0)
+    return dateB - dateA // Neueste zuerst
+  })
+
+  return paginate(sortedCaseStudies, { pageSize: 6 })
+}) satisfies GetStaticPaths
+
+interface Props {
+  page: Page<CollectionEntry<'casestudies'>>
+}
+
+const { page } = Astro.props
+
+console.log('=== OVERVIEW PAGE DEBUG ===')
+console.log(`Found ${page.total} case studies, showing ${page.size} per page`)
+page.data.forEach(cs => {
+  console.log(`- ID: "${cs.id}", Title: "${cs.data.title}", Start: ${cs.data.date_start}, End: ${cs.data.date_end}`)
+})
+---
+
+<DefaultLayout 
+  title="Case Studies"
+  description="Entdecken Sie unsere erfolgreichen Projekte und erfahren Sie, wie wir unseren Kunden geholfen haben, ihre Ziele zu erreichen."
+>
+  <PageHeader
+    title="Case Studies"
+    subtitle="Entdecken Sie unsere erfolgreichen Projekte und erfahren Sie, wie wir unseren Kunden geholfen haben, ihre Ziele zu erreichen."
+    bgType="bordered"
+  />
+  
+  <section class="my-12">
+    <div class="container">
+      <p class="text-sm"><em>Case Study {page.start + 1} through {page.end + 1} of {page.total} total case studies</em></p>
+      <ul class="my-3 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {page.data.map((caseStudy) => {
+          // Erstelle Footer als JSX Element mit echten Umbrüchen
+          const footerContent = (
+            <div>
+              {caseStudy.data.client && (
+                <div>Client: {caseStudy.data.client}</div>
+              )}
+              {(caseStudy.data.date_start || caseStudy.data.date_end) && (
+                <div>
+                  Zeitraum: 
+                  {caseStudy.data.date_start && new Date(caseStudy.data.date_start).toLocaleDateString('de-DE')}
+                  {caseStudy.data.date_start && caseStudy.data.date_end && ' - '}
+                  {caseStudy.data.date_end && new Date(caseStudy.data.date_end).toLocaleDateString('de-DE')}
+                </div>
+              )}
+            </div>
+          )
+
+          // Erstelle Content mit Description und Tags (space-between)
+          const contentWithTags = (
+            <div class="flex flex-col justify-between h-full">
+              <p class="mb-4">{caseStudy.data.description}</p>
+              {caseStudy.data.tags && (
+                <div class="flex flex-wrap gap-2 mt-auto">
+                  {caseStudy.data.tags.map(tag => (
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )
+
+          return (
+            <li>
+              <Card
+                img={caseStudy.data.image}
+                url={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
+                title={caseStudy.data.title}
+                footer={footerContent}
+              >
+                {contentWithTags}
+              </Card>
+            </li>
+          )
+        })}
+      </ul>
+      
+      <div class="mt-12 grid place-content-center">
+        <Pagination
+          firstPage={page.url.prev ? '/case-studies' : null}
+          previousPage={page.url.prev ? page.url.prev : null}
+          nextPage={page.url.next ? page.url.next : null}
+          lastPage={page.url.next ? `/case-studies/${Math.ceil(page.total / page.size)}` : null}
+          currentPage={`${page.currentPage}`}
+          totalPages={`${Math.ceil(page.total / page.size)}`}
+          ariaLabel="Case Studies pagination"
+        />
+      </div>
+      
+      {page.data.length === 0 && (
+        <div class="text-center py-16">
+          <p class="text-xl text-gray-600">Noch keine Case Studies verfügbar.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</DefaultLayout>
+
+<style lang="scss" is:global>
+  @use '../../assets/scss/base/mixins' as *;
+
+  .card {
+    background-color: transparent !important; /* Transparenter Hintergrund */
+    
+    h3 {
+      margin-block-end: var(--space-xs);
+      line-height: 0.75;
+    }
+
+    a {
+      @include text-decoration(transparent, var(--foreground-color), 4px, 2px);
+    }
+
+    /* Footer-Text mit Zeilenumbrüchen */
+    .card-footer {
+      white-space: pre-line;
+    }
+
+    /* Content-Bereich für space-between Layout */
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  }
+</style>

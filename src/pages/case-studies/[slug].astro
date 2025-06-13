@@ -66,8 +66,8 @@ const featuredImage = entry.data.featuredImage || entry.data.image
   />
   
   <!-- Meta Information -->
-  {(entry.data.client || entry.data.date || entry.data.tags) && (
-    <section class="py-8 bg-gray-50">
+  {(entry.data.client || entry.data.date_start || entry.data.date_end || entry.data.tags) && (
+    <section class="py-8">
       <div class="max-w-6xl mx-auto px-4">
         <div class="max-w-4xl mx-auto">
           <div class="flex flex-wrap justify-center gap-6 text-sm">
@@ -76,9 +76,12 @@ const featuredImage = entry.data.featuredImage || entry.data.image
                 <strong>Client:</strong> {entry.data.client}
               </div>
             )}
-            {entry.data.date && (
+            {(entry.data.date_start || entry.data.date_end) && (
               <div class="bg-white px-4 py-2 rounded shadow">
-                <strong>Datum:</strong> {new Date(entry.data.date).toLocaleDateString('de-DE')}
+                <strong>Zeitraum:</strong> 
+                {entry.data.date_start && new Date(entry.data.date_start).toLocaleDateString('de-DE')}
+                {entry.data.date_start && entry.data.date_end && ' - '}
+                {entry.data.date_end && new Date(entry.data.date_end).toLocaleDateString('de-DE')}
               </div>
             )}
           </div>
@@ -120,7 +123,7 @@ const featuredImage = entry.data.featuredImage || entry.data.image
   </section>
   
   <!-- Navigation -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16">
     <div class="max-w-6xl mx-auto px-4">
       
       <!-- Case Study Navigation -->
