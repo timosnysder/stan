@@ -7,12 +7,16 @@ import { Media } from 'accessible-astro-components'
 
 const allCaseStudies = await getCollection('casestudies')
 const sortedCaseStudies = allCaseStudies
-  .sort((a, b) => new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime())
+  .sort((a, b) => {
+    const dateA = a.data.date_end ? new Date(a.data.date_end).getTime() : (a.data.date_start ? new Date(a.data.date_start).getTime() : 0)
+    const dateB = b.data.date_end ? new Date(b.data.date_end).getTime() : (b.data.date_start ? new Date(b.data.date_start).getTime() : 0)
+    return dateB - dateA // Neueste zuerst
+  })
 
 console.log('=== OVERVIEW PAGE DEBUG ===')
 console.log(`Found ${sortedCaseStudies.length} case studies`)
 sortedCaseStudies.forEach(cs => {
-  console.log(`- ID: "${cs.id}", Title: "${cs.data.title}"`)
+  console.log(`- ID: "${cs.id}", Title: "${cs.data.title}", Start: ${cs.data.date_start}, End: ${cs.data.date_end}`)
 })
 ---
 
@@ -45,6 +49,15 @@ sortedCaseStudies.forEach(cs => {
               {caseStudy.data.client && (
                 <p class="text-sm text-gray-500 mb-3">
                   <strong>Client:</strong> {caseStudy.data.client}
+                </p>
+              )}
+              
+              {(caseStudy.data.date_start || caseStudy.data.date_end) && (
+                <p class="text-sm text-gray-500 mb-3">
+                  <strong>Zeitraum:</strong> 
+                  {caseStudy.data.date_start && new Date(caseStudy.data.date_start).toLocaleDateString('de-DE')}
+                  {caseStudy.data.date_start && caseStudy.data.date_end && ' - '}
+                  {caseStudy.data.date_end && new Date(caseStudy.data.date_end).toLocaleDateString('de-DE')}
                 </p>
               )}
               

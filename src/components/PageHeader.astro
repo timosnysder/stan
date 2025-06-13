@@ -1,6 +1,5 @@
 ---
 import { Avatar, Breadcrumbs, BreadcrumbsItem } from 'accessible-astro-components'
-import { Image } from 'astro:assets'
 import sanitizeHtml from 'sanitize-html'
 
 /**
@@ -14,7 +13,7 @@ interface Props {
    */
   class?: string
   /**
-   * The featured image of the page
+   * The featured image of the page (string path)
    */
   featuredImage?: string
   /**
@@ -95,12 +94,11 @@ const sanitizedSubtitle: string = subtitle
       {
         featuredImage && (
           <div class="featured-image-container mb-8">
-            <Image
+            <img
               src={featuredImage}
-              alt=""
-              width={1200}
-              height={250}
+              alt={title}
               class="h-[250px] w-full rounded-lg object-cover"
+              loading="eager"
             />
           </div>
         )

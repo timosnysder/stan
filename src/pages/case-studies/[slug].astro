@@ -11,14 +11,14 @@ export async function getStaticPaths() {
   
   // Sortiere Case Studies nach Datum (neueste zuerst)
   const sortedCaseStudies = caseStudies.sort((a: CollectionEntry<'casestudies'>, b: CollectionEntry<'casestudies'>) => {
-    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0
-    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0
+    const dateA = a.data.date_end ? new Date(a.data.date_end).getTime() : (a.data.date_start ? new Date(a.data.date_start).getTime() : 0)
+    const dateB = b.data.date_end ? new Date(b.data.date_end).getTime() : (b.data.date_start ? new Date(b.data.date_start).getTime() : 0)
     return dateB - dateA // Neueste zuerst
   })
   
   console.log('=== CASE STUDIES DEBUG ===')
   sortedCaseStudies.forEach((cs: CollectionEntry<'casestudies'>) => {
-    console.log(`ID: "${cs.id}", Title: "${cs.data.title}", Date: ${cs.data.date}`)
+    console.log(`ID: "${cs.id}", Title: "${cs.data.title}", Start: ${cs.data.date_start}, End: ${cs.data.date_end}`)
   })
   
   return sortedCaseStudies.map((entry: CollectionEntry<'casestudies'>, index: number) => {
@@ -51,6 +51,9 @@ const author = {
   image: '/images/test.jpg',
   bio: 'Projekt Details',
 }
+
+// Featured Image: Verwende featuredImage falls vorhanden, sonst image als Fallback
+const featuredImage = entry.data.featuredImage || entry.data.image
 ---
 
 <DefaultLayout title={`${entry.data.title} - Case Study`} description={entry.data.description} url={entry.data.title}>
@@ -59,12 +62,12 @@ const author = {
     subtitle={entry.data.description}
     author={author}
     bgType="bordered"
-    featuredImage="/casestudies/project-image-1.png"
+    featuredImage={featuredImage}
   />
   
   <!-- Meta Information -->
   {(entry.data.client || entry.data.date || entry.data.tags) && (
-    <section class="py-8">
+    <section class="py-8 bg-gray-50">
       <div class="max-w-6xl mx-auto px-4">
         <div class="max-w-4xl mx-auto">
           <div class="flex flex-wrap justify-center gap-6 text-sm">
@@ -74,7 +77,7 @@ const author = {
               </div>
             )}
             {entry.data.date && (
-              <div class=" px-4 py-2 rounded shadow">
+              <div class="bg-white px-4 py-2 rounded shadow">
                 <strong>Datum:</strong> {new Date(entry.data.date).toLocaleDateString('de-DE')}
               </div>
             )}
@@ -83,7 +86,7 @@ const author = {
           {entry.data.tags && (
             <div class="flex flex-wrap justify-center gap-2 mt-6">
               {entry.data.tags.map((tag: string) => (
-                <span class="text-blue-800 px-3 py-1 rounded-full text-sm">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
                   {tag}
                 </span>
               ))}
@@ -117,7 +120,7 @@ const author = {
   </section>
   
   <!-- Navigation -->
-  <section class="py-16">
+  <section class="py-16 bg-gray-50">
     <div class="max-w-6xl mx-auto px-4">
       
       <!-- Case Study Navigation -->
@@ -132,9 +135,9 @@ const author = {
             >
               <span class="text-sm text-gray-500 mb-1">← Vorherige</span>
               <span class="font-semibold text-base">{prevCaseStudy.data.title}</span>
-              {prevCaseStudy.data.date && (
+              {prevCaseStudy.data.date_end && (
                 <span class="text-xs text-gray-400 mt-1">
-                  {new Date(prevCaseStudy.data.date).toLocaleDateString('de-DE')}
+                  {new Date(prevCaseStudy.data.date_end).toLocaleDateString('de-DE')}
                 </span>
               )}
             </a>
@@ -162,9 +165,9 @@ const author = {
             >
               <span class="text-sm text-gray-500 mb-1">Nächste →</span>
               <span class="font-semibold text-base text-right">{nextCaseStudy.data.title}</span>
-              {nextCaseStudy.data.date && (
+              {nextCaseStudy.data.date_end && (
                 <span class="text-xs text-gray-400 mt-1">
-                  {new Date(nextCaseStudy.data.date).toLocaleDateString('de-DE')}
+                  {new Date(nextCaseStudy.data.date_end).toLocaleDateString('de-DE')}
                 </span>
               )}
             </a>
@@ -173,6 +176,16 @@ const author = {
           )}
         </div>
       </div>
+      
+      <!-- Zusätzliche Navigation -->
+      <div class="text-center pt-8 border-t border-gray-200">
+        <a 
+          href="/" 
+          class="inline-block bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors"
+        >
+          Zur Startseite
+        </a>
+      </div>
     </div>
   </section>
 </DefaultLayout>
@@ -180,7 +193,7 @@ const author = {
 <style>
   /* Minimal CSS für Content-Styling ohne @apply */
   .prose {
-    color: #fff;
+    color: #374151;
   }
   
   .prose h1 {
@@ -188,6 +201,7 @@ const author = {
     font-weight: 700;
     margin-bottom: 1.5rem;
     margin-top: 2rem;
+    color: #111827;
   }
   
   .prose h2 {
@@ -195,6 +209,7 @@ const author = {
     font-weight: 600;
     margin-bottom: 1rem;
     margin-top: 3rem;
+    color: #111827;
   }
   
   .prose h3 {
@@ -202,6 +217,7 @@ const author = {
     font-weight: 600;
     margin-bottom: 0.75rem;
     margin-top: 2rem;
+    color: #111827;
   }
   
   .prose p {
@@ -253,6 +269,7 @@ const author = {
   }
   
   .prose code {
+    background-color: #f3f4f6;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     font-family: 'Courier New', monospace;
@@ -260,6 +277,7 @@ const author = {
   }
   
   .prose pre {
+    background-color: #1f2937;
     color: #f9fafb;
     padding: 1rem;
     border-radius: 0.5rem;

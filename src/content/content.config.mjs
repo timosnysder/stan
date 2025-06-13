@@ -17,13 +17,14 @@ const casestudies = defineCollection({
     title: z.string(),
     description: z.string(),
     image: z.string(),
+    featuredImage: z.string().optional(), // Neues Feld für PageHeader
     client: z.string().optional(),
-    date: z.date().optional(),
+    date_start: z.date().optional(),
+    date_end: z.date().optional(),
     tags: z.array(z.string()).optional(),
     featured: z.boolean().default(false),
   }),
 })
-
 export const collections = { projects, casestudies }
 
 // // src/content/content.config.mjs
