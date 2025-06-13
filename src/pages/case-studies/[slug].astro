@@ -64,7 +64,7 @@ const author = {
   
   <!-- Meta Information -->
   {(entry.data.client || entry.data.date || entry.data.tags) && (
-    <section class="py-8 bg-gray-50">
+    <section class="py-8">
       <div class="max-w-6xl mx-auto px-4">
         <div class="max-w-4xl mx-auto">
           <div class="flex flex-wrap justify-center gap-6 text-sm">
@@ -74,7 +74,7 @@ const author = {
               </div>
             )}
             {entry.data.date && (
-              <div class="bg-white px-4 py-2 rounded shadow">
+              <div class=" px-4 py-2 rounded shadow">
                 <strong>Datum:</strong> {new Date(entry.data.date).toLocaleDateString('de-DE')}
               </div>
             )}
@@ -83,7 +83,7 @@ const author = {
           {entry.data.tags && (
             <div class="flex flex-wrap justify-center gap-2 mt-6">
               {entry.data.tags.map((tag: string) => (
-                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                <span class="text-blue-800 px-3 py-1 rounded-full text-sm">
                   {tag}
                 </span>
               ))}
@@ -180,7 +180,7 @@ const author = {
 <style>
   /* Minimal CSS für Content-Styling ohne @apply */
   .prose {
-    color: #374151;
+    color: #fff;
   }
   
   .prose h1 {
@@ -188,7 +188,6 @@ const author = {
     font-weight: 700;
     margin-bottom: 1.5rem;
     margin-top: 2rem;
-    color: #111827;
   }
   
   .prose h2 {
@@ -196,7 +195,6 @@ const author = {
     font-weight: 600;
     margin-bottom: 1rem;
     margin-top: 3rem;
-    color: #111827;
   }
   
   .prose h3 {
@@ -204,7 +202,6 @@ const author = {
     font-weight: 600;
     margin-bottom: 0.75rem;
     margin-top: 2rem;
-    color: #111827;
   }
   
   .prose p {
@@ -256,7 +253,6 @@ const author = {
   }
   
   .prose code {
-    background-color: #f3f4f6;
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     font-family: 'Courier New', monospace;
@@ -264,7 +260,6 @@ const author = {
   }
   
   .prose pre {
-    background-color: #1f2937;
     color: #f9fafb;
     padding: 1rem;
     border-radius: 0.5rem;
