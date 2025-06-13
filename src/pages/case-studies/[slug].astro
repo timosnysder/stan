@@ -48,8 +48,8 @@ const { Content } = await render(entry)
 
 const author = {
   name: entry.data.client || 'Case Study',
-  image: '/images/test.jpg', // Hier sollte später das Firmen-Logo stehen
-  bio: 'UX/UI Designer & Konzepter', // Meine Rolle
+  image: entry.data.client_logo || '/images/test.jpg', // Verwende client_logo aus MDX
+  bio: entry.data.myrole || 'UX/UI Designer & Konzepter', // Verwende myrole aus MDX
 }
 
 // Projekt-Metadaten für PageHeader
@@ -57,6 +57,8 @@ const projectMeta = {
   dateStart: entry.data.date_start,
   dateEnd: entry.data.date_end,
   tags: entry.data.tags,
+  clientLogo: entry.data.client_logo,  // NEU
+  myRole: entry.data.myrole,           // NEU
 }
 
 // Featured Image: Verwende featuredImage falls vorhanden, sonst image als Fallback

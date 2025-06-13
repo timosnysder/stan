@@ -45,6 +45,8 @@ interface Props {
     dateStart?: Date
     dateEnd?: Date
     tags?: string[]
+    clientLogo?: string    // NEU
+    myRole?: string        // NEU
   }
   bgType?: 'primary' | 'secondary' | 'neutral' | 'gradient' | 'bordered'
   /**
@@ -128,13 +130,13 @@ const sanitizedSubtitle: string = subtitle
                 {/* Links: Firma, Logo, Rolle */}
                 <div class="flex items-center gap-4">
                   <img 
-                    src={author.image} 
+                    src={projectMeta.clientLogo || author.image} 
                     alt={`${author.name} Logo`}
                     class="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
                   />
                   <div>
                     <h3 class="text-lg font-semibold text-gray-900">{author.name}</h3>
-                    <p class="text-sm text-gray-600">{author.bio}</p>
+                    <p class="text-sm text-gray-600">{projectMeta.myRole || author.bio}</p>
                   </div>
                 </div>
                 
