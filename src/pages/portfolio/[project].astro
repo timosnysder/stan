@@ -24,7 +24,7 @@ export async function getStaticPaths() {
     }
 
     return {
-      params: { project: project.id },
+      params: { project: project.id }, 
       props: { project: projectWithImage },
     }
   })

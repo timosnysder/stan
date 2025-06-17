@@ -5,7 +5,7 @@ import sanitizeHtml from 'sanitize-html'
 /**
  * PageHeader Component
  *
- * @description PageHeader description
+ * @description PageHeader für Case Studies mit verbessertem Layout
  */
 interface Props {
   /**
@@ -45,8 +45,10 @@ interface Props {
     dateStart?: Date
     dateEnd?: Date
     tags?: string[]
-    clientLogo?: string    // NEU
-    myRole?: string        // NEU
+    clientLogo?: string
+    myRole?: string
+    client?: string
+    industrie?: string
   }
   bgType?: 'primary' | 'secondary' | 'neutral' | 'gradient' | 'bordered'
   /**
@@ -67,9 +69,16 @@ const sanitizedSubtitle: string = subtitle
       },
     })
   : ''
+
+// Für Case Studies: Verwende projectMeta falls vorhanden
+const isProjectPage = !!projectMeta
+const clientName = projectMeta?.client || author?.name
+const clientLogo = projectMeta?.clientLogo || author?.image
+const myRole = projectMeta?.myRole || author?.bio
 ---
 
 <section class:list={[className, 'page-header']}>
+  <!-- Breadcrumbs -->
   <div class="container my-3">
     {
       showBreadcrumbs &&
@@ -99,87 +108,112 @@ const sanitizedSubtitle: string = subtitle
         })()
     }
   </div>
-  <div class:list={['py-16', bgType && `bg-${bgType}`]}>
-    <div class="space-content container">
-      {
-        featuredImage && (
-          <div class="featured-image-container mb-8">
-            <img
-              src={featuredImage}
-              alt={title}
-              class="h-[250px] w-full rounded-lg object-cover"
-              loading="eager"
-            />
-          </div>
-        )
-      }
-      <h1>{title}</h1>
-      {sanitizedSubtitle && <p class="text-2xl" set:html={sanitizedSubtitle} />}
-      {
-        author && (
-          <div class="mt-6">
-            {/* Standard Avatar für Portfolio ohne Projekt-Meta */}
-            {!projectMeta ? (
-              <div class="flex items-center">
-                <Avatar title={author.name} image={author.image} subtitle={author.bio} />
+
+  <!-- Featured Image - Full Width -->
+  {featuredImage && (
+    <div class="featured-image-section">
+      <div class="container">
+        <div class="featured-image-container">
+          <img
+            src={featuredImage}
+            alt={title}
+            class="featured-image"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Main Content Area -->
+  <div class:list={['header-content', bgType && `bg-${bgType}`]}>
+    <div class="container py-16">
+      
+      <!-- Title Section -->
+      <div class="mb-8">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">{title}</h1>
+        {sanitizedSubtitle && (
+          <div class="text-xl md:text-2xl" set:html={sanitizedSubtitle} />
+        )}
+      </div>
+
+      <!-- Project Meta Layout für Case Studies -->
+      {isProjectPage ? (
+        <div class="project-meta-unified">
+          
+          <!-- Einheitliche Client + Meta Box -->
+          <div class="client-section">
+            {clientLogo && (
+              <div class="client-logo-container">
+                <img 
+                  src={clientLogo} 
+                  alt={`${clientName} Logo`}
+                  class="client-logo"
+                />
               </div>
-            ) : (
-              /* Erweiterte Projekt-Info für Case Studies */
-              <div class="flex flex-col md:flex-row gap-6 items-start">
-                
-                {/* Links: Firma, Logo, Rolle */}
-                <div class="flex items-center gap-4">
-                  <img 
-                    src={projectMeta.clientLogo || author.image} 
-                    alt={`${author.name} Logo`}
-                    class="w-16 h-16 rounded-full object-cover border-2 border-gray-200"
-                  />
-                  <div>
-                    <h3 class="text-lg font-semibold text-gray-900">{author.name}</h3>
-                    <p class="text-sm text-gray-600">{projectMeta.myRole || author.bio}</p>
+            )}
+            <div class="client-info">
+              <div class="meta-line">
+                {clientName && (
+                  <h3 class="client-name">{clientName}</h3>
+                )}
+                {/* <!-- Tags --> */}
+                {projectMeta.tags && projectMeta.tags.length > 0 && (
+                  <div class="tags-section">
+                    <span class="meta-label">Tags:</span>
+                    {projectMeta.tags.map(tag => (
+                      <span class="tag">{tag}</span>
+                    ))}
                   </div>
-                </div>
+                )}
+
                 
-                {/* Rechts: Zeitraum und Tags */}
-                <div class="flex flex-col gap-4 md:ml-auto">
-                  
-                  {/* Zeitraum */}
+              </div>  
+                {/* <!-- Meta-Informationen in der gleichen Zeile --> */}
+                <div class="meta-line">
+                  <div class="info-line">
+                    {myRole && (
+                      <span class="meta-label">Meine Rolle: </span>
+                      <span class="my-role">{myRole}</span>
+                    )}
+                  </div>  
+                  {/* <!-- Zeitraum --> */}
                   {(projectMeta.dateStart || projectMeta.dateEnd) && (
-                    <div class="bg-white px-4 py-3 rounded-lg shadow-sm border border-gray-200">
-                      <h4 class="text-sm font-semibold text-gray-700 mb-1">Zeitraum</h4>
-                      <p class="text-gray-900">
+                    <div class="meta-item">
+                      <span class="meta-label">Zeitraum:</span>
+                      <span class="meta-value">
                         {projectMeta.dateStart && new Date(projectMeta.dateStart).toLocaleDateString('de-DE')}
                         {projectMeta.dateStart && projectMeta.dateEnd && ' - '}
                         {projectMeta.dateEnd && new Date(projectMeta.dateEnd).toLocaleDateString('de-DE')}
-                      </p>
+                      </span>
                     </div>
                   )}
-                  
-                  {/* Tags */}
-                  {projectMeta.tags && projectMeta.tags.length > 0 && (
-                    <div class="bg-white px-4 py-3 rounded-lg shadow-sm border border-gray-200">
-                      <h4 class="text-sm font-semibold text-gray-700 mb-2">Technologien & Skills</h4>
-                      <div class="flex flex-wrap gap-2">
-                        {projectMeta.tags.map(tag => (
-                          <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                  {/* <!-- Industrie --> */}
+                  {projectMeta?.industrie && (
+                    <div class="meta-item">
+                      <span class="meta-label">Branche: </span>
+                      <span class="my-role">{projectMeta.industrie}</span>
                     </div>
-                  )}
-                  
+                  )}                  
                 </div>
-              </div>
-            )}
+              
+            </div>
+          </div>
+        </div>
+      ) : (
+        
+        author && (
+          <div class="standard-author">
+            {/* <!-- Standard Author Layout für andere Seiten --> */}
+            <Avatar title={author.name} image={author.image} subtitle={author.bio} />
           </div>
         )
-      }
+      )}
     </div>
   </div>
 </section>
 
-<style>
+<style lang="scss">
   .page-header {
     .bg-primary {
       background-color: light-dark(var(--color-primary-100), var(--color-primary-500));
@@ -206,10 +240,179 @@ const sanitizedSubtitle: string = subtitle
       border: 1px solid var(--border-color-subtle);
       border-inline: 0;
     }
+  }
 
-    .featured-image-container {
-      max-height: 500px;
-      overflow: hidden;
+  /* Featured Image Styles */
+  .featured-image-section {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+  }
+
+  .featured-image-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .featured-image {
+    width: 100%;
+    height: auto;
+    max-height: 333px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Project Meta Unified Layout */
+  .project-meta-unified {
+    margin-top: 2rem;
+  }
+
+  /* Client Section - Logo bestimmt die Höhe */
+  .client-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    min-height: calc(4rem + 3rem); /* Logo-Höhe + Padding */
+  }
+
+  .client-logo-container {
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .client-logo {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e5e7eb;
+  }
+
+  .client-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .client-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+  }
+
+  /* Info Line - my-role und Meta-Informationen auf gleicher Höhe */
+  .info-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .my-role {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  /* Meta Line - kompakter auf gleicher Höhe */
+  .meta-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    white-space: nowrap;
+  }
+
+  .meta-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .meta-value {
+    font-size: 0.875rem;
+    color: #111827;
+    font-weight: 500;
+  }
+
+  /* Tags kompakter */
+  .tags-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  .tag {
+    background-color: transparent;
+    // color: #1e40af;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    border: 1px solid #f9fafb;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* Standard Author */
+  .standard-author {
+    margin-top: 1.5rem;
+  }
+
+  /* Dark mode adjustments */
+  :global(.darkmode) {
+    .featured-image-section {
+      background-color: #1f2937;
+    }
+
+    .client-section {
+      background-color: #374151;
+      border-color: #4b5563;
+    }
+
+    .client-name {
+      color: #f9fafb;
+    }
+
+    .my-role {
+      color: #d1d5db;
+    }
+
+    .meta-label {
+      color: #e5e7eb;
+    }
+
+    .meta-value {
+      color: #f9fafb;
+    }
+
+    .client-logo {
+      border-color: #4b5563;
+    }
+
+    .tag {
+      // background-color: #1e3a8a;
+      color: #f9fafb;
     }
   }
 </style>

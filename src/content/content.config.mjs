@@ -20,6 +20,7 @@ const casestudies = defineCollection({
     featuredImage: z.string().optional(),
     client: z.string().optional(),
     client_logo: z.string().optional(),    // NEU
+    client_industrie: z.string().optional(), // NEU
     myrole: z.string().optional(),         // NEU
     date_start: z.date().optional(),
     date_end: z.date().optional(),

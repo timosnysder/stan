@@ -16,11 +16,6 @@ export async function getStaticPaths() {
     return dateB - dateA // Neueste zuerst
   })
   
-  console.log('=== CASE STUDIES DEBUG ===')
-  sortedCaseStudies.forEach((cs: CollectionEntry<'casestudies'>) => {
-    console.log(`ID: "${cs.id}", Title: "${cs.data.title}", Start: ${cs.data.date_start}, End: ${cs.data.date_end}`)
-  })
-  
   return sortedCaseStudies.map((entry: CollectionEntry<'casestudies'>, index: number) => {
     // Finde vorherige und nächste Case Study
     const prevCaseStudy = index > 0 ? sortedCaseStudies[index - 1] : null
@@ -46,19 +41,22 @@ interface Props {
 const { entry, prevCaseStudy, nextCaseStudy }: Props = Astro.props
 const { Content } = await render(entry)
 
+// Author Info für PageHeader (falls kein projectMeta verwendet wird)
 const author = {
   name: entry.data.client || 'Case Study',
-  image: entry.data.client_logo || '/images/test.jpg', // Verwende client_logo aus MDX
-  bio: entry.data.myrole || 'UX/UI Designer & Konzepter', // Verwende myrole aus MDX
+  image: entry.data.client_logo || '/images/test.jpg',
+  bio: entry.data.myrole || 'UX/UI Designer & Konzepter',
 }
 
-// Projekt-Metadaten für PageHeader
+// Projekt-Metadaten für PageHeader - alle relevanten Daten übergeben
 const projectMeta = {
   dateStart: entry.data.date_start,
   dateEnd: entry.data.date_end,
   tags: entry.data.tags,
-  clientLogo: entry.data.client_logo,  // NEU
-  myRole: entry.data.myrole,           // NEU
+  clientLogo: entry.data.client_logo,
+  industrie: entry.data.client_industrie,
+  myRole: entry.data.myrole,
+  client: entry.data.client, // Client-Name explizit übergeben
 }
 
 // Featured Image: Verwende featuredImage falls vorhanden, sonst image als Fallback
@@ -66,240 +64,225 @@ const featuredImage = entry.data.featuredImage || entry.data.image
 ---
 
 <DefaultLayout title={`${entry.data.title} - Case Study`} description={entry.data.description} url={entry.data.title}>
+  
+  <!-- PageHeader mit allen Meta-Informationen -->
   <PageHeader
     title={entry.data.title}
     subtitle={entry.data.description}
     author={author}
+    projectMeta={projectMeta}
     bgType="bordered"
     featuredImage={featuredImage}
   />
   
-  <!-- Meta Information -->
-  {(entry.data.client || entry.data.date_start || entry.data.date_end || entry.data.tags) && (
-    <section class="py-8">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="flex flex-wrap justify-center gap-6 text-sm">
-            {entry.data.client && (
-              <div class="bg-white px-4 py-2 rounded shadow">
-                <strong>Client:</strong> {entry.data.client}
-              </div>
-            )}
-            {(entry.data.date_start || entry.data.date_end) && (
-              <div class="bg-white px-4 py-2 rounded shadow">
-                <strong>Zeitraum:</strong> 
-                {entry.data.date_start && new Date(entry.data.date_start).toLocaleDateString('de-DE')}
-                {entry.data.date_start && entry.data.date_end && ' - '}
-                {entry.data.date_end && new Date(entry.data.date_end).toLocaleDateString('de-DE')}
-              </div>
-            )}
-          </div>
-          
-          {entry.data.tags && (
-            <div class="flex flex-wrap justify-center gap-2 mt-6">
-              {entry.data.tags.map((tag: string) => (
-                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  )}
-  
-  <!-- Content -->
+  <!-- Content Section - Nur der MDX Inhalt -->
   <section class="my-12">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="prose prose-lg prose-gray max-w-none">
-          <Content />
-        </div>
-      </div>
+    <div class="narrow space-content container">
+      <Content />
     </div>
   </section>
   
   <!-- Share Section -->
   <section class="my-12">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-2xl font-bold mb-4">Diese Case Study teilen</h2>
-        <p class="text-gray-600 mb-4">Gefällt Ihnen diese Case Study? Teilen Sie sie mit Ihrem Netzwerk!</p>
-        <SocialShares />
-      </div>
+    <div class="narrow space-content container">
+      <h2>Diese Case Study teilen</h2>
+      <p>Gefällt Ihnen diese Case Study? Teilen Sie sie mit Ihrem Netzwerk!</p>
+      <SocialShares />
     </div>
   </section>
   
-  <!-- Navigation -->
-  <section class="py-16">
-    <div class="max-w-6xl mx-auto px-4">
+  <!-- Navigation Section -->
+  <section class="navigation-section">
+    <div class="container">
       
       <!-- Case Study Navigation -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-12">
+      <div class="navigation-grid">
         
         <!-- Vorherige Case Study (Links) -->
-        <div class="flex justify-start">
+        <div class="nav-item nav-prev">
           {prevCaseStudy ? (
             <a 
               href={`/case-studies/${prevCaseStudy.id.replace('.mdx', '')}`}
-              class="flex flex-col items-start text-gray-700 p-4 rounded-lg hover:bg-gray-100 transition-colors"
+              class="nav-link nav-link-prev"
             >
-              <span class="text-sm text-gray-500 mb-1">← Vorherige</span>
-              <span class="font-semibold text-base">{prevCaseStudy.data.title}</span>
+              <span class="nav-direction">← Vorherige</span>
+              <span class="nav-title">{prevCaseStudy.data.title}</span>
               {prevCaseStudy.data.date_end && (
-                <span class="text-xs text-gray-400 mt-1">
+                <span class="nav-date">
                   {new Date(prevCaseStudy.data.date_end).toLocaleDateString('de-DE')}
                 </span>
               )}
             </a>
           ) : (
-            <div class="text-gray-300 text-sm">Keine vorherige Case Study</div>
+            <div class="nav-placeholder">Keine vorherige Case Study</div>
           )}
         </div>
         
         <!-- Zurück zu allen (Zentrum) -->
-        <div class="flex justify-center">
-          <a 
-            href="/case-studies" 
-            class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-          >
+        <div class="nav-item nav-center">
+          <a href="/case-studies" class="btn-primary">
             Alle Case Studies
           </a>
         </div>
         
         <!-- Nächste Case Study (Rechts) -->
-        <div class="flex justify-end">
+        <div class="nav-item nav-next">
           {nextCaseStudy ? (
             <a 
               href={`/case-studies/${nextCaseStudy.id.replace('.mdx', '')}`}
-              class="flex flex-col items-end text-gray-700 p-4 rounded-lg hover:bg-gray-100 transition-colors"
+              class="nav-link nav-link-next"
             >
-              <span class="text-sm text-gray-500 mb-1">Nächste →</span>
-              <span class="font-semibold text-base text-right">{nextCaseStudy.data.title}</span>
+              <span class="nav-direction">Nächste →</span>
+              <span class="nav-title">{nextCaseStudy.data.title}</span>
               {nextCaseStudy.data.date_end && (
-                <span class="text-xs text-gray-400 mt-1">
+                <span class="nav-date">
                   {new Date(nextCaseStudy.data.date_end).toLocaleDateString('de-DE')}
                 </span>
               )}
             </a>
           ) : (
-            <div class="text-gray-300 text-sm text-right">Keine nächste Case Study</div>
+            <div class="nav-placeholder">Keine nächste Case Study</div>
           )}
         </div>
-      </div>
-      
-      <!-- Zusätzliche Navigation -->
-      <div class="text-center pt-8 border-t border-gray-200">
-        <a 
-          href="/" 
-          class="inline-block bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors"
-        >
-          Zur Startseite
-        </a>
       </div>
     </div>
   </section>
 </DefaultLayout>
 
-<style>
-  /* Minimal CSS für Content-Styling ohne @apply */
-  .prose {
+<style lang="scss" is:global>
+  .narrow {
+    margin-inline: auto;
+    max-width: 65ch;
+  }
+
+  /* Navigation Section */
+  .navigation-section {
+    padding: 4rem 0;
+  }
+
+  .navigation-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr auto 1fr;
+      gap: 2rem;
+    }
+  }
+
+  /* Navigation Items */
+  .nav-item {
+    display: flex;
+  }
+
+  .nav-prev {
+    justify-content: flex-start;
+  }
+
+  .nav-center {
+    justify-content: center;
+  }
+
+  .nav-next {
+    justify-content: flex-end;
+  }
+
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
     color: #374151;
+
+    &:hover {
+      background-color: #f3f4f6;
+    }
   }
-  
-  .prose h1 {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    margin-top: 2rem;
-    color: #111827;
+
+  .nav-link-prev {
+    align-items: flex-start;
+    text-align: left;
   }
-  
-  .prose h2 {
-    font-size: 1.875rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    margin-top: 3rem;
-    color: #111827;
+
+  .nav-link-next {
+    align-items: flex-end;
+    text-align: right;
   }
-  
-  .prose h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    margin-top: 2rem;
-    color: #111827;
-  }
-  
-  .prose p {
-    margin-bottom: 1rem;
-    line-height: 1.625;
-  }
-  
-  .prose ul, .prose ol {
-    margin-bottom: 1rem;
-    margin-left: 1.5rem;
-    padding-left: 1rem;
-  }
-  
-  .prose li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .prose ul li {
-    list-style-type: disc;
-  }
-  
-  .prose ol li {
-    list-style-type: decimal;
-  }
-  
-  .prose a {
-    color: #2563eb;
-    text-decoration: underline;
-  }
-  
-  .prose a:hover {
-    color: #1d4ed8;
-  }
-  
-  .prose strong {
-    font-weight: 600;
-  }
-  
-  .prose em {
-    font-style: italic;
-  }
-  
-  .prose blockquote {
-    border-left: 4px solid #e5e7eb;
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    font-style: italic;
+
+  .nav-direction {
+    font-size: 0.875rem;
     color: #6b7280;
+    margin-bottom: 0.25rem;
   }
-  
-  .prose code {
-    background-color: #f3f4f6;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-family: 'Courier New', monospace;
+
+  .nav-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .nav-date {
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+
+  .nav-placeholder {
+    color: #d1d5db;
     font-size: 0.875rem;
   }
-  
-  .prose pre {
-    background-color: #1f2937;
-    color: #f9fafb;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    overflow-x: auto;
-    margin: 1rem 0;
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #1d4ed8;
+    }
   }
-  
-  .prose pre code {
-    background-color: transparent;
-    padding: 0;
-    color: inherit;
+
+  .bottom-nav {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
   }
+
+  /* Dark Mode */
+  :global(.darkmode) {
+    .nav-link {
+      color: #e5e7eb;
+
+      &:hover {
+        background-color: #374151;
+      }
+    }
+
+    .nav-direction {
+      color: #9ca3af;
+    }
+
+    .nav-date {
+      color: #6b7280;
+    }
+
+    .nav-placeholder {
+      color: #4b5563;
+    }
+
+    .bottom-nav {
+      border-top-color: #4b5563;
+    }
+  }
+</style>
 </style>

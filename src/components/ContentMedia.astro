@@ -29,7 +29,7 @@ const { imgSrc, reverseImg = false, showHeadline = false }: Props = Astro.props
 <section class="my-64">
   <div class="container">
     {showHeadline && <h2 class="text-6xl mb-12">Case Studys:</h2>}
-    <div class="grid grid-cols-1 gap-24 md:grid-cols-2">
+    <div class="grid grid-cols-1 gap-24 md:grid-cols-2 ">
       {!reverseImg ? <Media class="rounded-lg" src={imgSrc} /> : ''}
       <div class="space-content flex flex-col justify-between">
         <slot />
