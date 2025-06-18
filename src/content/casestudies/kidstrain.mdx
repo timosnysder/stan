@@ -1,6 +1,6 @@
 ---
-title: "Gründung eines Startups: Kidstrain GmbH"
-description: "Kommunikation zwischen Elern und Kindergärten"
+title: "Kidstrain – Digitale Brücke zwischen Kita und Eltern"
+description: "Kommunikationsplattform für Kindertagesstätten und Eltern"
 client: "Timo Schneider & Benjamin Scetbon"
 client_logo: "/casestudies/kidstrain/kidstrain_logo.gif"
 client_industrie: "Kinder- und Jugendhilfe"
@@ -15,33 +15,27 @@ featuredImage: "/casestudies/kidstrain/kidstrain_about.png"
 import BreakoutImage from '@components/BreakoutImage.astro'
 import { Image } from 'astro:assets'
 
-## Projektübersicht
+**Rolle:**  
+Initiator, Konzeption, UX/UI-Design, Prototyping, Markt- und Stakeholderanalyse, Projektpräsentation
 
-Das ist ein Test-Inhalt. 
-UND zwar Nummer 2
+**Zielgruppe:**  
+Eltern, Kita-Personal, Träger, Behörden, Dachverbände
 
-## Zielsetzung & Problemraum
+## SITUATION – Ausgangslage
 
-<div class="relative -mx-4 my-8 md:-mx-8 lg:-mx-[120px]">
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-    <Image
-      src="/casestudies/kidstrain/kidstrain_course.png"
-      alt="Smart home assistant interface showing voice command visualization"
-      width={460}
-      height={400}
-      class="w-full rounded-lg object-cover"
-    />
-    <Image
-      src="/casestudies/kidstrain/kidstrain_features.png"
-      alt="User interacting with the smart home system via voice commands"
-      width={460}
-      height={400}
-      class="w-full rounded-lg object-cover"
-    />
-  </div>
-</div>
+In Deutschland erfolgt die Kommunikation zwischen Kitas und Eltern größtenteils analog.  
+Dies haben wir zusammen mit dem Berliner Instituts für Innovationsforschung (BIFI) in einer Studie belegt:
 
-## UX Research
+- 57 % der Eltern erhalten **keine tagesaktuellen Informationen** digital.  
+- 45 % können **nicht digital mit der Kita kommunizieren**.  
+- Eltern empfinden **Stress** durch mangelnde Informationen, Missverständnisse und Unsicherheit.  
+- Kinder leiden indirekt unter gestressten Eltern.
+
+**Marktpotenzial:**
+
+- 3,75 Mio. Kinder in 57.594 Kitas (DE)
+- 21 Mio. Kinder (0–5 Jahre) in der EU
+- Zunehmender Bedarf durch demografischen Wandel und gesellschaftlichen Digitaldruck
 
 <div class="relative -mx-4 my-8 md:-mx-8 lg:-mx-[120px]">
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -76,19 +70,131 @@ UND zwar Nummer 2
   </div>
 </div>
 
+## TASK – Zielsetzung
 
-## UX-Strategie & Designprozess
+**Primäres Ziel:**  
+Entwicklung einer sicheren, datenschutzkonformen Plattform zur Kommunikation zwischen Kita und Eltern.
 
-### Informationsarchitektur
+**Strategische Ziele:**
 
-### Wireframes & Prototyping
+- Zentrale Kommunikationsschnittstelle für Kitas
+- Reduktion von Bürokratie & Zeitaufwand
+- Erhöhung der Transparenz und Sicherheit
+- Übertragbarkeit von Daten bei Kita-Wechsel
+- Einbindung politischer & wissenschaftlicher Partner zur langfristigen Legitimation
 
-### Designprinzipien
 
-## Zusammenarbeit & Stakeholder-Kommunikation
+<div class="relative -mx-4 my-8 md:-mx-8 lg:-mx-[120px]">
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <Image
+      src="/casestudies/kidstrain/kidstrain_course.png"
+      alt="Smart home assistant interface showing voice command visualization"
+      width={460}
+      height={400}
+      class="w-full rounded-lg object-cover"
+    />
+    <Image
+      src="/casestudies/kidstrain/kidstrain_features.png"
+      alt="User interacting with the smart home system via voice commands"
+      width={460}
+      height={400}
+      class="w-full rounded-lg object-cover"
+    />
+  </div>
+</div>
 
-## Regulatorik & Technik
+## ACTION – Umsetzung
 
-## Ergebnisse & Learnings
+### Produktentwicklung (UX/UI & Funktionalitäten)
 
-## Fazit
+**Grundfunktionen:**
+
+- **Kinder-ID:** Verschlüsselte digitale Identität, übertragbar bei Kita-Wechsel  
+- **Vertrauenspersonen-Management:** Wer darf das Kind abholen?  
+- **Panikbutton:** Notfallfunktion mit direkter Benachrichtigung & medizinischen Daten  
+- **Kalender, Kommunikation, Krankmeldung, Speisepläne, Dokumente**  
+- **Integrierte Übersetzung**: für Familien mit Migrationshintergrund  
+
+**Sicherheitsfeatures:**
+
+- Dezentralisierte Infrastruktur (jede Kita als eigene Instanz)  
+- DSGVO-konforme Datenverarbeitung  
+- Keine Weitergabe von Telefonnummern, GPS-Daten oder Fotos  
+- Token-basierte Nutzervergabe durch die Kita
+
+### Stakeholder-Kommunikation
+
+- Persönliche Gespräche mit Vertretern aus Politik & Verwaltung (z. B. im bUm Berlin)  
+- Anfrage an den Paritätischen Verband für Fachunterstützung  
+- Gespräch mit Fachkräften aus Kitas zur Klärung von Entscheidungswegen & Datenschutz  
+- Prototyping und Demonstration für Dachverbände und Behörden  
+
+### Businessmodell
+
+- Monatlicher Beitrag Kita: **1,85 €/Kind**  
+- Elternbeitrag: **1 €/Kind**
+- Erweiterte Monetarisierung durch:
+  - Partnerschaften (z. B. Hygieneprodukte, Tablets)
+  - Kita-Finder-Modul: 1 €/Kind für digitale Bewerbungsprozesse
+  - Werbe- und Transaktionsgebühren
+
+### Go-to-Market-Strategie
+
+**Phase 1: Pilotprojekt**
+- Kooperation mit Kita-Dachverband (50+ Einrichtungen)
+- 50 % Nachlass für Entwicklungspartnerschaft
+
+**Phase 2: Skalierung**
+- B2B-Kampagnen: SEO, Fachmessen, LinkedIn/Xing
+- Offline-Marketing: Flyer, Messen
+- Partnerschaften mit Tablet-Herstellern (z. B. Apple, Lenovo)
+
+---
+
+## RESULT – Ergebnis & Wirkung
+
+### Validierung durch Studien
+
+- Nachweisbare Stressreduktion bei Eltern digitalisierter Kitas (BIFI)
+- Verbesserte Informationslage über Kindesentwicklung
+- Entlastung von Kita-Personal durch Automatisierung & klare Kommunikationskanäle
+
+### Marktprognosen
+
+| Jahr | Kinder | Umsatz (€) |
+|------|--------|------------|
+| 1    | 8.000  | 40.000     |
+| 2    | 16.000 | 322.400    |
+| 3    | 254.000| 2.514.467  |
+
+**Break-Even:**  
+Bei ca. 254.000 Kindern in Nutzung (nach 3 Jahren)
+
+### Differenzierung zum Wettbewerb
+
+| Anbieter         | Besonderheiten                        |
+|------------------|---------------------------------------|
+| **Kidstrain**    | Kinder-ID, Panicbutton, DSGVO+, Kita-Finder |
+| KinderTap        | Datenschutzprobleme, italienischer Markt |
+| Kita Info App    | Keine Chat-Funktion, einfache Funktionen |
+| KigaClick        | Kein Dashboard, geringe Reichweite     |
+
+---
+
+## FAZIT – Erkenntnisse & Learnings
+
+- Eltern wünschen sich digitale Transparenz – aber nur mit Vertrauen in Sicherheit.
+- Kitas sind bereit, neue Wege zu gehen – sofern Verwaltung und Datenschutz mitziehen.
+- Frühzeitige Einbindung von Behörden und Dachverbänden ist erfolgskritisch.
+- Kidstrain zeigt, wie eine **bedarfsgerechte, datensensible Digitalisierung im frühkindlichen Bildungsbereich** möglich ist.
+
+---
+
+## Weiterführende Links
+
+- 📄 [Pitch Deck PDF – Präsentation](https://docs.google.com/document/d/1TQW19qGzlROgteDz4MOw4YUxQ4KYBe4uJprG7yYNZAE/edit?usp=sharing)
+- 📱 [Klickbarer App-Prototyp für Eltern](https://www.figma.com/proto/KrAWenBje66lYLOuiAsxHk/V2-APP?node-id=1394%3A1&viewport=360%2C-200%2C0.5&scaling=scale-down)
+- 📞 Kontakt: timo.schneider@kidstrain.de
+
+---
+
