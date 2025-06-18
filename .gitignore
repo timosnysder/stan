@@ -36,3 +36,6 @@ package-lock.json
 
 # cursor rules
 .cursor/rules
+
+# Large video files
+public/casestudies/kidstrain/KidsTrain_3min_Teaser.mp4
