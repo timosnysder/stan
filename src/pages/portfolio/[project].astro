@@ -17,14 +17,66 @@ export async function getStaticPaths() {
     { src: '/projects/project-image-6.png' },
   ]
 
+  // Funktion um die korrekte URL zu generieren
+  function getProjectUrl(projectId: string): string {
+    // Entferne .mdx oder /index.md vom Ende
+    const cleanId = projectId.replace(/\.(mdx|md)$/, '').replace(/\/index$/, '')
+    return cleanId
+  }
+
+  // Funktion um Projekt-Image zu finden
+  function getProjectImage(projectId: string, fallbackSrc: string): string {
+    // Prüfe ob es ein Ordner-Projekt ist (enthält kein .mdx)
+    if (!projectId.includes('.mdx')) {
+      // Verwende die gleiche URL-Logik wie für die Routen
+      const cleanProjectName = getProjectUrl(projectId)
+      const imagePath = `/projects/${cleanProjectName}/images/`
+      
+      console.log(`=== PROJECT IMAGE DEBUG ===`)
+      console.log(`Original ID: "${projectId}"`)
+      console.log(`Clean Name: "${cleanProjectName}"`)
+      
+      // Projekt-spezifische Bild-Zuordnungen
+      let projectImagePath = `${imagePath}main.jpg` // Default
+      
+      if (cleanProjectName === 'antrifttaler-kunststoff-vertrieb') {
+        projectImagePath = `${imagePath}main.png`
+      } else if (cleanProjectName === 'herbitt-cars') {
+        projectImagePath = `${imagePath}main.png` // oder was auch immer du verwendest
+      }
+      // Für neue Projekte: einfach hier hinzufügen
+      
+      console.log(`Final Image Path: "${projectImagePath}"`)
+      
+      return projectImagePath
+    }
+    
+    // Fallback für .mdx Dateien
+    return fallbackSrc
+  }
+
   return projects.map((project, index) => {
+    const projectUrl = getProjectUrl(project.id)
+    const projectImage = getProjectImage(project.id, projectImages[index % projectImages.length].src)
+    
     const projectWithImage = {
       ...project,
-      featuredImage: projectImages[index % projectImages.length].src,
+      featuredImage: projectImage,
+      // Ergänze fehlende Daten
+      data: {
+        ...project.data,
+        author: project.data.author || 'Unknown Author',
+        description: project.data.description || 'No description available',
+      }
     }
 
+    console.log(`=== PROJECT ROUTE DEBUG ===`)
+    console.log(`Original ID: "${project.id}" → URL: "/portfolio/${projectUrl}"`)
+    console.log(`Title: "${project.data.title}"`)
+    console.log(`Image: ${projectImage}`)
+
     return {
-      params: { project: project.id }, 
+      params: { project: projectUrl },
       props: { project: projectWithImage },
     }
   })
@@ -38,7 +90,7 @@ const { project } = Astro.props
 const { Content } = await render(project)
 
 const author = {
-  name: project.data.author,
+  name: project.data.author || 'Unknown Author',
   image: '/projects/project-image-1.png',
   bio: 'Project Creator',
 }

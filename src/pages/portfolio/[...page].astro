@@ -6,7 +6,7 @@ import { getCollection } from 'astro:content'
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
-// Import images directly for optimization
+// Import images directly for optimization (als Fallback)
 import projectImage1 from '@assets/images/projects/project-image-1.png'
 import projectImage2 from '@assets/images/projects/project-image-2.png'
 import projectImage3 from '@assets/images/projects/project-image-3.png'
@@ -17,27 +17,91 @@ import projectImage6 from '@assets/images/projects/project-image-6.png'
 export const getStaticPaths = (async ({ paginate }) => {
   const projects = await getCollection('projects')
 
-  const projectImages = [projectImage1, projectImage2, projectImage3, projectImage4, projectImage5, projectImage6]
-
-  const projectsWithImages = projects.map((project, index) => {
-    return {
-      ...project,
-      featuredImage: projectImages[index % projectImages.length],
-    }
+  // Sortiere Projekte nach Datum (neueste zuerst)
+  const sortedProjects = projects.sort((a, b) => {
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0
+    return dateB - dateA // Neueste zuerst
   })
 
-  return paginate(projectsWithImages, { pageSize: 6 })
+  const fallbackImages = [projectImage1, projectImage2, projectImage3, projectImage4, projectImage5, projectImage6]
+
+  // Funktion um die korrekte URL zu generieren
+  function getProjectUrl(projectId: string): string {
+    // Entferne .mdx oder /index.md vom Ende
+    const cleanId = projectId.replace(/\.(mdx|md)$/, '').replace(/\/index$/, '')
+    return cleanId
+  }
+
+  // Funktion um Projekt-Image zu finden
+  function getProjectImage(projectId: string, fallbackImage: any): any {
+    // Prüfe ob es ein Ordner-Projekt ist (enthält kein .mdx)
+    if (!projectId.includes('.mdx')) {
+      // Verwende die gleiche URL-Logik wie für die Routen
+      const cleanProjectName = getProjectUrl(projectId)
+      const imagePath = `/projects/${cleanProjectName}/images/`
+      
+      console.log(`=== IMAGE DEBUG ===`)
+      console.log(`Original ID: "${projectId}"`)
+      console.log(`Clean Name: "${cleanProjectName}"`)
+      
+      // Da wir zur Build-Zeit keine Files checken können, implementieren wir
+      // ein einfaches mapping basierend auf dem Projekt-Namen
+      let projectImagePath = `${imagePath}main.jpg` // Default
+      
+      // Projekt-spezifische Bild-Zuordnungen
+      if (cleanProjectName === 'antrifttaler-kunststoff-vertrieb') {
+        projectImagePath = `${imagePath}main.png`
+      } else if (cleanProjectName === 'herbitt-cars') {
+        projectImagePath = `${imagePath}main.png` // oder was auch immer du verwendest
+      }
+      // Für neue Projekte: einfach hier hinzufügen
+      
+      console.log(`Final Image Path: "${projectImagePath}"`)
+      
+      return projectImagePath
+    }
+    
+    // Fallback für .mdx Dateien
+    return fallbackImage
+  }
+
+  // Funktion um Fallback-Daten zu ergänzen
+  function addFallbackData(project: CollectionEntry<'projects'>, index: number) {
+    const projectImage = getProjectImage(project.id, fallbackImages[index % fallbackImages.length])
+    
+    return {
+      ...project,
+      // Generiere die URL basierend auf der Projekt-ID
+      url: getProjectUrl(project.id),
+      // Verwende Projekt-spezifisches Bild oder Fallback
+      featuredImage: projectImage,
+      // Ergänze fehlende Daten mit Fallbacks
+      data: {
+        ...project.data,
+        author: project.data.author || 'Unknown Author',
+        description: project.data.description || 'No description available',
+      }
+    }
+  }
+
+  const projectsWithData = sortedProjects.map((project, index) => addFallbackData(project, index))
+
+  console.log('=== PORTFOLIO DEBUG (SORTED BY DATE) ===')
+  projectsWithData.forEach(project => {
+    console.log(`Date: ${project.data.date ? new Date(project.data.date).toLocaleDateString('de-DE') : 'No date'} | Title: "${project.data.title}"`)
+    console.log(`  → URL: "/portfolio/${project.url}"`)
+    console.log(`  → Image: ${typeof project.featuredImage === 'string' ? project.featuredImage : 'Fallback Image Object'}`)
+  })
+
+  return paginate(projectsWithData, { pageSize: 6 })
 }) satisfies GetStaticPaths
 
 interface Props {
-  page: Page<CollectionEntry<'projects'> & { featuredImage: any }>
+  page: Page<CollectionEntry<'projects'> & { featuredImage: any; url: string }>
 }
 
 const { page } = Astro.props
-
-// Prepare pagination props
-const currentPage = page.currentPage
-const totalPages = Math.ceil(page.total / page.size)
 ---
 
 <DefaultLayout
@@ -58,9 +122,9 @@ const totalPages = Math.ceil(page.total / page.size)
             <li>
               <Card
                 imageComponent={project.featuredImage}
-                url={'/portfolio/' + project.id}
+                url={'/portfolio/' + project.url}
                 title={project.data.title}
-                footer={'Author: ' + project.data.author}
+                footer={project.data.date ? new Date(project.data.date).toLocaleDateString('de-DE') : (project.data.author ? 'Author: ' + project.data.author : 'No date')}
               >
                 {project.data.description}
               </Card>

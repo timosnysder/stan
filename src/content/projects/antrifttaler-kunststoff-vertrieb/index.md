@@ -3,6 +3,8 @@ title: "Antrifttaler Kunststoff Vertrieb"
 date: 2021-12-27
 categories: 
   - "selbstaendig"
+author: Timo Schneider
+description: Fachbetrieb für Flüssigkunststoffe
 ---
 
 Der Kunde, ein Fachbetrieb für Flüssigkunststoffe dessen Zielgruppe hauptsächlich Architekten, Handwerker und Fachbetriebe sind brauchte ein neues Design und eine mobile Verfügbarkeit die zuvor nicht gegeben war.  
