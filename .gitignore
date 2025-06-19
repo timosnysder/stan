@@ -1,11 +1,6 @@
 # build output
 dist
 
-# public files
-public/casestudies
-
-
-
 # dependencies
 node_modules/
 .snowpack/

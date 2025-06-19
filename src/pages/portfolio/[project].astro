@@ -4,6 +4,7 @@ import PageHeader from '@components/PageHeader.astro'
 import SocialShares from '@components/SocialShares.astro'
 import { getCollection, render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
+import { projectsWithImages, getFallbackImage, imageFileNames } from '../../config/projects.js'
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects')
@@ -36,19 +37,19 @@ export async function getStaticPaths() {
       console.log(`Original ID: "${projectId}"`)
       console.log(`Clean Name: "${cleanProjectName}"`)
       
-      // Projekt-spezifische Bild-Zuordnungen
-      let projectImagePath = `${imagePath}main.jpg` // Default
-      
-      if (cleanProjectName === 'antrifttaler-kunststoff-vertrieb') {
-        projectImagePath = `${imagePath}main.png`
-      } else if (cleanProjectName === 'herbitt-cars') {
-        projectImagePath = `${imagePath}main.png` // oder was auch immer du verwendest
+      // Prüfe ob dieses Projekt ein eigenes Bild hat (aus zentraler Konfiguration)
+      if (projectsWithImages.includes(cleanProjectName)) {
+        // Verwende das erste verfügbare Bild (main.png hat Priorität)
+        const projectImagePath = `${imagePath}${imageFileNames[0]}`
+        console.log(`Using project-specific image: "${projectImagePath}"`)
+        return projectImagePath
+      } else {
+        // Fallback: Verwende Bilder aus /public/projects/ (aus zentraler Konfiguration)
+        const fallbackImagePath = getFallbackImage(cleanProjectName)
+        
+        console.log(`No project image found, using fallback: "${fallbackImagePath}"`)
+        return fallbackImagePath
       }
-      // Für neue Projekte: einfach hier hinzufügen
-      
-      console.log(`Final Image Path: "${projectImagePath}"`)
-      
-      return projectImagePath
     }
     
     // Fallback für .mdx Dateien

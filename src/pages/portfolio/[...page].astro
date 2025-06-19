@@ -5,6 +5,7 @@ import { Card, Pagination } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
+import { projectsWithImages, getFallbackImage, imageFileNames } from '../../config/projects.js'
 
 // Import images directly for optimization (als Fallback)
 import projectImage1 from '@assets/images/projects/project-image-1.png'
@@ -45,24 +46,51 @@ export const getStaticPaths = (async ({ paginate }) => {
       console.log(`Original ID: "${projectId}"`)
       console.log(`Clean Name: "${cleanProjectName}"`)
       
-      // Da wir zur Build-Zeit keine Files checken können, implementieren wir
-      // ein einfaches mapping basierend auf dem Projekt-Namen
-      let projectImagePath = `${imagePath}main.jpg` // Default
+      // Standard-Namen für das Haupt-Bild (in Prioritäts-Reihenfolge)
+      const possibleImages = [
+        `${imagePath}main.png`,
+        `${imagePath}main.jpg`, 
+        `${imagePath}index.png`,
+        `${imagePath}index.jpg`,
+        `${imagePath}hero.png`,
+        `${imagePath}hero.jpg`,
+        `${imagePath}01.png`,
+        `${imagePath}01.jpg`,
+        `${imagePath}1.png`,
+        `${imagePath}1.jpg`
+      ]
       
-      // Projekt-spezifische Bild-Zuordnungen
-      if (cleanProjectName === 'antrifttaler-kunststoff-vertrieb') {
-        projectImagePath = `${imagePath}main.png`
-      } else if (cleanProjectName === 'herbitt-cars') {
-        projectImagePath = `${imagePath}main.png` // oder was auch immer du verwendest
+      // Prüfe ob dieses Projekt ein eigenes Bild hat
+      if (projectsWithImages.includes(cleanProjectName)) {
+        // Verwende das erste verfügbare Bild (main.png hat Priorität)
+        const projectImagePath = possibleImages[0]
+        console.log(`Using project-specific image: "${projectImagePath}"`)
+        return projectImagePath
+      } else {
+        // Fallback: Verwende Bilder aus /public/projects/
+        const fallbackImages = [
+          '/projects/project-image-1.png',
+          '/projects/project-image-2.png', 
+          '/projects/project-image-3.png',
+          '/projects/project-image-4.png',
+          '/projects/project-image-5.png',
+          '/projects/project-image-6.png'
+        ]
+        
+        // Konsistente Zuordnung basierend auf Projekt-Name
+        const hash = cleanProjectName.split('').reduce((a, b) => {
+          a = ((a << 5) - a) + b.charCodeAt(0)
+          return a & a
+        }, 0)
+        const imageIndex = Math.abs(hash) % fallbackImages.length
+        const fallbackImagePath = fallbackImages[imageIndex]
+        
+        console.log(`No project image found, using fallback (index ${imageIndex}): "${fallbackImagePath}"`)
+        return fallbackImagePath
       }
-      // Für neue Projekte: einfach hier hinzufügen
-      
-      console.log(`Final Image Path: "${projectImagePath}"`)
-      
-      return projectImagePath
     }
     
-    // Fallback für .mdx Dateien
+    // Fallback für .mdx Dateien - verwende das übergebene Fallback-Image-Objekt
     return fallbackImage
   }
 
@@ -158,6 +186,9 @@ const { page } = Astro.props
 
     a {
       @include text-decoration(transparent, var(--foreground-color), 4px, 2px);
+    }
+    .image img{
+      object-fit: fill;
     }
   }
 </style>
