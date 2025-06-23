@@ -6,11 +6,26 @@
  * Format: ['projekt-ordner-name', 'anderes-projekt']
  */
 export const projectsWithImages = [
+        'akquinet',
         'antrifttaler-kunststoff-vertrieb',
-        'herbitt-cars',
-        'lebenshilfe-2',
-        'akquinet-gmbh',
         'auconet',
+        'berlingeschwister',
+        'bundesarbeitsgemeinschaft-kirche-rechtsextremismus',
+        'dianafrankovic',
+        'familiarfacades',
+        'fensterdirektvertrieb',
+        'haus-fuerstenberg',
+        'herbitt-cars',
+        'jahresbericht-haus-der-kleinen-forscher',
+        'lebenshilfe-2',
+        'los-das-magazin-fuer-mobilitaet',
+        'research-drawing',
+        'sens-media',
+        'supersport-fitnessgeraete',
+        'wendelburg',
+        'zia-gestalte-unsere-zukunft',
+        // '',
+        // '',
         // Hier weitere Projekte hinzufügen, die eigene Bilder haben
       ]
       
