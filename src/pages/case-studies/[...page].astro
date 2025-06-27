@@ -10,7 +10,13 @@ import type { CollectionEntry } from 'astro:content'
 export const getStaticPaths = (async ({ paginate }) => {
   const allCaseStudies = await getCollection('casestudies')
   
+  // Sortiere mit Featured zuerst, dann nach Datum
   const sortedCaseStudies = allCaseStudies.sort((a, b) => {
+    // Featured Case Studies zuerst
+    if (a.data.featured && !b.data.featured) return -1
+    if (!a.data.featured && b.data.featured) return 1
+    
+    // Beide featured oder beide nicht featured: nach Datum sortieren
     const dateA = a.data.date_end ? new Date(a.data.date_end).getTime() : (a.data.date_start ? new Date(a.data.date_start).getTime() : 0)
     const dateB = b.data.date_end ? new Date(b.data.date_end).getTime() : (b.data.date_start ? new Date(b.data.date_start).getTime() : 0)
     return dateB - dateA // Neueste zuerst
@@ -28,7 +34,7 @@ const { page } = Astro.props
 console.log('=== OVERVIEW PAGE DEBUG ===')
 console.log(`Found ${page.total} case studies, showing ${page.size} per page`)
 page.data.forEach(cs => {
-  console.log(`- ID: "${cs.id}", Title: "${cs.data.title}", Start: ${cs.data.date_start}, End: ${cs.data.date_end}`)
+  console.log(`- ID: "${cs.id}", Title: "${cs.data.title}", Featured: ${cs.data.featured}, Start: ${cs.data.date_start}, End: ${cs.data.date_end}`)
 })
 ---
 
@@ -81,7 +87,14 @@ page.data.forEach(cs => {
           )
 
           return (
-            <li>
+            <li class="relative">
+              {/* Featured Badge außerhalb der Card */}
+              {caseStudy.data.featured && (
+                <div class="featured-badge">
+                  ⭐ Featured
+                </div>
+              )}
+              
               <Card
                 img={caseStudy.data.image}
                 url={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
@@ -141,6 +154,31 @@ page.data.forEach(cs => {
       display: flex;
       flex-direction: column;
       height: 100%;
+    }
+  }
+
+  /* Featured Badge Styling */
+  .featured-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(45deg, #ffd700, #ffed4a);
+    color: #1a202c;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e6c200;
+  }
+
+  /* Dark Mode Anpassung für Featured Badge */
+  :global(.darkmode) {
+    .featured-badge {
+      background: linear-gradient(45deg, #b8860b, #daa520);
+      color: #000;
+      border-color: #8b6914;
     }
   }
 </style>

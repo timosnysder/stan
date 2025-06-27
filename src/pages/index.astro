@@ -9,15 +9,30 @@ import ExternalLink from '@components/ExternalLink.astro'
 import { Accordion, AccordionItem, Avatar, AvatarGroup } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
 
-// Hole die neuesten 3 Case Studies
+// Hole alle Case Studies und implementiere Featured-Logik
 const allCaseStudies = await getCollection('casestudies')
-const recentCaseStudies = allCaseStudies
-  .sort((a, b) => {
-    const dateA = a.data.date_end ? new Date(a.data.date_end).getTime() : (a.data.date_start ? new Date(a.data.date_start).getTime() : 0)
-    const dateB = b.data.date_end ? new Date(b.data.date_end).getTime() : (b.data.date_start ? new Date(b.data.date_start).getTime() : 0)
-    return dateB - dateA // Neueste zuerst
-  })
-  .slice(0, 3)
+
+// Zeige zuerst featured Case Studies, dann die neuesten
+const featuredCaseStudies = allCaseStudies.filter(cs => cs.data.featured === true)
+const nonFeaturedCaseStudies = allCaseStudies.filter(cs => cs.data.featured !== true)
+
+// Sortiere beide Gruppen nach Datum
+const sortByDate = (a, b) => {
+  const dateA = a.data.date_end ? new Date(a.data.date_end).getTime() : (a.data.date_start ? new Date(a.data.date_start).getTime() : 0)
+  const dateB = b.data.date_end ? new Date(b.data.date_end).getTime() : (b.data.date_start ? new Date(b.data.date_start).getTime() : 0)
+  return dateB - dateA
+}
+
+const sortedFeatured = featuredCaseStudies.sort(sortByDate)
+const sortedNonFeatured = nonFeaturedCaseStudies.sort(sortByDate)
+
+// Kombiniere: Featured zuerst, dann die neuesten non-featured
+const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
+
+console.log('=== HOMEPAGE CASE STUDIES DEBUG ===')
+console.log(`Featured Case Studies: ${featuredCaseStudies.length}`)
+console.log(`Non-Featured Case Studies: ${nonFeaturedCaseStudies.length}`)
+console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title} (featured: ${cs.data.featured})`))
 ---
 
 <DefaultLayout title="Home">
@@ -25,33 +40,34 @@ const recentCaseStudies = allCaseStudies
 
   <!-- Case Studies Sektion -->
   {recentCaseStudies.map((caseStudy, index) => (
-    <ContentMedia 
-      imgSrc={caseStudy.data.image} 
-      reverseImg={index % 2 === 1}
-      showHeadline={index === 0}
-    
+    <a 
+      href={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
+      class="homepage-case-study-link"
     >
-      <div>
-        <h3 class="text-3xl font-bold mb-4">{caseStudy.data.title}</h3>
-        <p class="text-lg mb-6">{caseStudy.data.description}</p>
-        {caseStudy.data.client && (
-          <p class="text-sm text-gray-600 mb-4">Client: {caseStudy.data.client}</p>
-        )}
-        {caseStudy.data.tags && (
-          <div class="flex flex-wrap gap-2 mb-6">
-            {caseStudy.data.tags.map(tag => (
-              <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">{tag}</span>
-            ))}
-          </div>
-        )}
-        <a 
-          href={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
-          class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
-        >
-          Case Study lesen
-        </a>
-      </div>
-    </ContentMedia>
+      <ContentMedia 
+        imgSrc={caseStudy.data.image} 
+        reverseImg={index % 2 === 1}
+        showHeadline={index === 0}
+      >
+        <div>
+          <h3 class="text-3xl font-bold mb-4">{caseStudy.data.title}</h3>
+          <p class="text-lg mb-6">{caseStudy.data.description}</p>
+          {caseStudy.data.client && (
+            <p class="text-sm text-gray-600 mb-4">Client: {caseStudy.data.client}</p>
+          )}
+          {caseStudy.data.tags && (
+            <div class="flex flex-wrap gap-2 mb-6">
+              {caseStudy.data.tags.map(tag => (
+                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">{tag}</span>
+              ))}
+            </div>
+          )}
+          <span class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors">
+            Case Study lesen
+          </span>
+        </div>
+      </ContentMedia>
+    </a>
   ))}
   
   <!-- Link zur Übersichtsseite -->
@@ -143,7 +159,7 @@ const recentCaseStudies = allCaseStudies
       </AvatarGroup>
     </div>
   </section>
-  <section class="mt-64 mb-32">
+  <section class="mt-48 mb-32">
     <div class="container">
       <h2 class="mb-16 text-6xl">Impact in numbers</h2>
       <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
@@ -174,4 +190,30 @@ const recentCaseStudies = allCaseStudies
     -webkit-text-fill-color: transparent;
   }
 
+  /* Homepage Case Study Links */
+  .homepage-case-study-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Bild Hover-Effekt innerhalb ContentMedia */
+    &:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Button sollte wie ein Button aussehen, aber nicht klickbar sein */
+    span {
+      pointer-events: none;
+    }
+  }
+
+  /* Stelle sicher, dass ContentMedia Bilder den Hover-Effekt bekommen */
+  .homepage-case-study-link img {
+    transition: transform 0.3s ease;
+  }
 </style>
