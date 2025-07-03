@@ -15,47 +15,27 @@ interface Props {
   src?: string
 }
 
-const { src = '/transparent.gif' }: Props = Astro.props
-// const { src = '/GifMerge_720x405.gif' }: Props = Astro.props
+const { src = '/timoschneider.png' }: Props = Astro.props
+// const { src = '/GifMerge_720x302.gif' }: Props = Astro.props
 // const { src = '/sichtachsen.mp4' }: Props = Astro.props
 
 ---
-
 <section class="hero my-24">
   <div class="container">
-
-
-    <div class="grid grid-cols-1 self-stretch items-center "> 
-
-      <!-- Headline -->
-      
-        <h1 class="text-center text-6xl lg:text-9xl lg:tracking-[.5rem] md:text-8xl md:tracking-[.25rem]">
-          <slot><span class="text-gradient">Sichtachsen</span></slot>
-        </h1>
-      
-      <!-- Subline -->
-      
-        <h4 class="text-center text-2xl lg:text-4xl mb-16">
-          <slot>UX / UI Konzept & Design</slot>
-        </h4>
-
-        <!-- Clain -->
-        <div class="claim-svg hidden justify-self-center flex-row md:block">
-          <Image class="hidden md:block" src={src} alt="" decoding="async" width={720} height={405} loading="eager" />
-          <!-- <video muted autoplay transition:persist loop="true">
-            <source
-              src={src}  
-              width={720} 
-              height={405}
-              type="video/mp4"
-              aria-controls="hidden"
-
-              
-            />
-          </video> -->
-        </div>
-
-        <div class="flex flex-col justify-center gap-3 min-[500px]:flex-row mt-16">
+    <!-- Headline -->
+    <h1 class="text-left text-6xl lg:text-8xl lg:tracking-[.5rem] md:text-6xl md:tracking-[.25rem]">
+      <slot><span class="text-gradient">Timo Schneider</span></slot>
+    </h1>
+    <!-- Subline -->
+    <div class="my-24 grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
+      <div class="flex flex-col items-center gap-8 md:items-start">
+        <!-- <h1 class="text-center text-6xl md:text-left lg:text-8xl"> -->
+        <slot>
+          <!-- <h2>aka Sichtachsen</h2> -->
+          <p class="text-center text-2xl md:text-left lg:text-3xl">Als Produktdesigner mit über 20 Jahren Erfahrung verbinde ich digitale und physische Welten, indem ich UX und UI für komplexe Anwendungen entwerfe. Ich kombiniere strategische Analyse mit kreativer Energie, um barrierefreie Lösungen zu entwickeln, die die Nutzer verstehen und wirtschaftlich erfolgreich sind.</p>
+        </slot>  
+        <!-- </h1> -->
+        <div class="flex flex-col gap-3 min-[500px]:flex-row">
           <a class="button has-icon" href="https://github.com/incluud/accessible-astro-starter">
             <Icon name="lucide:star" />
             Star on GitHub
@@ -65,6 +45,22 @@ const { src = '/transparent.gif' }: Props = Astro.props
             Read the docs
           </a>
         </div>
+      </div>
+      <!-- <div class="claim-svg hidden justify-self-center flex-row md:block">
+        
+          <video muted autoplay transition:persist loop="true">
+            <source
+              src={src}  
+              width={536} 
+              height={302}
+              type="video/mp4"
+              aria-controls="hidden"
+
+              
+            />
+          </video>
+        </div> -->
+      <Image class="hidden lg:block" src={src} alt="" decoding="async" width={474} height={374} loading="eager" />
     </div>
   </div>
 </section>
@@ -89,8 +85,8 @@ const { src = '/transparent.gif' }: Props = Astro.props
   }
 
   .claim-svg {
-    max-width: 720px;
-    max-height: 405px;
+    max-width: 536px;
+    max-height: 302px;
     width: 100%;
     height: 100%;
     position: relative;

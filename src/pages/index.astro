@@ -196,14 +196,54 @@ console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title
     text-decoration: none;
     color: inherit;
     transition: transform 0.2s ease;
+    
+    /* Card-Styling direkt auf den Link anwenden */
+    background: var(--background-color);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
 
     &:hover {
       transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
 
-    /* Bild Hover-Effekt innerhalb ContentMedia */
+    /* Bild Hover-Effekt */
     &:hover img {
       transform: scale(1.05);
+    }
+
+    /* Titel Hover-Effekt (Underline) */
+    &:hover h3 {
+      text-decoration: underline;
+      text-decoration-color: var(--color-primary-500);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    /* Bild Transition */
+    img {
+      transition: transform 0.3s ease;
+    }
+
+    /* Titel Transition */
+    h3 {
+      transition: text-decoration 0.2s ease;
+    }
+
+    /* ContentMedia Anpassungen */
+    .content-media {
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    /* Content-Bereich bekommt Padding */
+    .content-media > div:last-child {
+      padding: 2rem;
     }
 
     /* Button sollte wie ein Button aussehen, aber nicht klickbar sein */
@@ -212,8 +252,10 @@ console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title
     }
   }
 
-  /* Stelle sicher, dass ContentMedia Bilder den Hover-Effekt bekommen */
-  .homepage-case-study-link img {
-    transition: transform 0.3s ease;
+  /* Dark Mode Anpassung */
+  :global(.darkmode) {
+    .homepage-case-study-link:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
   }
 </style>
