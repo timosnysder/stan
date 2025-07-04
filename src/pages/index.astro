@@ -5,6 +5,7 @@ import Hero from '@components/Hero.astro'
 import Feature from '@components/Feature.astro'
 import Counter from '@components/Counter.astro'
 import ContentMedia from '@components/ContentMedia.astro'
+import FrontpageCard from '@components/FrontpageCard.astro'
 import ExternalLink from '@components/ExternalLink.astro'
 import { Accordion, AccordionItem, Avatar, AvatarGroup } from 'accessible-astro-components'
 import { getCollection } from 'astro:content'
@@ -29,25 +30,27 @@ const sortedNonFeatured = nonFeaturedCaseStudies.sort(sortByDate)
 // Kombiniere: Featured zuerst, dann die neuesten non-featured
 const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
 
-console.log('=== HOMEPAGE CASE STUDIES DEBUG ===')
-console.log(`Featured Case Studies: ${featuredCaseStudies.length}`)
-console.log(`Non-Featured Case Studies: ${nonFeaturedCaseStudies.length}`)
-console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title} (featured: ${cs.data.featured})`))
+// console.log('=== HOMEPAGE CASE STUDIES DEBUG ===')
+// console.log(`Featured Case Studies: ${featuredCaseStudies.length}`)
+// console.log(`Non-Featured Case Studies: ${nonFeaturedCaseStudies.length}`)
+// console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title} (featured: ${cs.data.featured})`))
+// dont need => showHeadline={index === 0} 
 ---
 
 <DefaultLayout title="Home">
   <Hero />
 
   <!-- Case Studies Sektion -->
+   <h2 class="container text-6xl mb-8">Case Studies</h2>
+   
   {recentCaseStudies.map((caseStudy, index) => (
     <a 
       href={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
-      class="homepage-case-study-link"
+      class="container fp-card my-16"
     >
       <ContentMedia 
         imgSrc={caseStudy.data.image} 
         reverseImg={index % 2 === 1}
-        showHeadline={index === 0}
       >
         <div>
           <h3 class="text-3xl font-bold mb-4">{caseStudy.data.title}</h3>
@@ -62,23 +65,23 @@ console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title
               ))}
             </div>
           )}
-          <span class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors">
-            Case Study lesen
-          </span>
+           <span class="button has-icon">
+              <Icon name="lucide:arrow-right" />
+              Case Study lesen
+            </span>
         </div>
       </ContentMedia>
     </a>
   ))}
-  
-  <!-- Link zur Übersichtsseite -->
-  <div class="text-center my-16">
-    <a 
-      href="/case-studies" 
-      class="inline-block bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-900 transition-colors text-lg"
-    >
+  <div class="container my-16 flex justify-center">
+    <a class="button has-icon color-secondary" href="/case-studies">
+      <Icon name="lucide:arrow-right" />
       Alle Case Studies ansehen
     </a>
-  </div>
+  </div> 
+
+  
+
 
   <!-- Rest deiner Seite bleibt gleich... -->
   <section class="my-48">
@@ -190,14 +193,118 @@ console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title
     -webkit-text-fill-color: transparent;
   }
 
-  /* Homepage Case Study Links */
+:where(.fp-card) {
+    --transition-duration: 0.3s;
+    --transition-easing: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    border: 2px solid light-dark(hsl(0 0% 10%), hsl(0 0% 90%));
+    border-radius: 0.5rem;
+    /* max-inline-size: 60ch;
+    block-size: 100%; */
+    overflow: hidden;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: box-shadow var(--transition-duration) var(--transition-easing);
+    }
+  }
+
+  :where(.fp-card:hover),
+  :where(.fp-card:focus-within) {
+    box-shadow: 0 0 0 0.25rem;
+  }
+
+  :where(.fp-card:focus-within) a:focus {
+    outline: none;
+    box-shadow: none;
+    text-decoration: none;
+  }
+
+  :where(.fp-card .image) {
+    block-size: 250px;
+    overflow: clip;
+  }
+
+  :where(.fp-card .image img) {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform var(--transition-duration) var(--transition-easing);
+    }
+  }
+
+
+  :where(.content) {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding-inline: 1rem;
+    padding-block: 1rem;
+  }
+
+  a {
+    color: currentColor;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  a:where(.fp-card:hover, .fp-card:focus-visible) {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  :where(.fp-card:has(a:hover, a.fp-card:focus-visible)) .fp-card  .image img {
+    transform: scale(1.05);
+  }
+
+  a::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+  }
+
+  :where(.meta) {
+    order: -1;
+    margin-block-start: 0.5rem;
+  }
+
+  .meta :global(span) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .meta:empty {
+    display: none;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .description:empty {
+    display: none;
+  }
+
+  .footer {
+    margin-block-start: auto;
+    padding-block-start: 1rem;
+  }
+
+  /* Homepage Case Study Links 
   .homepage-case-study-link {
     display: block;
     text-decoration: none;
     color: inherit;
     transition: transform 0.2s ease;
     
-    /* Card-Styling direkt auf den Link anwenden */
+    /* fp-card-Styling direkt auf den Link anwenden 
     background: var(--background-color);
     border: 1px solid var(--border-color-subtle);
     border-radius: 12px;
@@ -209,12 +316,12 @@ console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
 
-    /* Bild Hover-Effekt */
+    /* Bild Hover-Effekt 
     &:hover img {
       transform: scale(1.05);
     }
 
-    /* Titel Hover-Effekt (Underline) */
+    /* Titel Hover-Effekt (Underline) 
     &:hover h3 {
       text-decoration: underline;
       text-decoration-color: var(--color-primary-500);
@@ -222,17 +329,17 @@ console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title
       text-underline-offset: 4px;
     }
 
-    /* Bild Transition */
+    /* Bild Transition 
     img {
       transition: transform 0.3s ease;
     }
 
-    /* Titel Transition */
+    /* Titel Transition 
     h3 {
       transition: text-decoration 0.2s ease;
     }
 
-    /* ContentMedia Anpassungen */
+    /* ContentMedia Anpassungen 
     .content-media {
       background: transparent !important;
       border: none !important;
@@ -241,21 +348,22 @@ console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title
       margin: 0 !important;
     }
 
-    /* Content-Bereich bekommt Padding */
+    /* Content-Bereich bekommt Padding 
     .content-media > div:last-child {
       padding: 2rem;
     }
 
-    /* Button sollte wie ein Button aussehen, aber nicht klickbar sein */
+    /* Button sollte wie ein Button aussehen, aber nicht klickbar sein 
     span {
       pointer-events: none;
     }
   }
 
+
   /* Dark Mode Anpassung */
-  :global(.darkmode) {
+  /* :global(.darkmode) {
     .homepage-case-study-link:hover {
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
-  }
+  } */
 </style>
