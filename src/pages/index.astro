@@ -73,14 +73,14 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
       </ContentMedia>
     </a>
   ))}
+
+  <!-- Link to all case studies -->
   <div class="container my-16 flex justify-center">
     <a class="button has-icon color-secondary" href="/case-studies">
       <Icon name="lucide:arrow-right" />
       Alle Case Studies ansehen
     </a>
   </div> 
-
-  
 
 
   <!-- Rest deiner Seite bleibt gleich... -->
@@ -193,7 +193,7 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
     -webkit-text-fill-color: transparent;
   }
 
-:where(.fp-card) {
+/* :where(.fp-card) {
     --transition-duration: 0.3s;
     --transition-easing: cubic-bezier(0.165, 0.84, 0.44, 1);
 
@@ -202,8 +202,6 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
     flex-direction: row;
     border: 2px solid light-dark(hsl(0 0% 10%), hsl(0 0% 90%));
     border-radius: 0.5rem;
-    /* max-inline-size: 60ch;
-    block-size: 100%; */
     overflow: hidden;
 
     @media (prefers-reduced-motion: no-preference) {
@@ -295,7 +293,7 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
   .footer {
     margin-block-start: auto;
     padding-block-start: 1rem;
-  }
+  } */
 
   /* Homepage Case Study Links 
   .homepage-case-study-link {

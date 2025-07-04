@@ -1,6 +1,6 @@
 ---
 /**
- * Card Component
+ * fp-card Component
  *
  * @description A versatile frontpage-card component with image, title, and content areas
  */
@@ -74,7 +74,7 @@ interface Props extends astroHTML.JSX.HTMLAttributes {
 const {
   class: className,
   title = 'Default title',
-  img = 'https://fakeimg.pl/640x360',
+  imgSrc = 'https://fakeimg.pl/640x360',
   imageComponent,
   imageAlt = '',
   width = 640,
@@ -89,13 +89,13 @@ const {
 const Tag = tagName
 ---
 
-<article class:list={['card', className]} {...rest}>
+<article class:list={['fp-card', className]} {...rest}>
   <div class="image">
     {
       imageComponent ? (
         <Image src={imageComponent} alt={imageAlt} width={width} height={height} />
       ) : (
-        <img src={img} alt={imageAlt} width={width} height={height} />
+        <img src={imgSrc} alt={imageAlt} width={width} height={height} />
       )
     }
   </div>
@@ -112,7 +112,7 @@ const Tag = tagName
 </article>
 
 <style>
-  :where(.card) {
+  :where(.fp-card) {
     --transition-duration: 0.3s;
     --transition-easing: cubic-bezier(0.165, 0.84, 0.44, 1);
 
@@ -121,8 +121,8 @@ const Tag = tagName
     flex-direction: column;
     border: 2px solid light-dark(hsl(0 0% 10%), hsl(0 0% 90%));
     border-radius: 0.5rem;
-    max-inline-size: 60ch;
-    block-size: 100%;
+    /* max-inline-size: 60ch;
+    block-size: 100%; */
     overflow: hidden;
 
     @media (prefers-reduced-motion: no-preference) {
@@ -130,12 +130,12 @@ const Tag = tagName
     }
   }
 
-  :where(.card:hover),
-  :where(.card:focus-within) {
+  :where(.fp-card:hover),
+  :where(.fp-card:focus-within) {
     box-shadow: 0 0 0 0.25rem;
   }
 
-  :where(.card:focus-within) a:focus {
+  :where(.fp-card:focus-within) a:focus {
     outline: none;
     box-shadow: none;
     text-decoration: none;
@@ -176,7 +176,7 @@ const Tag = tagName
     text-underline-offset: 4px;
   }
 
-  :where(.card:has(a:hover, a:focus-visible)) .image img {
+  :where(.fp-card:has(a:hover, a:focus-visible)) .image img {
     transform: scale(1.05);
   }
 
