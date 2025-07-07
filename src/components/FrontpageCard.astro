@@ -1,8 +1,8 @@
 ---
 /**
- * fp-card Component
+ * FrontpageCard Component
  *
- * @description A versatile frontpage-card component with image, title, and content areas
+ * @description A full-width card component with image and content side by side, optimized for Case Studies display
  */
 import { Image } from 'astro:assets'
 import type { ImageMetadata } from 'astro'
@@ -14,141 +14,177 @@ interface Props extends astroHTML.JSX.HTMLAttributes {
   class?: string
   /**
    * Card's title
-   * @default "Default title"
    */
-  title?: string
+  title: string
+  /**
+   * Card description
+   */
+  description: string
   /**
    * URL for the card's image
-   * @default "https://fakeimg.pl/640x360"
    */
-  imgSrc?: string
+  imgSrc: string
   /**
-   * 
+   * URL for the card's link
+   */
+  url: string
+  /**
    * Whether to display the image on the right side instead of the left
-   * @default undefined
+   * @default false
    */
   reverseImg?: boolean
   /**
-   * Optional Astro Image component to use instead of a regular img
-   * Can be a direct ImageMetadata object or a Promise from import()
-   * @default undefined
+   * Client name
    */
-  imageComponent?: ImageMetadata | Promise<{ default: ImageMetadata }>
+  client?: string
+  /**
+   * Array of tags
+   */
+  tags?: string[]
   /**
    * Alt text for the image
-   * @default "Produkt Bild dieser Fallstudie"
+   * @default "Case Study Image"
    */
   imageAlt?: string
   /**
-   * Width of the image (required for remote images with Image component)
+   * Width of the image
    * @default 640
    */
   width?: number
   /**
-   * Height of the image (required for remote images with Image component)
+   * Height of the image
    * @default 360
    */
   height?: number
-  /**
-   * Whether to infer the image size (for remote images)
-   * @default false
-   */
-  inferSize?: boolean
-  /**
-   * URL for the card's link
-   * @default "#"
-   */
-  url?: string
-  /**
-   * HTML tag to use for the title
-   * @default "h3"
-   */
-  tagName?: string
-  /**
-   * Footer content
-   * @default ""
-   */
-  footer?: string
 }
 
 const {
   class: className,
-  title = 'Default title',
-  imgSrc = 'https://fakeimg.pl/640x360',
-  imageComponent,
-  imageAlt = '',
+  title,
+  description,
+  imgSrc,
+  url,
+  reverseImg = false,
+  client,
+  tags,
+  imageAlt = 'Case Study Image',
   width = 640,
   height = 360,
-  inferSize = false,
-  url = '#',
-  tagName = 'h3',
-  footer = '',
   ...rest
 } = Astro.props
-
-const Tag = tagName
 ---
 
-<article class:list={['fp-card', className]} {...rest}>
-  <div class="image">
-    {
-      imageComponent ? (
-        <Image src={imageComponent} alt={imageAlt} width={width} height={height} />
-      ) : (
-        <img src={imgSrc} alt={imageAlt} width={width} height={height} />
-      )
-    }
-  </div>
-  <div class="content">
-    <div class="title">
-      <Tag>
-        <a href={url}>{title}</a>
-      </Tag>
+<article class:list={['frontpage-card', className]} {...rest}>
+  <a href={url} class="card-link">
+    <div class="card-grid" class:list={[{ 'reverse': reverseImg }]}>
+      <!-- Image Section -->
+      <div class="image-section">
+        <div class="image">
+          <img src={imgSrc} alt={imageAlt} width={width} height={height} />
+        </div>
+      </div>
+      
+      <!-- Content Section -->
+      <div class="content-section">
+        <div class="content">
+          <h3 class="title">{title}</h3>
+          <p class="description">{description}</p>
+          
+          {client && (
+            <p class="client">Client: {client}</p>
+          )}
+          
+          {tags && tags.length > 0 && (
+            <div class="tags">
+              {tags.map(tag => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          )}
+          
+          <div class="cta">
+            <span class="button has-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12,5 19,12 12,19"></polyline>
+              </svg>
+              Case Study lesen
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="meta"><slot name="meta" /></div>
-    <p class="description"><slot /></p>
-    {footer && <small class="footer">{footer}</small>}
-  </div>
+  </a>
 </article>
 
 <style>
-  :where(.fp-card) {
+  :where(.frontpage-card) {
     --transition-duration: 0.3s;
     --transition-easing: cubic-bezier(0.165, 0.84, 0.44, 1);
 
-    display: flex;
-    position: relative;
-    flex-direction: column;
+    display: block;
+    margin-bottom: 4rem;
     border: 2px solid light-dark(hsl(0 0% 10%), hsl(0 0% 90%));
-    border-radius: 0.5rem;
-    /* max-inline-size: 60ch;
-    block-size: 100%; */
+    border-radius: 0.75rem;
     overflow: hidden;
+    background-color: light-dark(hsl(0 0% 100%), hsl(0 0% 5%));
 
     @media (prefers-reduced-motion: no-preference) {
       transition: box-shadow var(--transition-duration) var(--transition-easing);
     }
   }
 
-  :where(.fp-card:hover),
-  :where(.fp-card:focus-within) {
-    box-shadow: 0 0 0 0.25rem;
+  :where(.frontpage-card:hover),
+  :where(.frontpage-card:focus-within) {
+    box-shadow: 0 0 0 0.25rem light-dark(hsl(220 90% 50% / 0.3), hsl(220 90% 70% / 0.3));
   }
 
-  :where(.fp-card:focus-within) a:focus {
-    outline: none;
-    box-shadow: none;
+  .card-link {
+    display: block;
     text-decoration: none;
+    color: inherit;
+    height: 100%;
   }
 
-  :where(.image) {
-    block-size: 250px;
-    overflow: clip;
+  .card-link:focus {
+    outline: none;
   }
 
-  :where(.image img) {
-    inline-size: 100%;
-    block-size: 100%;
+  .card-grid {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  .card-grid.reverse {
+    @media (min-width: 768px) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .image-section {
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+
+    @media (min-width: 768px) {
+      min-height: 400px;
+    }
+  }
+
+  .image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 
     @media (prefers-reduced-motion: no-preference) {
@@ -156,62 +192,136 @@ const Tag = tagName
     }
   }
 
-  :where(.content) {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-inline: 1rem;
-    padding-block: 1rem;
-  }
-
-  a {
-    color: currentColor;
-    font-size: 1.5rem;
-    text-decoration: none;
-  }
-
-  a:where(:hover, :focus-visible) {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  :where(.fp-card:has(a:hover, a:focus-visible)) .image img {
+  :where(.frontpage-card:hover) .image img {
     transform: scale(1.05);
   }
 
-  a::after {
-    position: absolute;
-    inset: 0;
-    content: '';
-  }
-
-  :where(.meta) {
-    order: -1;
-    margin-block-start: 0.5rem;
-  }
-
-  .meta :global(span) {
+  .content-section {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 0.5rem;
+    padding: 2rem;
+    flex: 1;
+
+    @media (min-width: 768px) {
+      padding: 3rem;
+    }
   }
 
-  .meta:empty {
-    display: none;
+  .content {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: currentColor;
+
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+
+  :where(.frontpage-card:hover) .title {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: light-dark(hsl(220 90% 50%), hsl(220 90% 70%));
   }
 
   .description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: light-dark(hsl(0 0% 30%), hsl(0 0% 70%));
+  }
+
+  .client {
+    font-size: 0.875rem;
+    color: light-dark(hsl(0 0% 40%), hsl(0 0% 60%));
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .tag {
+    display: inline-block;
+    background-color: light-dark(hsl(220 90% 95%), hsl(220 90% 15%));
+    color: light-dark(hsl(220 90% 30%), hsl(220 90% 70%));
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .cta {
+    margin-top: auto;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: light-dark(hsl(220 90% 50%), hsl(220 90% 60%));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
     font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    pointer-events: none; /* Da der Link bereits klickbar ist */
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-color var(--transition-duration) var(--transition-easing);
+    }
   }
 
-  .description:empty {
-    display: none;
+  .button svg {
+    width: 1rem;
+    height: 1rem;
   }
 
-  .footer {
-    margin-block-start: auto;
-    padding-block-start: 1rem;
+  :where(.frontpage-card:hover) .button {
+    background-color: light-dark(hsl(220 90% 40%), hsl(220 90% 70%));
+  }
+
+  /* Dark mode anpassungen */
+  @media (prefers-color-scheme: dark) {
+    :global(.darkmode) .frontpage-card {
+      border-color: hsl(0 0% 20%);
+      background-color: hsl(0 0% 8%);
+    }
+
+    :global(.darkmode) .frontpage-card:hover {
+      box-shadow: 0 0 0 0.25rem hsl(220 90% 70% / 0.3);
+    }
+
+    :global(.darkmode) .description {
+      color: hsl(0 0% 70%);
+    }
+
+    :global(.darkmode) .client {
+      color: hsl(0 0% 60%);
+    }
+
+    :global(.darkmode) .tag {
+      background-color: hsl(220 90% 15%);
+      color: hsl(220 90% 70%);
+    }
+
+    :global(.darkmode) .button {
+      background-color: hsl(220 90% 60%);
+    }
+
+    :global(.darkmode) .frontpage-card:hover .button {
+      background-color: hsl(220 90% 70%);
+    }
   }
 </style>

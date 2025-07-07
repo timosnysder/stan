@@ -29,59 +29,40 @@ const sortedNonFeatured = nonFeaturedCaseStudies.sort(sortByDate)
 
 // Kombiniere: Featured zuerst, dann die neuesten non-featured
 const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
-
-// console.log('=== HOMEPAGE CASE STUDIES DEBUG ===')
-// console.log(`Featured Case Studies: ${featuredCaseStudies.length}`)
-// console.log(`Non-Featured Case Studies: ${nonFeaturedCaseStudies.length}`)
-// console.log('Showing on homepage:', recentCaseStudies.map(cs => `${cs.data.title} (featured: ${cs.data.featured})`))
-// dont need => showHeadline={index === 0} 
 ---
 
 <DefaultLayout title="Home">
   <Hero />
 
   <!-- Case Studies Sektion -->
-   <h2 class="container text-6xl mb-8">Case Studies</h2>
-   
-  {recentCaseStudies.map((caseStudy, index) => (
-    <a 
-      href={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
-      class="container fp-card my-16"
-    >
-      <ContentMedia 
-        imgSrc={caseStudy.data.image} 
-        reverseImg={index % 2 === 1}
-      >
-        <div>
-          <h3 class="text-3xl font-bold mb-4">{caseStudy.data.title}</h3>
-          <p class="text-lg mb-6">{caseStudy.data.description}</p>
-          {caseStudy.data.client && (
-            <p class="text-sm text-gray-600 mb-4">Client: {caseStudy.data.client}</p>
-          )}
-          {caseStudy.data.tags && (
-            <div class="flex flex-wrap gap-2 mb-6">
-              {caseStudy.data.tags.map(tag => (
-                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">{tag}</span>
-              ))}
-            </div>
-          )}
-           <span class="button has-icon">
-              <Icon name="lucide:arrow-right" />
-              Case Study lesen
-            </span>
-        </div>
-      </ContentMedia>
-    </a>
-  ))}
+  <section class="my-48">
+    <div class="container">
+      <h2 class="text-6xl mb-12">Case Studies</h2>
+      
+      <div class="case-studies-container">
+        {recentCaseStudies.map((caseStudy, index) => (
+          <FrontpageCard
+            title={caseStudy.data.title}
+            description={caseStudy.data.description}
+            imgSrc={caseStudy.data.image}
+            url={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
+            reverseImg={index % 2 === 1}
+            client={caseStudy.data.client}
+            tags={caseStudy.data.tags}
+            imageAlt={`${caseStudy.data.title} Case Study Image`}
+          />
+        ))}
+      </div>
 
-  <!-- Link to all case studies -->
-  <div class="container my-16 flex justify-center">
-    <a class="button has-icon color-secondary" href="/case-studies">
-      <Icon name="lucide:arrow-right" />
-      Alle Case Studies ansehen
-    </a>
-  </div> 
-
+      <!-- Link to all case studies -->
+      <div class="my-16 flex justify-center">
+        <a class="button has-icon color-secondary" href="/case-studies">
+          <Icon name="lucide:arrow-right" />
+          Alle Case Studies ansehen
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- Rest deiner Seite bleibt gleich... -->
   <section class="my-48">
@@ -193,175 +174,14 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
     -webkit-text-fill-color: transparent;
   }
 
-/* :where(.fp-card) {
-    --transition-duration: 0.3s;
-    --transition-easing: cubic-bezier(0.165, 0.84, 0.44, 1);
-
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    border: 2px solid light-dark(hsl(0 0% 10%), hsl(0 0% 90%));
-    border-radius: 0.5rem;
-    overflow: hidden;
-
-    @media (prefers-reduced-motion: no-preference) {
-      transition: box-shadow var(--transition-duration) var(--transition-easing);
-    }
+  /* Case Studies Container - behält das ursprüngliche Layout bei */
+  .case-studies-container {
+    /* Keine spezifischen Styles nötig - die FrontpageCard Components 
+       handhaben ihr eigenes Layout und Spacing */
   }
 
-  :where(.fp-card:hover),
-  :where(.fp-card:focus-within) {
-    box-shadow: 0 0 0 0.25rem;
+  /* Stelle sicher, dass die Cards die volle Breite nutzen */
+  .case-studies-container :global(.frontpage-card) {
+    width: 100%;
   }
-
-  :where(.fp-card:focus-within) a:focus {
-    outline: none;
-    box-shadow: none;
-    text-decoration: none;
-  }
-
-  :where(.fp-card .image) {
-    block-size: 250px;
-    overflow: clip;
-  }
-
-  :where(.fp-card .image img) {
-    inline-size: 100%;
-    block-size: 100%;
-    object-fit: cover;
-
-    @media (prefers-reduced-motion: no-preference) {
-      transition: transform var(--transition-duration) var(--transition-easing);
-    }
-  }
-
-
-  :where(.content) {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: row;
-    gap: 0.5rem;
-    padding-inline: 1rem;
-    padding-block: 1rem;
-  }
-
-  a {
-    color: currentColor;
-    font-size: 1.5rem;
-    text-decoration: none;
-  }
-
-  a:where(.fp-card:hover, .fp-card:focus-visible) {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  :where(.fp-card:has(a:hover, a.fp-card:focus-visible)) .fp-card  .image img {
-    transform: scale(1.05);
-  }
-
-  a::after {
-    position: absolute;
-    inset: 0;
-    content: '';
-  }
-
-  :where(.meta) {
-    order: -1;
-    margin-block-start: 0.5rem;
-  }
-
-  .meta :global(span) {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .meta:empty {
-    display: none;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .description:empty {
-    display: none;
-  }
-
-  .footer {
-    margin-block-start: auto;
-    padding-block-start: 1rem;
-  } */
-
-  /* Homepage Case Study Links 
-  .homepage-case-study-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.2s ease;
-    
-    /* fp-card-Styling direkt auf den Link anwenden 
-    background: var(--background-color);
-    border: 1px solid var(--border-color-subtle);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Bild Hover-Effekt 
-    &:hover img {
-      transform: scale(1.05);
-    }
-
-    /* Titel Hover-Effekt (Underline) 
-    &:hover h3 {
-      text-decoration: underline;
-      text-decoration-color: var(--color-primary-500);
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
-    }
-
-    /* Bild Transition 
-    img {
-      transition: transform 0.3s ease;
-    }
-
-    /* Titel Transition 
-    h3 {
-      transition: text-decoration 0.2s ease;
-    }
-
-    /* ContentMedia Anpassungen 
-    .content-media {
-      background: transparent !important;
-      border: none !important;
-      border-radius: 0 !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-
-    /* Content-Bereich bekommt Padding 
-    .content-media > div:last-child {
-      padding: 2rem;
-    }
-
-    /* Button sollte wie ein Button aussehen, aber nicht klickbar sein 
-    span {
-      pointer-events: none;
-    }
-  }
-
-
-  /* Dark Mode Anpassung */
-  /* :global(.darkmode) {
-    .homepage-case-study-link:hover {
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
-  } */
 </style>
