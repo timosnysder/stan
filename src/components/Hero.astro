@@ -30,7 +30,13 @@ const { src = '/timoschneider.png' }: Props = Astro.props
     <div class="my-24 grid grid-cols-1 items-center gap-24 lg:grid-cols-2">
       <div class="flex flex-col items-center gap-8 md:items-start">
         <slot>
-          <p class="text-center text-2xl md:text-left lg:text-3xl leading-12">Als Produktdesigner mit über 20 Jahren Erfahrung verbinde ich digitale und physische Welten, indem ich UX und UI für komplexe Anwendungen entwerfe. Ich kombiniere strategische Analyse mit kreativer Energie, um barrierefreie Lösungen zu entwickeln, die die Nutzer verstehen und wirtschaftlich erfolgreich sind.</p>
+          <p class="text-left text-2xl md:text-left lg:text-3xl leading-12">
+            Als Designer für Digitale Produkte verbinde ich digitale und physische Welten, 
+            indem ich Nutzerzentriertes UX und UI für komplexe Anwendungen entwerfe. 
+            Ich kombiniere strategische Analyse und mit kreativer Energie, um barrierefreie Lösungen zu entwickeln, 
+            die die Nutzer verstehen und wirtschaftlich erfolgreich sind.
+          
+          </p>
         </slot>  
       </div>
       <Image class="hidden lg:block" src={src} alt="" decoding="async" width={474} height={374} loading="eager" />
@@ -73,21 +79,10 @@ const { src = '/timoschneider.png' }: Props = Astro.props
     -webkit-mask-repeat: no-repeat;
   }
 
+  span small {
+    font-size: 50%;
+    font-weight: 100;
+    color: light-dark(var(--color-secondary-300), var(--color-primary-200));
+  }
+
 </style>
-
-
-<!-- my video claim:  
-<div class="claim-svg hidden justify-self-center flex-row md:block">
-  
-    <video muted autoplay transition:persist loop="true">
-      <source
-        src={src}  
-        width={536} 
-        height={302}
-        type="video/mp4"
-        aria-controls="hidden"
-
-        
-      />
-    </video>
-  </div> -->

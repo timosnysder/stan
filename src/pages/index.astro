@@ -34,8 +34,28 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
 <DefaultLayout title="Home">
   <Hero />
 
+<section class="my-16">
+    <div class="call-to-action mt-24 mb-32 flex flex-col items-center gap-12 px-12 py-20 md:px-24 border-2 border-dashed">
+      <div class="container">
+        
+        <p class="text-left text-2xl md:text-left lg:text-3xl leading-12">
+          Ich bin Timo Schneider, ein Human Interaction Designer mit über 20 Jahren Erfahrung in der Gestaltung von 
+          digitalen Produkten. Meine Leidenschaft ist es Ihnen eine neue Sichtweiße zu zeigen, mit Ihnen Ideeen zu Entwickeln, 
+          Produkte Neuzudenken und in Nutzerzentriertes UX und UI für komplexe
+          Anwendungen zu übersetzen.
+        </p>
+        <div class="cta mt-16">
+          <a href="/about-me" class="button has-icon">
+            <Icon name="lucide:arrow-right" />
+            Mehr über mich erfahren
+          </a>
+        </div> 
+      </div>
+    </div>
+  </section>
+
   <!-- Case Studies Sektion -->
-  <section class="my-48">
+  <section class="my-16">
     <div class="container">
       <h2 class="text-6xl mb-12">Case Studies</h2>
       
@@ -64,93 +84,107 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
     </div>
   </section>
 
-  <!-- Rest deiner Seite bleibt gleich... -->
+
+  <!-- Accordion -->
   <section class="my-48">
     <div class="container grid grid-cols-1 gap-12 md:grid-cols-2">
       <div class="flex flex-col items-start gap-4">
-        <h2 class="text-6xl">FAQ</h2>
+        <h2 class="text-6xl">Meine Design Schritte</h2>
         <p class="text-2xl">
-          This section demonstrates how to effectively use the Accordion component to organize and display frequently
-          asked questions in an accessible and user-friendly way.
+          Ich konzipiere und gestalte barrierefreie digitale Services, die für alle Nutzer zugänglich sind. 
+          Mein Prozess umfasst gründliche Recherche, strategische Planung und nutzerorientierte Umsetzung. 
+          Dabei entwickle ich Lösungen, die sowohl Kundenbedürfnisse erfüllen als auch Unternehmenswerte 
+          widerspiegeln - für eine UX, die wirklich funktioniert und eine UI die ein lächeln Zaubert.
         </p>
-        <a class="button" href="/faq">Contact support team</a>
+        <div class="mt-8">
+          <a class="button" href="/about-me">Über mich</a>
+        </div>
       </div>
       <div class="space-content">
         <Accordion>
-          <AccordionItem name="exclusive" title="What is WCAG and why is it important?" open>
+          <AccordionItem name="exclusive" title="Problem(e) verstehen" open>
             <p>
-              WCAG (Web Content Accessibility Guidelines) is a set of internationally recognized standards for web
-              accessibility. Following WCAG ensures your website is usable by people with various disabilities,
-              including visual, auditory, physical, and cognitive impairments. It's important not just for
-              accessibility, but also for legal compliance, SEO, and reaching a wider audience.
+              Ich analysiere systematisch die Ausgangssituation: Was sind die tatsächlichen Herausforderungen der Nutzer und welche Geschäftsziele verfolgt das Unternehmen? 
+              Durch Stakeholder-Interviews, Marktanalysen und Datenauswertung identifiziere ich die Kernprobleme und schaffe eine solide Grundlage für alle weiteren Entscheidungen. 
+              Das Ergebnis ist ein klares Verständnis der Problemstellung und messbare Ziele.
             </p>
           </AccordionItem>
-          <AccordionItem name="exclusive" title="What's the difference between ARIA labels and alt text?">
+          <AccordionItem name="exclusive" title="Potenziale identifizieren">
             <p>
-              Alt text is specifically for describing images to screen reader users, while ARIA labels (aria-label,
-              aria-labelledby) can describe any element on a page. Alt text is HTML's native way to provide alternative
-              text for images, while ARIA labels are part of the ARIA specification that helps make dynamic content and
-              advanced UI controls more accessible.
+              Ich erforsche die Zielgruppe intensiv durch Nutzerinterviews, Beobachtungen und Empathy-Mapping. 
+              Dabei erkunde ich nicht nur, was Nutzer sagen, sondern auch ihre unbewussten Bedürfnisse, Ängste und Motivationen. 
+              Diese Erkenntnisse übersetze ich in konkrete Anforderungen und Chancen für das Unternehmen. 
+              So entstehen datenbasierte Personas und User Journeys, die als Kompass für die Produktentwicklung dienen.
             </p>
           </AccordionItem>
-          <AccordionItem name="exclusive" title="Why is keyboard navigation important?">
+          <AccordionItem name="exclusive" title="Lösungen entwickeln">
             <p>
-              Keyboard navigation is essential for users who can't use a mouse, including people with motor
-              disabilities, visual impairments, or those who simply prefer keyboard controls. A website should be fully
-              operable using only a keyboard, with visible focus indicators and logical tab order. This includes being
-              able to access all interactive elements and navigate through content efficiently.
+              Ich setze auf systematische Kreativitätsmethoden statt zufälliges Brainstorming. 
+              Durch bewährte Techniken wie Design Thinking, die 635-Methode oder strukturierte Innovationsworkshops generiere ich gezielt verwertbare Lösungsansätze. 
+              In interdisziplinären Teams entwickeln wir Ideen, die nicht nur kreativ, sondern auch umsetzbar sind. 
+              Dieser strukturierte Prozess von der ersten Inspiration bis zum fundierten Konzept stellt sicher, dass aus spontanen Einfällen marktfähige Innovationen entstehen. 
+              Die besten Ideen werden anschließend priorisiert und in testbare Prototypen umgesetzt - von ersten Skizzen bis hin zu interaktiven Clickdummys. 
+              So werden abstrakte Ideen greifbar und kommunizierbar.
             </p>
           </AccordionItem>
-          <AccordionItem name="exclusive" title="What is a sufficient color contrast ratio?">
+          <AccordionItem name="exclusive" title="Testen & validieren">
             <p>
-              According to WCAG 2.2 AA standards, text should have a minimum contrast ratio of 4.5:1 against its
-              background for regular text, and 3:1 for large text (18pt or 14pt bold). For non-text elements like icons
-              or buttons, a minimum ratio of 3:1 is required. This ensures content is readable for users with visual
-              impairments or color blindness.
-            </p>
-          </AccordionItem>
-          <AccordionItem name="exclusive" title="How do I make custom components accessible?">
-            <p>
-              To make custom components accessible, focus on these key aspects: use semantic HTML where possible,
-              implement proper keyboard support, add appropriate ARIA attributes, manage focus when needed, and ensure
-              adequate color contrast. Always test with screen readers and keyboard navigation. Consider using
-              established design patterns from the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/"
-                >ARIA Authoring Practices Guide</a
-              >.
+              Ich teste die Prototypen mit echten Nutzern und sammle qualitatives sowie quantitatives Feedback. 
+              Die Erkenntnisse fließen direkt in die Optimierung ein. Dieser iterative Prozess wiederholt sich, bis die Lösung die Nutzerbedürfnisse optimal erfüllt und die Geschäftsziele erreicht werden. 
+              Das minimiert Entwicklungsrisiken und maximiert den Return on Investment.
             </p>
           </AccordionItem>
         </Accordion>
       </div>
     </div>
   </section>
+
+    <!-- Show to my expertice -->
   <section class="my-48">
-    <div class="space-content container">
-      <h2 class="text-6xl">Our community</h2>
-      <p class="text-2xl">
-        We're a community of developers who are passionate about making the web more accessible. We're always looking
-        for new ways to improve the accessibility of the web.
-      </p>
-      <AvatarGroup display="grid" gridItemsSize="300px" gridGap="2rem">
-        <Avatar initials="RJ" title="Robert Johnson" subtitle="Manager" />
-        <Avatar initials="MT" title="Maria Torres" subtitle="Developer" />
-        <Avatar initials="AK" title="Alex Kim" subtitle="Designer" />
-        <Avatar initials="SL" title="Sarah Lee" subtitle="Content Strategist" />
-        <Avatar initials="JP" title="James Peterson" subtitle="QA Engineer" />
-        <Avatar initials="LW" title="Lisa Wong" subtitle="Product Owner" />
-        <Avatar initials="DM" title="David Martinez" subtitle="UX Researcher" />
-        <Avatar initials="EB" title="Emma Brown" subtitle="Accessibility Specialist" />
-        <Avatar initials="TC" title="Thomas Chen" subtitle="Frontend Developer" />
-      </AvatarGroup>
+    <div class="container">
+      <h2 class="mb-16 text-6xl">Experte in</h2>
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+        <Feature icon="lucide:accessibility" title="Accessible by default">
+          Keyboard navigation, focus indicators, ARIA labels, semantic HTML, and more. This theme is designed to be
+          inclusive.
+        </Feature>
+        <Feature icon="lucide:puzzle" title="A11Y components">
+          25+ components and counting, all tried and tested for the most optimal accessible experience for your
+          visitors.
+        </Feature>
+        <Feature icon="lucide:moon" title="Dark mode">
+          Fully integrated Dark mode gives your users the choice for their favorite viewing mode.
+        </Feature>
+        <Feature icon="lucide:paintbrush" title="Tailwind 4.0">
+          Use the power of Tailwind to greatly improve your productivity and enhance your developer workflow.
+        </Feature>
+        <Feature icon="lucide:sparkles" title="Prettier">
+          Less worry about formatting your code, let the Astro Prettier integration do the heavy lifting.
+        </Feature>
+        <Feature icon="lucide:code" title="ESLint">
+          Lint your code with strict a11y settings to ensure you stay on track with the WCAG standards.
+        </Feature>
+        <Feature icon="lucide:bookmark" title="Blog & portfolio">
+          This theme comes with a fully integrated blog and portfolio, dynamic pages and SEO optimization.
+        </Feature>
+        <Feature icon="lucide:file-text" title="Markdown & MDX">
+          Easily use .md and .mdx pages to build your websites or use it with Netlify CMS.
+        </Feature>
+        <Feature icon="lucide:blocks" title="Design system">
+          The theme offers some very handy utilities to help you build your website faster.
+        </Feature>
+      </div>
     </div>
   </section>
+
   <section class="mt-48 mb-32">
     <div class="container">
-      <h2 class="mb-16 text-6xl">Impact in numbers</h2>
+      <h2 class="mb-16 text-6xl">Erfahrung in Projekten</h2>
       <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
-        <Counter count="900+" title="Stars" sub="On GitHub" />
-        <Counter count="25+" title="Accessible" sub="Components" />
-        <Counter count="400+" title="Commits" sub="Merged" />
-        <Counter count="48+" title="Months" sub="Since launch" />
+        <Counter count="350+" title="Websiten" sub="Umgesetzt" />
+        <Counter count="3" title="Startup" sub="Gründungen" />
+        <Counter count="9*" title="Engagement" sub="für Soziale Projekte" />
+        <Counter count="24+" title="Jahre" sub="Erfahrung" />
       </div>
     </div>
   </section>
@@ -184,4 +218,52 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
   .case-studies-container :global(.frontpage-card) {
     width: 100%;
   }
+  
+  .call-to-action {
+    border-left: none;
+    border-right: none;
+    position: relative;
+    background-image: linear-gradient(
+      315deg,
+      light-dark(var(--color-primary-100), var(--color-secondary-100)) 25%,
+      light-dark(var(--color-secondary-100), var(--color-primary-200))
+    );
+
+    color: var(--color-neutral-900);
+
+    /* CTA Btn link */
+    .button {
+      background-color: transparent;
+    }
+    a,
+    a:visited {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2xs);
+      border: 3px solid var(--color-neutral-900);
+      border-radius: var(--radius-s);
+      padding: var(--space-s);
+      color: var(--color-neutral-900);
+      font-weight: bold;
+      text-decoration: none;
+
+      @include text-decoration(transparent, currentColor);
+
+      [data-icon] {
+        transition: translate var(--animation-speed-fast) var(--cubic-bezier);
+      }
+
+      &:where(:hover, :focus) {
+        background-color: var(--color-neutral-900);
+        color: var(--color-neutral-100);
+        text-decoration: underline;
+
+        [data-icon] {
+          translate: 5px 0;
+        }
+      }
+    }
+  }
+
+
 </style>
