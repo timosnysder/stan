@@ -143,7 +143,7 @@ const { page } = Astro.props
   />
   <section class="my-12">
     <div class="container">
-      <p class="text-sm"><em>Project {page.start + 1} through {page.end + 1} of {page.total} total projects</em></p>
+      <!-- <p class="text-sm"><em>Project {page.start + 1} through {page.end + 1} of {page.total} total projects</em></p> -->
       <ul class="my-3 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
           page.data.map((project) => (

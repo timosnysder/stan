@@ -41,17 +41,17 @@ page.data.forEach(cs => {
 
 <DefaultLayout 
   title="Case Studies"
-  description="Entdecken Sie unsere erfolgreichen Projekte und erfahren Sie, wie wir unseren Kunden geholfen haben, ihre Ziele zu erreichen."
+  description="Entdecken Sie meine erfolgreichen Projekte und erfahren Sie, wie ich meinen Kunden geholfen haben, ihre Ziele zu erreichen."
 >
   <PageHeader
     title="Case Studies"
-    subtitle="Entdecken Sie unsere erfolgreichen Projekte und erfahren Sie, wie wir unseren Kunden geholfen haben, ihre Ziele zu erreichen."
+    subtitle="Entdecken Sie meine erfolgreichen Projekte und erfahren Sie, wie ich meinen Kunden geholfen haben, ihre Ziele zu erreichen."
     bgType="bordered"
   />
   
   <section class="my-12">
     <div class="container">
-      <p class="text-sm"><em>Case Study {page.start + 1} through {page.end + 1} of {page.total} total case studies</em></p>
+      <!-- <p class="text-sm"><em>Case Study {page.start + 1} through {page.end + 1} of {page.total} total case studies</em></p> -->
       <ul class="my-3 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {page.data.map((caseStudy) => {
           // Erstelle Footer als JSX Element mit echten Umbrüchen
@@ -75,7 +75,7 @@ page.data.forEach(cs => {
           const contentWithTags = (
             <div class="flex flex-col justify-between h-full">
               <p class="mb-4">{caseStudy.data.description}</p>
-              {caseStudy.data.tags && (
+              {/* {caseStudy.data.tags && (
                 <div class="flex flex-wrap gap-2 mt-auto">
                   {caseStudy.data.tags.map(tag => (
                     <span class="border-2 border-dashed px-2 py-1 rounded text-xs">
@@ -83,7 +83,7 @@ page.data.forEach(cs => {
                     </span>
                   ))}
                 </div>
-              )}
+              )} */}
             </div>
           )
 
@@ -104,7 +104,7 @@ page.data.forEach(cs => {
         })}
       </ul>
       
-      <div class="mt-12 grid place-content-center">
+      <!-- <div class="mt-12 grid place-content-center">
         <Pagination
           firstPage={page.url.prev ? '/case-studies' : null}
           previousPage={page.url.prev ? page.url.prev : null}
@@ -114,7 +114,7 @@ page.data.forEach(cs => {
           totalPages={`${Math.ceil(page.total / page.size)}`}
           ariaLabel="Case Studies pagination"
         />
-      </div>
+      </div> -->
       
       {page.data.length === 0 && (
         <div class="text-center py-16">

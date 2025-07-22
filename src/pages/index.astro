@@ -68,7 +68,7 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
             url={`/case-studies/${caseStudy.id.replace('.mdx', '')}`}
             reverseImg={index % 2 === 1}
             client={caseStudy.data.client}
-            tags={caseStudy.data.tags}
+            // tags={caseStudy.data.tags}
             imageAlt={`${caseStudy.data.title} Case Study Image`}
           />
         ))}

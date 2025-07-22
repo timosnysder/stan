@@ -1,0 +1,97 @@
+---
+/**
+ * Jump to top Button Component
+ *
+ * @description A Button for scrolling to the top of the page
+ * @author Timo Schneider
+ * @version 1.0.0
+ */
+
+  const backToTopButton = document.getElementById('back-to-top');
+
+  function toggleBackToTopButton() {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.remove('opacity-0', 'invisible');
+      backToTopButton.classList.add('opacity-100', 'visible');
+    } else {
+      backToTopButton.classList.add('opacity-0', 'invisible');
+      backToTopButton.classList.remove('opacity-100', 'visible');
+    }
+  }
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  window.addEventListener('scroll', toggleBackToTopButton);
+  backToTopButton.addEventListener('click', scrollToTop);
+
+---
+<button
+  id="back-to-top"
+  class="fixed bottom-5 right-5 bg-primary text-primary-content p-2 rounded-full shadow-lg transition-opacity duration-300 opacity-0 invisible"
+  aria-label="Back to top"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+  </svg>
+</button>
+
+
+<style>
+.scroll-to-top {
+  position: relative;
+}
+
+.btn-position {
+  position: fixed;
+  bottom: 40px;
+  right: 25px;
+  z-index: 20;
+}
+
+.btn-style {
+  background-color: #551b54;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  cursor: pointer;
+  animation: movebtn 3s ease-in-out infinite;
+  transition: all 0.5s ease-in-out;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.icon-style:hover {
+  animation: none;
+  background: #fff;
+  color: #551b54;
+  border: 2px solid #551b54;
+}
+
+@keyframes movebtn {
+  0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(20px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+</style>

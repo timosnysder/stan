@@ -157,42 +157,42 @@ const myRole = projectMeta?.myRole || author?.bio
                 {clientName && (
                   <h3 class="client-name">{clientName}</h3>
                 )}
-                {/* <!-- Tags --> */}
+                {/* <!-- Tags --> 
                 {projectMeta.tags && projectMeta.tags.length > 0 && (
-                  <div class="tags-section">
-                    <span class="meta-label">Tags:</span>
+                  <div class="tags-section ">
+                    <p class="meta-label">Tags:</p>
                     {projectMeta.tags.map(tag => (
-                      <span class="tag">{tag}</span>
+                      <p class="border-2 border-dashed px-2 py-1 rounded text-xs">{tag}</p>
                     ))}
                   </div>
                 )}
-
+                */}
                 
               </div>  
                 {/* <!-- Meta-Informationen in der gleichen Zeile --> */}
                 <div class="meta-line">
                   <div class="info-line">
                     {myRole && (
-                      <span class="meta-label">Meine Rolle: </span>
-                      <span class="my-role">{myRole}</span>
+                      <p class="meta-label">Meine Rolle: </p>
+                      <p class="my-role">{myRole}</p>
                     )}
                   </div>  
                   {/* <!-- Zeitraum --> */}
                   {(projectMeta.dateStart || projectMeta.dateEnd) && (
                     <div class="meta-item">
-                      <span class="meta-label">Zeitraum:</span>
-                      <span class="meta-value">
+                      <p class="meta-label">Zeitraum:</p>
+                      <p class="meta-value">
                         {projectMeta.dateStart && new Date(projectMeta.dateStart).toLocaleDateString('de-DE')}
                         {projectMeta.dateStart && projectMeta.dateEnd && ' - '}
                         {projectMeta.dateEnd && new Date(projectMeta.dateEnd).toLocaleDateString('de-DE')}
-                      </span>
+                      </p>
                     </div>
                   )}
                   {/* <!-- Industrie --> */}
                   {projectMeta?.industrie && (
                     <div class="meta-item">
-                      <span class="meta-label">Branche: </span>
-                      <span class="my-role">{projectMeta.industrie}</span>
+                      <p class="meta-label">Branche: </p>
+                      <p class="my-role">{projectMeta.industrie}</p>
                     </div>
                   )}                  
                 </div>
@@ -321,8 +321,8 @@ const myRole = projectMeta?.myRole || author?.bio
   }
 
   .my-role {
-    font-size: 0.875rem;
-    color: #6b7280;
+    font-size: 1rem;
+    color: #111827;
     margin: 0;
     flex-shrink: 0;
   }
@@ -344,13 +344,13 @@ const myRole = projectMeta?.myRole || author?.bio
   }
 
   .meta-label {
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: #374151;
+    color: #111827;
   }
 
   .meta-value {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: #111827;
     font-weight: 500;
   }
@@ -369,7 +369,7 @@ const myRole = projectMeta?.myRole || author?.bio
     padding: 0.2rem 0.6rem;
     border-radius: 9999px;
     border: 1px solid #f9fafb;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 500;
     white-space: nowrap;
   }
@@ -395,11 +395,11 @@ const myRole = projectMeta?.myRole || author?.bio
     }
 
     .my-role {
-      color: #d1d5db;
+      color: #f9fafb;
     }
 
     .meta-label {
-      color: #e5e7eb;
+      color: #f9fafb;
     }
 
     .meta-value {
