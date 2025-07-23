@@ -34,9 +34,10 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
 <DefaultLayout title="Home">
   <Hero />
 
-<section class="my-16">
-    <div class="call-to-action mt-24 mb-32 flex flex-col items-center gap-12 px-12 py-20 md:px-24 border-2 border-dashed">
-      <div class="container">
+  <section class="my-16">
+    <div class="container">
+      <div class="call-to-action mt-24 mb-32 flex flex-col items-center gap-12 rounded-xl px-12 py-20 md:px-24">
+      
         
         <p class="text-left text-2xl md:text-left lg:text-3xl leading-12">
           Ich bin Timo Schneider, ein Human Interaction Designer mit über 20 Jahren Erfahrung in der Gestaltung von 
@@ -44,7 +45,7 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
           Produkte Neuzudenken und in Nutzerzentriertes UX und UI für komplexe
           Anwendungen zu übersetzen.
         </p>
-        <div class="cta mt-16">
+        <div class="cta">
           <a href="/about-me" class="button has-icon">
             <Icon name="lucide:arrow-right" />
             Mehr über mich erfahren
@@ -144,34 +145,32 @@ const recentCaseStudies = [...sortedFeatured, ...sortedNonFeatured].slice(0, 3)
     <div class="container">
       <h2 class="mb-16 text-6xl">Experte in</h2>
       <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-        <Feature icon="lucide:accessibility" title="Accessible by default">
-          Keyboard navigation, focus indicators, ARIA labels, semantic HTML, and more. This theme is designed to be
-          inclusive.
+        <Feature icon="lucide:puzzle" title="Ideation">
+          Ich helfe Ihnen, kreative Ideen zu entwickeln und innovative Lösungen zu finden, die auf Nutzerbedürfnisse abgestimmt sind.
         </Feature>
-        <Feature icon="lucide:puzzle" title="A11Y components">
-          25+ components and counting, all tried and tested for the most optimal accessible experience for your
-          visitors.
+        <Feature icon="lucide:accessibility" title="A11Y / Barrierefreit">
+          Ich integriere Barrierefreiheit in alle Phasen des Designprozesses, um digitale Produkte für alle zugänglich zu machen.
         </Feature>
-        <Feature icon="lucide:moon" title="Dark mode">
-          Fully integrated Dark mode gives your users the choice for their favorite viewing mode.
+        <Feature icon="lucide:moon" title="Konzept">
+          Ich entwickle Konzepte, die auf Nutzerbedürfnisse und Geschäftsziele abgestimmt sind.
         </Feature>
-        <Feature icon="lucide:paintbrush" title="Tailwind 4.0">
-          Use the power of Tailwind to greatly improve your productivity and enhance your developer workflow.
+        <Feature icon="lucide:paintbrush" title="UX Design">
+          Ich entwickle intuitive und ansprechende Benutzeroberflächen, die eine positive Nutzererfahrung fördern.
         </Feature>
-        <Feature icon="lucide:sparkles" title="Prettier">
-          Less worry about formatting your code, let the Astro Prettier integration do the heavy lifting.
+        <Feature icon="lucide:sparkles" title="UI Design">
+          Ich entwickle visuell ansprechende Designs, die Markenidentität und Nutzerfreundlichkeit vereinen.
         </Feature>
-        <Feature icon="lucide:code" title="ESLint">
-          Lint your code with strict a11y settings to ensure you stay on track with the WCAG standards.
+        <Feature icon="lucide:code" title="Research">
+          Ich führe umfassende Recherchen durch, um Nutzerbedürfnisse, Markttrends und Wettbewerbsanalysen zu verstehen.
         </Feature>
-        <Feature icon="lucide:bookmark" title="Blog & portfolio">
-          This theme comes with a fully integrated blog and portfolio, dynamic pages and SEO optimization.
+        <Feature icon="lucide:bookmark" title="Methodik">
+          Ich setze strukturierte Methoden ein, um kreative Prozesse zu steuern und innovative Lösungen zu entwickeln.
         </Feature>
-        <Feature icon="lucide:file-text" title="Markdown & MDX">
-          Easily use .md and .mdx pages to build your websites or use it with Netlify CMS.
+        <Feature icon="lucide:file-text" title="Frontend Programmierung">
+          Durch meine Frontend-Expertise setze ich Designs in funktionale, performante und barrierefreie Websiten oder Softwareoberflächen um.
         </Feature>
         <Feature icon="lucide:blocks" title="Design system">
-          The theme offers some very handy utilities to help you build your website faster.
+          Erweiterbare Design Systeme, die konsistente und skalierbare UI-Komponenten bieten.
         </Feature>
       </div>
     </div>
