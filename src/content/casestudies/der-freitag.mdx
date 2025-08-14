@@ -1,6 +1,6 @@
 ---
-title: "UX/UI Design von der Freitag.de – die Wochenzeitung"
-description: "Entwicklung des neuen Layouts und einführung des neuen dF+  ."
+title: "Interface-Redesign und Paywall-Implementation für freitag.de"
+description: "Modernisierung des Seitenlayouts und Einführung einer Bezahlschranke zur Sicherung der Geschäftsfähigkeit"
 client: "der Freitag"
 client_logo: "/casestudies/freitag/freitag_logo.png"
 client_industrie: "Verlag"
@@ -15,12 +15,39 @@ featuredImage: "/casestudies/freitag/freitag_header.png"
 import BreakoutImage from '@components/BreakoutImage.astro'
 import { Image } from 'astro:assets'
 
-Für die Wochenzeitung der Freitag übernahm ich folgende Aufgaben:
 
-Auswertung bestehender Nutzerdaten und Entwicklung von Personas
 
-Review über Steuerbarkeit, Selbstbeschreibungsfähigkeit und Erwartungskonformität
-der alten Website
+
+### Projektübersicht
+
+**Herausforderung:**
+
+Modernisierung des Seitenlayouts und Einführung einer Bezahlschranke zur Sicherung der Geschäftsfähigkeit
+freitag.de ist eine Wochenzeitung, die sowohl als Printausgabe wöchentlich als auch digital täglich mit News, Reportagen, Hintergründen und Analysen erscheint. Das Projekt umfasste die komplette Neuentwicklung der digitalen Präsenz mit besonderem Fokus auf die Einführung eines nachhaltigen Paid-Content-Bereichs.
+
+### Zielsetzung & Problemraum
+
+**Ausgangssituation:**
+
+Schlechte Usability der bestehenden Website
+Fehlende Monetarisierungsstrategie für digitale Inhalte
+Notwendigkeit einer Paywall zur Sicherung der Geschäftsfähigkeit
+
+**Primäre Ziele:**
+
+Verbesserung der User Experience und Navigation
+Erfolgreiche Implementierung einer Bezahlschranke
+Modernisierung des digitalen Erscheinungsbilds
+Steigerung der Abo-Conversion-Rate
+
+**Herausforderungen:**
+
+- Balance zwischen freien und kostenpflichtigen Inhalten
+- Widerstand der Redaktion gegen zu restriktive Paywall-Strategien
+- Fehlende digitale Design-Guidelines
+- Vermeidung von Dark Patterns trotz Marketing-Druck
+
+
 <div class="relative -mx-4 my-8 md:-mx-8 lg:-mx-[120px]">
   <div class="grid grid-cols-1 ">
     <Image
@@ -33,7 +60,50 @@ der alten Website
   </div>
 </div>
 
-Entwicklung des UX / UI der Navigation, Struktur des Inhaltes und Entwicklung hinsichtlich des neuen df+ Contents und Bestellstrecke mit Figma Prototypen
+### UX Research
+
+**Datenauswertung:**
+
+- Analyse bestehender Nutzerdaten aus Google Analytics und Matomo
+- Auswertung von 30 User-Sessions über Heatmaps
+- Entwicklung von Personas basierend auf den erhobenen Daten
+
+**Erkenntnisse aus Heatmap-Analyse:**
+
+- Fehlende und falsche Informationswege
+- Irritierende Button-Beschriftungen
+- Unklare Navigationsstruktur
+- Schlechte Auffindbarkeit wichtiger Funktionen
+
+**Nutzer-Feedback:**
+
+Es wurde ein Fragebogen entwicklt der im freitag.de Forum online gestellt wurde. Ca.: 160 Forenteilnehmer beteiligten sich an der Umfrage und dies brachte 
+direkte Rückmeldungen zu Usability-Problemen und Wünschen.
+
+**A/B Testing:**
+
+- Tests mit verschiedenen Modulprototypen
+- Auswertung über Heatmaps und Nutzerverhalten
+- Iterative Verbesserung basierend auf Testergebnissen
+
+### UX-Strategie & Designprozess
+
+**Strategischer Ansatz:**
+
+- Nutzerzentrierte Gestaltung basierend auf Research-Erkenntnissen
+- Schrittweise Einführung der Paywall zur Nutzergewöhnung
+- Integration des Print-CIs in die digitale Welt
+- Transparente Kommunikation mit allen Stakeholdern
+
+**Designprozess:**
+
+- Research & Analyse (Heatmaps, Analytics, User-Feedback)
+- Persona-Entwicklung basierend auf Nutzerdaten
+- Wireframing neuer Navigationsstrukturen
+- Prototyping mit Figma (erstmalig im Unternehmen eingesetzt)
+- Testing & Iteration basierend auf Nutzer-Feedback
+- Implementation in enger Zusammenarbeit mit Entwicklern
+
 <div class="relative -mx-4 my-8 md:-mx-8 lg:-mx-[120px]">
   <div class="grid grid-cols-1 ">
   <Image
@@ -45,6 +115,67 @@ Entwicklung des UX / UI der Navigation, Struktur des Inhaltes und Entwicklung hi
     />
   </div>
 </div>
+
+*** Informationsarchitektur
+
+**Neue Navigationsstruktur:**
+
+- Nutzerorientierte Kategorisierung: Navigation nach Leserinteressen statt administrativer Logik
+- Prominente Platzierung: Aktuelle Themenfelder strategisch hervorgehoben
+- Verbesserte Abo-Integration: Subscription-Möglichkeiten besser sichtbar gemacht
+
+**Content-Strategie:**
+
+- Startseite: 50/50-Mischung aus freien und Premium-Artikeln
+- Paywall-Platzierung: Beste und aktuellste Artikel hinter der Bezahlschranke
+- Eigene Premium-Seiten: Dedicated Bereiche für df+ Content
+- Klare Kennzeichnung: Transparente Unterscheidung zwischen freien und kostenpflichtigen Inhalten
+
+**Review-Kriterien:**
+
+- Steuerbarkeit der Navigation
+- Selbstbeschreibungsfähigkeit der Interface-Elemente
+- Erwartungskonformität bei Nutzerinteraktionen
+
+### Wireframes & Prototyping
+
+**Prototyping-Ansatz:**
+
+Figma wurde als Tool eingeführt; Figma wurde erstmalig im Unternehmen eingesetzt und es wurden 
+3 verschiedene Paywall-Typen initial und iterativ Entwickelt. Durch regelmäßige Reviews mit dem Produktteam
+wurde an einer kontinuierliche Optimierung bis zu einer finalen Lösung gearbeitet.
+
+
+**Paywall-Prototyping:**
+
+- Entwicklung verschiedener Ansätze (Soft Paywall, Hard Paywall, Freemium)
+- Nutzerfreundliche Ein- und Ausstiegsmöglichkeiten
+- Integration in bestehende Bestellstrecke
+- Mobile-First-Ansatz für alle Prototypen
+
+### Designprinzipien
+
+**Corporate Identity Integration:**
+
+- Übernahme von Print-CI-Elementen ins Digitale
+- Entwicklung eines digitalen Style Guides basierend auf Print-Materialien
+- Konsistente Typografie und Farbwelt zwischen Print und Digital
+- Weiterentwicklung der CI für digitale Anforderungen
+
+**User-Centered Design:**
+
+- Transparenz vor Manipulation
+- Ablehnung von Dark Patterns trotz Marketing-Druck
+- Nutzerfreundliche Abo-Prozesse
+- Klare Kommunikation von Mehrwerten
+
+**Technische Prinzipien:**
+
+- Mobile-First-Design
+- Barrierefreie Gestaltung
+- Performance-optimierte Ladezeiten
+- SEO-freundliche Strukturen
+
 <div class="relative -mx-4 my-8 md:-mx-8 lg:-mx-[120px]">
   <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
     <Image
@@ -78,9 +209,75 @@ Entwicklung des UX / UI der Navigation, Struktur des Inhaltes und Entwicklung hi
   </div>
 </div>
 
-Erstellen und Weiterentwicklung einer CI anhand bestehender Print und Webprodukte
+### Zusammenarbeit & Stakeholder-Kommunikation
+
+**Produktteam:**
+
+2 Entwickler
+2 Personen aus dem Management
+1 Person aus Marketing
+1 Person aus Abo-Vertrieb
+1 UX/UI Designer (ich)
+
+**Redaktions-Management:**
+
+Mir wurde anfangs kein direktes Mitspracherecht eingeräumt, trotzdem konnte ich 
+während der regelmäßigen Updates zum Entwicklungsstand, Einwände und Meinungsäußerungen einfließen lassen.
+Durch Usability-Verbesserungen gewann ich auch Vertrauen. 
+
+**Herausforderungen:**
+
+- Ideologischer Konflikt: Redaktion wollte möglichst viele freie Artikel
+- Marketing-Druck: Forderung nach Dark Patterns für höhere Conversion
+- Lösungsansatz: Argumentation mit Nutzerdaten und Redaktions-Support
+
+**Erfolgreiche Konfliktlösung:**
+- Durch die Verbesserung der Usability konnte ich das Vertrauen der Redaktion gewinnen und mit deren Rückhalt erfolgreich gegen manipulative Design-Praktiken argumentieren.
+
+### Ergebnisse & Learnings
+
+**Messbare Erfolge:**
+
+- 5% jährliche Steigerung (laut Unternehmensangaben) waren anhand der Aboabschlüsse zu sehen.
+- Usability-Verbesserung: Signifikante Reduktion von Navigationsfehlern
+- Tool-Innovation: Erfolgreiche Einführung von Figma im Unternehmen
+- Stakeholder-Zufriedenheit: Positive Resonanz aller Beteiligten
+
+**Wichtige Learnings:**
+
+- Transparenz ist entscheidend: Offene Kommunikation zwischen allen Stakeholdern verhindert Missverständnisse
+- Research zahlt sich aus: Datenbasierte Entscheidungen überzeugen auch kritische Stakeholder
+- Iterative Entwicklung: Prototyping und Testing führen zu besseren Ergebnissen
+- Ethisches Design: Nutzerfreundlichkeit und Transparenz sind nachhaltiger als manipulative Praktiken
+
+**Herausforderungen:**
+
+- Mangelnder Informationsfluss zwischen Stakeholdern
+- Konkurrenzdruck führte zu wenig eigenständigen Lösungen
+- Politische Spannungen zwischen Redaktion und Business-Zielen
+
+### Fazit
+
+Das Projekt war ein Erfolg sowohl in technischer als auch in strategischer Hinsicht. Die Einführung der Paywall konnte ohne nennenswerte Nutzerverluste umgesetzt werden, während gleichzeitig die gesamte User Experience deutlich verbessert wurde.
+
+**Was besonders gut funktionierte:**
+
+Der Nutzerzentrischer Designansatz überzeugte alle Stakeholder. Mit einer 
+Datenbasierten Entscheidungsfindung konnten Konflikte reduziert werden. 
+Erfolgreiche Balance zwischen Business-Zielen und Nutzerfreundlichkeit
+
+**Verbesserungspotentiale für zukünftige Projekte:**
+
+- Eigenständigkeit stärken: Weniger Orientierung an Konkurrenz, mehr innovative eigene Lösungen
+- Frühzeitige Stakeholder-Alignierung: Bessere initiale Kommunikation der Projektziele
+- Kontinuierliches Testing: Längerfristige Erfolgsmessung nach Launch
+
+**Empfehlungen:**
+
+Mehr Mut zu eigenständigen Lösungen statt Konkurrenz-Kopien und die Frühe Integration aller Stakeholder in den Designprozess!
+Investition in langfristige Nutzerforschung und eine etablierung regelmäßiger Design-Reviews.
 
 <BreakoutImage src="/casestudies/freitag/freitag_aktuell.jpg" alt="Wireframe: Anzeige eines Abruchzenarios mit der Aufforderung fertig zu Trainieren" />
 
-Bugfixing und Frontend-Entwicklung auf Basis von Plone (& Foundation) und Django
+Dieses Projekt demonstriert, wie durch systematisches UX-Design und transparente Stakeholder-Kommunikation selbst komplexe Herausforderungen wie die Einführung einer Paywall erfolgreich gemeistert werden können, ohne die Nutzererfahrung zu beeinträchtigen.
 

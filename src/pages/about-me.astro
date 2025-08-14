@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@layouts/DefaultLayout.astro'
 import PageHeader from '@components/PageHeader.astro'
+import { Icon } from 'astro-icon/components'
 import { Image } from 'astro:assets'
 interface Props {
   /**
@@ -18,8 +19,9 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
     bgType="bordered"
   />
   <section class="narrow container my-16">
-    <div class="space-content">
-      <h2><strong>sichtachsen </strong><br> die etwas andere Sicht der Dinge</h2>
+    <!-- space-content -->
+    <div class="">
+      <h2><strong>sichtachsen </strong></h2>
       <!-- my video claim:  -->
       <p>
         
@@ -28,7 +30,7 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
         Ich betrachte jedes Problem aus verschiedenen Perspektiven - der des Nutzenden und seiner Bedürfnisse, dem Business-Goal und natürlich auch von Stakeholdern. 
         Dabei sehe ich oft, was andere übersehen!.
       </p>
-        <div class="claim-svg hidden justify-self-center flex-row md:block">
+        <div class="claim-svg hidden justify-self-center flex-row md:block my-48">
           <video muted autoplay transition:persist loop="true">
             <source
               src={src}  
@@ -39,6 +41,7 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
             />
           </video>
         </div> 
+      <h2>die etwas andere Sicht der Dinge</h2>  
       <p>Ich gehe nicht den Standard-Weg. Statt oberflächlicher Lösungen entwickle ich systematisch und strukturiert. 
         Ich denke ganzheitlich - vom großen Ganzen bis ins kleinste Detail. Meine Lösungen funktionieren nicht nur, sie eröffnen 
         neue Möglichkeiten.

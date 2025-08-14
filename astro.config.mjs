@@ -9,7 +9,7 @@ import path from 'path'
 // https://astro.build/config
 export default defineConfig({
   compressHTML: true,
-  site: 'https://accessible-astro-starter.incluud.dev',
+  site: 'https://vita.sichtachsen.net/',
   integrations: [mdx(), icon(), compress()],
   vite: {
     css: {
