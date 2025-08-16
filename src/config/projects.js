@@ -6,8 +6,9 @@
  * Format: ['projekt-ordner-name', 'anderes-projekt']
  */
 export const projectsWithImages = [
-        'akquinet',
+
         'antrifttaler-kunststoff-vertrieb',
+        'akquinet', 
         'auconet',
         'berlingeschwister',
         'bundesarbeitsgemeinschaft-kirche-rechtsextremismus',
