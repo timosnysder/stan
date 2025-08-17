@@ -29,7 +29,9 @@ Figma • Adobe Creative Cloud (XD, Illustrator, InDesign, Photoshop) • Axure 
 
 ---
 
-### Ausgewählte Projekte
+
+## Ausgewählte Projekte:
+
 
 ### 🏥 Digitale Gesundheitsanwendung (DiGA)
 **2023 • in Kooperation mit einem Pharmahersteller**
@@ -70,14 +72,14 @@ Strategische Konzeptentwicklung für einen sicheren Messenger-Dienst im deutsche
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <Image
     src="/projects/akquinet/images/Design_Thinking_weclapp.jpeg"
-    alt=""
+    alt="Beispielbild"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
   />
   <Image
     src="/projects/akquinet/images/Design_Thinking_weclapp2.jpeg"
-    alt=""
+    alt="Beispielbild"
     width={1200}
     height={600}
     class="h-[250px] w-full rounded-lg object-cover"
