@@ -2,7 +2,7 @@
 title: "Akquinet GmbH"
 date: 2024-12-31
 categories: 
-  - "angestellt"
+  - "Rolle: Angestellt"
 tags: 
 
 author: Timo Schneider

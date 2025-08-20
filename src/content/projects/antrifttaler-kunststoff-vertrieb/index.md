@@ -1,8 +1,8 @@
 ---
-title: "Antrifttaler Kunststoff Vertrieb - Digital Transformation"
+title: "Antrifttaler Kunststoff Vertrieb"
 date: 2021-12-27
 categories: 
-  - "selbstaendig"
+  - "Rolle: Selbstaendig"
 author: Timo Schneider
 description: Fachbetrieb für Flüssigkunststoffe
 ---
@@ -11,61 +11,31 @@ description: Fachbetrieb für Flüssigkunststoffe
 **Kunde:** <a href="https://antrifttaler.de" target="_blank">Antrifftaler Flüssigkunststoffe - Spezialist für Flüssigkunststofflösungen</a>
 
 **Zielgruppe:** B2B-Segment (Architekten, Handwerker, Fachbetriebe)  
-**Rolle:** UX Researcher, UI Designer, Frontend Developer
+**Rolle:** UX Research & Design, UI Designer, Frontend Developer
 
 ## Challenge & Problemstellung
 
-Der etablierte Fachbetrieb stand vor mehreren digitalen Herausforderungen:
-- **Veraltete User Experience:** Nicht-responsive Website entsprach nicht den modernen Nutzungsgewohnheiten der professionellen Zielgruppe
-- **Mobile-First Gap:** Fehlende mobile Optimierung behinderte die Nutzung im Handwerks- und Baustellenkontext
-- **Maintenance Overhead:** WordPress-System erforderte kontinuierliche Updates alle 3 Wochen, was Ressourcen band und Sicherheitsrisiken schuf
-- **Performance Issues:** Langsame Ladezeiten beeinträchtigten User Experience und SEO-Performance
+### Wie alles begann
 
-## Research & Discovery Phase
+Als ich den Auftrag von Antrifftaler Flüssigkunststoffe bekommen habe, war schnell klar: Das wird ein richtig spannendes Projekt. Der Fachbetrieb für Flüssigkunststoffe hatte ein echtes Problem - ihre Website war zwar funktional, aber alles andere als zeitgemäß. Die Hauptzielgruppe, bestehend aus Architekten, Handwerkern und Fachbetrieben, hatte völlig andere Erwartungen an eine moderne Webpräsenz.
 
-### Methodisches Vorgehen
-- **Stakeholder Interviews:** Tiefgehende Gespräche mit Geschäftsführung zur Identifikation von Business Goals
-- **User Research:** Strukturierte Interviews mit Architekten, Handwerkern und Fachbetrieben zur Analyse der User Journey und Pain Points
-- **Competitive Analysis:** Marktbetrachtung im Flüssigkunststoff-Segment und verwandten B2B-Branchen
-- **Contextual Inquiry:** Feldbeobachtungen in realen Nutzungskontexten (Baustellen, Architekturbüros)
+Das Gespräch mit dem Geschäftsführer war von Anfang an sehr offen und freundschaftlich. "Weißt du", meinte er, "wir haben einfach keine Lust mehr, alle drei Wochen WordPress zu updaten. Das kostet uns Zeit und Nerven." Außerdem war die Seite überhaupt nicht für mobile Geräte optimiert - ein echtes Problem, wenn Handwerker unterwegs schnell mal Produktinfos brauchen.
 
-### Key Insights
-- Mobile-first Ansatz essentiell für Handwerker-Zielgruppe
-- Schnelle Produktinformationen und technische Datenblätter im Fokus
-- Vertrauen durch professionelle Präsentation
-- Effizienz bei der Content-Pflege für kleine Unternehmen kritisch
+## Der Weg zur Lösung
 
-## Design Process & Solution
+Statt direkt loszulegen, habe ich erstmal richtig tief gegraben. Also bin ich raus zu den Kunden, habe mit Architekten gesprochen und Handwerker auf Baustellen besucht. Diese Feldbeobachtung war goldwert - man sieht einfach ganz andere Dinge, wenn man Menschen in ihrem echten Arbeitsumfeld erlebt. Die Architekten brauchten schnell technische Datenblätter, die Handwerker wollten auf der Baustelle mal eben mobil schauen, welches Produkt für welchen Einsatz geeignet ist.
 
-### Information Architecture & Wireframing
-Basierend auf den Research-Erkenntnissen entwickelte ich eine nutzerorientierte Informationsarchitektur:
-- Vereinfachte Navigation mit klarer Produktkategorisierung
-- Mobile-optimierte Content-Hierarchie
-- Conversion-fokussierte Call-to-Actions für B2B-Anfragen
+Zusammen mit diesen Erkenntnissen und den direkten Wünschen meines Auftraggebers entwickelte ich die ersten Wireframes. Das war ein iterativer Prozess - wir haben uns regelmäßig zusammengesetzt, diskutiert, verbessert und wieder von vorn angefangen. Diese enge Zusammenarbeit auf Augenhöhe war für mich als Freelancer perfekt, weil ich so direkt am Puls des Unternehmens war.
 
-### UI Design System
-- **Visual Identity:** Moderne Gestaltung 
-- **Responsive Design:** Mobile-first
-- **Accessibility:** WCAG-konforme Umsetzung für optimale Nutzbarkeit
-
-### Prototyping & Testing
-- **Iterative Entwicklung:** Kontinuierliche Validierung mit Stakeholdern und Testusern
-- **User Testing:** Usability-Tests mit repräsentativen Nutzern aus der Zielgruppe
-- **Performance Optimization:** Kontinuierliche Optimierung für maximale Ladegeschwindigkeit
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" src="https://www.figma.com/embed?embed_host=share&amp;url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fkv0nMgiI6zy3JB9q7UR3zb%2FAntrifttaler-Mockup%3Fnode-id%3D403%253A0%26viewport%3D-1613%252C-677%252C0.5%26scaling%3Dcontain&amp;chrome=DOCUMENTATION" width="800" height="450" allowfullscreen></iframe>
 
 
-## Technical Implementation
+## Design mit Köpfchen
 
-### Technologie-Stack
-**Jamstack Architecture:** Gridsome (Vue.js-basiert) als Static Site Generator
-- **Vorteile:** Maximale Performance, Sicherheit und SEO-Optimierung
-- **Content Management:** Markdown-basiertes System für einfache Pflege
+Das Design sollte professionell wirken, aber nicht steif. Schließlich arbeitet man in der Baubranche pragmatisch und direkt. Ich habe ein klares, modernes Design entwickelt, das sofort Vertrauen schafft. Die Navigation wurde komplett vereinfacht - weg von verschachtelten Menüs, hin zu einer logischen Struktur, die man schnell durchblickt.
 
-### Performance Optimization
-- **Core Web Vitals:** Optimierung für Google-Ranking-Faktoren
-- **Image Optimization:** Automatische Komprimierung und moderne Formate
+Besonders wichtig war mir der Mobile-First-Ansatz. Heute steht man auf der Baustelle und braucht sofort die richtige Info. Also habe ich das Design komplett für mobile Geräte optimiert und dann erst für Desktop erweitert.
 
 ## Projektergebnisse & Impact
 
@@ -86,27 +56,13 @@ Basierend auf den Research-Erkenntnissen entwickelte ich eine nutzerorientierte 
   />
 </div>
 
-### Quantitative Erfolge
-- **Performance:** Signifikante Verbesserung der Ladezeiten durch Static Site Architecture
-- **Maintenance:** Eliminierung der 3-wöchigen Update-Zyklen
-- **Mobile Usage:** Deutlicher Anstieg der mobilen Nutzung
+### Technische Umsetzung ohne Kopfschmerzen
 
-### Qualitative Verbesserungen
-- **User Experience:** Intuitive Navigation und optimierte User Journey
-- **Brand Perception:** Professionellere Außendarstellung stärkt Vertrauen bei B2B-Kunden
-- **Operational Efficiency:** Vereinfachte Content-Pflege ermöglicht autonome Website-Verwaltung
+Hier kam meine Entscheidung für Gridsome ins Spiel. Mein Kunde hatte genug von den ständigen WordPress-Updates, und ehrlich gesagt kann ich das verstehen. Das neue System basiert auf Vue.js und nutzt Markdown-Dateien für den Content. Die Entscheidung für eine **Jamstack-Architektur** erwies sich als strategisch richtig, da sie die spezifischen Anforderungen eines kleineren Unternehmens (minimaler Maintenance-Aufwand) mit modernen Performance-Standards vereint.
 
-### Nachhaltigkeit
-Das implementierte System gewährleistet:
-- Langfristige Wartungsfreiheit durch Static Site Approach
-- Skalierbarkeit für zukünftiges Wachstum
-- Kosteneffizienz durch reduzierte Maintenance-Anforderungen
+Das Schöne daran: Mein Kunde kann seine Inhalte ganz einfach selbst pflegen, ohne sich Gedanken über Sicherheitsupdates oder Plugin-Konflikte machen zu müssen. Die Seite wird lokal generiert und ist auf dem Webserver blitzschnell, weil sie als statische HTML-Dateien ausgeliefert wird.
 
-## Learnings & Methodology
 
-Dieses Projekt demonstriert die erfolgreiche Anwendung von **Human-Centered Design** in einem traditionellen B2B-Kontext. Die Kombination aus gründlicher User Research, iterativem Design und moderner Entwicklungstechnologie resultierte in einer Lösung, die sowohl Nutzerbedürfnisse als auch Business-Anforderungen optimal adressiert.
-
-Die Entscheidung für eine **Jamstack-Architektur** erwies sich als strategisch richtig, da sie die spezifischen Anforderungen eines kleineren Unternehmens (minimaler Maintenance-Aufwand) mit modernen Performance-Standards vereint.
 <div class="grid grid-cols-1">
   <Image
     src="/projects/antrifttaler-kunststoff-vertrieb/images/tablet_01.png"
@@ -117,4 +73,18 @@ Die Entscheidung für eine **Jamstack-Architektur** erwies sich als strategisch 
   />
 </div>
 
+### Was dabei rauskam
 
+- Die Ladezeiten sind dramatisch besser geworden.
+- Keine Updates, keine Sicherheitsprobleme, keine unerwarteten Ausfälle.
+- Die neue Seite wirkt viel professioneller und zeitgemäßer. 
+
+Architekten finden schneller, was sie suchen, und Handwerker können endlich vernünftig mobil arbeiten. Die klare Struktur und die schnellen Ladezeiten sorgen dafür, dass Nutzer nicht mehr genervt abspringen.
+
+### Warum das Projekt so gut funktioniert hat
+Rückblickend war es die Mischung aus gründlicher Recherche, engem Kundenkontakt und der richtigen Technologieentscheidung. 
+Ich konnte als Freelancer sehr flexibel auf die Bedürfnisse eingehen und gleichzeitig meine Expertise in UX Research, Design und Entwicklung voll ausspielen.
+
+Die Jamstack-Architektur war genau die richtige Wahl für ein kleineres Unternehmen, das sich auf sein Kerngeschäft konzentrieren möchte und nicht ständig mit Website-Wartung beschäftigt sein will. Das zeigt mir immer wieder: Die beste Technik ist die, die einfach funktioniert und dem Kunden das Leben leichter macht.
+
+Heute, einige Zeit später, läuft alles rund. Mein Kunde pflegt die Seite selbstständig und ist happy mit der Performance. Manchmal ist die einfachste Lösung eben doch die beste. 😊
