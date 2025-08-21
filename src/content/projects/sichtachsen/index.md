@@ -10,13 +10,14 @@ description: Webentwickung & Interface Design
 
 ## Mein Weg zum erfolgreichen digitalen Produkt 
 
-Mit 24 Jahren Erfahrung in der digitalen Produktentwicklung begleite ich Unternehmen von der ersten Idee bis zum erfolgreichen Go-Live. Mein Fokus liegt darauf, komplexe Herausforderungen in intuitive und wirksame digitale Lösungen zu verwandeln, die sowohl Nutzer begeistern als auch deine Geschäftsziele erreichen.
+Mit <a href="/about-me/" target="_self">24 Jahren Erfahrung in der digitalen Produktentwicklung</a> begleite ich Unternehmen von der ersten Idee bis zum erfolgreichen Go-Live. Mein Fokus liegt darauf, komplexe Herausforderungen in intuitive und wirksame digitale Lösungen zu verwandeln, die sowohl Nutzer begeistern als auch deine Geschäftsziele erreichen.
 
 ---
 
 ### 1. Verstehen: Nutzerbedürfnisse und Geschäftsziele im Fokus
 
 Jedes erfolgreiche digitale Projekt beginnt mit einem tiefen Verständnis für die Menschen, die es nutzen werden, und die Geschäftsziele, die es erreichen soll.
+
 
 #### Meine Methoden im UX Research und in der Analyse:
 
@@ -52,6 +53,23 @@ Aufbauend auf fundierten Erkenntnissen entwickle ich klare Produktvisionen und �
   />
   <Image
     src="/projects/sichtachsen/images/freitag_aktuell.jpg"
+    alt="Aktuelle Startseite für den Desktop von Freitag.de"
+    width={920}
+    height={464}
+    class="w-[460px] w-full rounded-lg object-cover"
+  />
+</div>
+
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <Image
+    src="/projects/sichtachsen/images/fdv01.png"
+    alt="Startseite für den Desktop von AKV"
+    width={1164}
+    height={757}
+    class="w-[582px] w-full rounded-lg object-cover"
+  />
+  <Image
+    src="/projects/sichtachsen/images/fdv03.png"
     alt="Aktuelle Startseite für den Desktop von Freitag.de"
     width={920}
     height={464}
@@ -114,9 +132,9 @@ Erfolgreiche Projekte erfordern nicht nur technische Expertise, sondern auch ein
   <Image
     src="/projects/sichtachsen/images/frontpage.png"
     alt="Aktuelle Startseite für den Desktop von Freitag.de"
-    width={768}
-    height={1014}
-    class="h-[1014px] w-full rounded-lg object-cover"
+    width={384}
+    height={507}
+    class="w-[507px] w-full rounded-lg object-cover"
   />
 </div>
 
@@ -125,4 +143,4 @@ Erfolgreiche Projekte erfordern nicht nur technische Expertise, sondern auch ein
 *Diese Methoden sind das Ergebnis von 24 Jahren Erfahrung in der Produktentwicklung – von der ersten Idee bis zur erfolgreichen Markteinführung. Jedes Projekt ist einzigartig, aber mein systematischer Ansatz bleibt konstant: verstehen, konzipieren, umsetzen, optimieren.*
 
 
-
+---
