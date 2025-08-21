@@ -60,23 +60,6 @@ Aufbauend auf fundierten Erkenntnissen entwickle ich klare Produktvisionen und �
   />
 </div>
 
-<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-  <Image
-    src="/projects/sichtachsen/images/fdv01.png"
-    alt="Startseite für den Desktop von AKV"
-    width={1164}
-    height={757}
-    class="w-[582px] w-full rounded-lg object-cover"
-  />
-  <Image
-    src="/projects/sichtachsen/images/fdv03.png"
-    alt="Aktuelle Startseite für den Desktop von Freitag.de"
-    width={920}
-    height={464}
-    class="w-[460px] w-full rounded-lg object-cover"
-  />
-</div>
-
 ---
 
 ### 3. Umsetzen: Robuster Code, nach aktuellen Standards
@@ -85,8 +68,8 @@ Ich sorge dafür, dass Konzepte nicht nur gut aussehen, sondern auch technisch e
 
 #### Meine Kernkompetenzen in der Entwicklung:
 
-* **Moderne Frontend-Technologien (z. B. Jamstack):** Einsatz von HTML, CSS und JavaScript für performante und interaktive Benutzeroberflächen.
-* **Backend & CMS:** Entwicklung mit PHP und verschiedenen Content-Management-Systemen für robuste Backend-Lösungen.
+* **Moderne Frontend-Technologien (z.B.: Jamstack):** Einsatz von HTML, CSS und JavaScript für performante und interaktive Benutzeroberflächen. 
+* **Backend & CMS:** Entwicklung von verschiedenen Content-Management-Systemen für robuste Backend-Lösungen.
 * **AI-gestützte Code-Entwicklung:** Nutzung von KI-Tools zur Steigerung der Produktivität und zur Erstellung von qualitativ hochwertigem Code.
 * **Performance-Optimierung:** Sicherstellung schneller Lade- und Reaktionszeiten für eine optimale User Experience.
 * **Technisches SEO:** Von Beginn an integrierte Suchmaschinenoptimierung für maximale Sichtbarkeit.
@@ -96,12 +79,13 @@ Ich sorge dafür, dass Konzepte nicht nur gut aussehen, sondern auch technisch e
 <div class="grid grid-cols-1 ">
   <Image
     src="/projects/sichtachsen/images/code.jpg"
-    alt="Startseite für den Desktop von AKV"
+    alt="Mein Editor beim entwickeln der Aktuellen Seite die Sie gerade geöffnet haben"
     width={1632}
     height={1056}
     class="w-[816px] w-full rounded-lg object-cover"
   />
 </div>
+
 ---
 
 ### 4. Kommunizieren & Managen: Ganzheitliche Steuerung für den Erfolg
@@ -116,7 +100,7 @@ Erfolgreiche Projekte erfordern nicht nur technische Expertise, sondern auch ein
 <div class="grid grid-cols-1">
   <Image
     src="/projects/sichtachsen/images/infused_web.jpg"
-    alt="Startseite für den Desktop von AKV"
+    alt="Startseite für den Desktop von in:fused"
     width={1164}
     height={757}
     class="w-[1164px] w-full rounded-lg object-cover"
@@ -130,8 +114,8 @@ Erfolgreiche Projekte erfordern nicht nur technische Expertise, sondern auch ein
 
 <div class="grid grid-cols-1 ">
   <Image
-    src="/projects/sichtachsen/images/frontpage.png"
-    alt="Aktuelle Startseite für den Desktop von Freitag.de"
+    src="/projects/sichtachsen/images/ff04.jpg"
+    alt="Bild einer geflüchteten Person auf einer Hauswand mit QR-Code"
     width={384}
     height={507}
     class="w-[507px] w-full rounded-lg object-cover"

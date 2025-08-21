@@ -20,13 +20,13 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
   />
   <section class="narrow container my-16">
     <!-- space-content -->
-    <div class="">
-      <h2><strong>Sichtachsen </strong> - zwischen Vision und Verantwortung</h2>
+    <div>
+      <h3><strong>Sichtachsen </strong> - zwischen Vision und Verantwortung</h3>
       <!-- my video claim:  -->
       <p>
         Seit über 24 Jahren arbeite ich unter dem Namen sichtachsen, weil er perfekt beschreibt, was ich tue: Ich schaffe neue Blickwinkel auf digitale Herausforderungen. Ich betrachte jedes Problem aus verschiedenen Perspektiven - der des Nutzenden, dem Business-Goal und von Stakeholdern. Dabei sehe ich oft, was andere übersehen.
       </p>
-        <div class="claim-svg hidden justify-self-center flex-row md:block my-48">
+        <div class="claim-svg hidden justify-self-center flex-row md:block my-24">
           <video muted autoplay transition:persist loop="true">
             <source
               src={src}  
@@ -37,11 +37,12 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
             />
           </video>
         </div> 
-      <!-- <h2>die etwas andere Sicht der Dinge</h2>   -->
+      <!-- <h3>die etwas andere Sicht der Dinge</h3>   -->
       <p>
         Was als "Webdesigner macht Internetsachen" begann, wurde zu "Visionär hilft dabei, Ideen Realität werden zu lassen". Ich gehe nicht den Standard-Weg. Statt oberflächlicher Lösungen entwickle ich systematisch und ganzheitlich - vom großen Ganzen bis ins kleinste Detail. Meine sichtachsen helfen Unternehmen dabei, ihre digitalen Produkte aus einem anderen Blickwinkel zu sehen, weil manchmal einfach eine andere Perspektive nötig ist, um die wirklich guten Lösungen zu finden.
       </p>
-      <h2>Soziales Bewusstsein und Non-Profit-Engagement</h2>
+      <div class="my-24">
+      <h3>Soziales Bewusstsein und Non-Profit-Engagement</h3>
       <p>
         Was mich über all die Jahre geprägt hat, ist mein soziales Bewusstsein. Kleine Kunden, die gerade mit ihrem Business anfangen und noch kein Geld haben - die lasse ich nicht hängen. Da finden wir Wege. Manche dieser "kleinen" Kunden sind heute erfolgreiche Unternehmen und erinnern sich noch immer daran, wer ihnen geholfen hat, als niemand anderer an sie geglaubt hat.
 
@@ -49,7 +50,8 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
         
         Nicht weil es lukrativ war, sondern weil es nötig war. Wenn ich die Skills habe, etwas zu bewegen, dann mache ich das auch - unabhängig davon, ob am Ende ein Honorar steht.
       </p>
-      <h2>Technologie im Dienst des Menschen</h2>
+      </div>
+      <h3>Technologie im Dienst des Menschen</h3>
       <p>
         All die Tools und Methoden, die ich über die Jahre entwickelt habe - von UX Research über Barrierefreiheit bis hin zu Performance-Optimierung - das sind eigentlich nur Werkzeuge. Das Wichtige passiert zwischen den Zeilen: Es geht darum, Menschen zu verstehen. Ihre Bedürfnisse, ihre Ängste, ihre Träume.
 
@@ -76,5 +78,9 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
     -webkit-mask-size: cover;
     mask-repeat: no-repeat;
     -webkit-mask-repeat: no-repeat;
+  }
+
+  h3 {
+    margin-bottom: .75rem;
   }
   </style>
