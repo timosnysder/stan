@@ -9,7 +9,7 @@ description: Entertainmend & Hanf Industrie
 
 ## Ein Unternehmen, viele Welten
 
-Meine Zeit als Angestellter bei der sens media UG in Berlin war geprägt von einer besonderen Branche: Cannabis und Hanf. Das Unternehmen war mittendrin in einer sich rasant entwickelnden Industrie, und ich durfte als UX/UI Designer und Frontend-Entwickler an verschiedenen spannenden Projekten arbeiten, die alle eines gemeinsam hatten - sie drehten sich um die grüne Pflanze, die gerade gesellschaftlich und rechtlich einen enormen Wandel durchmacht.
+Meine Zeit als Angestellter bei der sens media UG in Berlin war geprägt von einer besonderen Branche: Cannabis und Hanf. Das Unternehmen war mittendrin in einer sich rasant entwickelnden Industrie, und ich durfte als Produktdesigner und Frontend-Entwickler an verschiedenen spannenden Projekten arbeiten, die alle eines gemeinsam hatten - sie drehten sich um die grüne Pflanze, die gerade gesellschaftlich und rechtlich einen enormen Wandel durchmacht.
 
 ## in.fused - Die große Vision einer Entertainment-Plattform
 
@@ -40,7 +40,7 @@ Kunden konnten direkt über Chat oder Telefon mit einem Verkäufer in Kontakt tr
 
 Das P3collective war ein besonders anspruchsvolles Projekt, weil es sich an medizinisches Fachpersonal richtete. Hier ging es um leidenschaftliche Pflanzenliebhaber, aber auf einem sehr professionellen, medizinischen Level. Die Website bot Fachinformationen, die ausschließlich für medizinisches Personal zugänglich waren.
 
-Das Design und die Frontend-Programmierung waren wieder meine Aufgabe, aber hier kam eine besondere technische Herausforderung dazu: die Integration eines DocCheck-Zugangs. <a href="https://www.doccheck.com/welcome" target="_blank" alt="Zur Webseite von DocCheck">DocCheck</a> ist in der Medizinbranche der Standard für die Verifikation von medizinischen Fachkräften. Die Formulare und der geschützte Bereich mussten perfekt funktionieren, weil Ärzte wenig Geduld für technische Probleme haben und höchste Ansprüche an Professionalität und Datenschutz stellen.
+Das Design und die Frontend-Programmierung waren wieder meine Aufgabe, aber hier kam eine besondere technische Herausforderung dazu: die Integration eines DocCheck-Zugangs. <a href="https://www.doccheck.com/welcome" target="_blank" alt="Zur Webseite von DocCheck">DocCheck</a> ist ein Pluggin und steht für die Verifikation von medizinischen Fachkräften. Die Formulare und der geschützte Bereich mussten perfekt funktionieren, weil Ärzte und medizinisches Personal wenig Geduld für technische Probleme haben und höchste Ansprüche an Professionalität und Datenschutz stellen.
 
 <div class="grid grid-cols-1 gap-4">
   <Image

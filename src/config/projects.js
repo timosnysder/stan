@@ -28,7 +28,7 @@ export const projectsWithImages = [
         'zia-gestalte-unsere-zukunft',
         'peperoni',
         'sichtachsen', 
-        // '',
+        'schmalbart',
         // '',
         // '',
         // '',

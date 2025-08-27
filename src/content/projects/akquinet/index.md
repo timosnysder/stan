@@ -87,8 +87,8 @@ Strategische Konzeptentwicklung für einen sicheren Messenger-Dienst im deutsche
 </div>
 
 
-**Meine Rolle:** Konzeption & Feindesign  
-**Technologien:** Figma, Konzeption, Feindesign
+**Meine Rolle:** Konzeption & UX-Designer  
+**Technologien:** Figma, Prototyping, Konzeption
 
 
 ---
@@ -116,7 +116,7 @@ Konzeptentwicklung und Prototyping für innovative Medizintechnik-Lösungen. Wir
   />
 </div>
 
-**Meine Rolle:** Konzept & UI-Designer  
+**Meine Rolle:** Konzept & UX-Designer  
 **Technologien:** Konzeption, Prototyping, Figma
 
 ---
@@ -161,7 +161,7 @@ Design einer modernen WebApp zur Datenauslese und -visualisierung von Industriea
 Weiterentwicklung eines projektübergreifenden Styleguides für den Dialysebereich. Strukturierung von Prozessen und Wissensverteilung im interdisziplinären Team.
 
 **Meine Rolle:** UX-Berater & UI-Designer  
-**Technologien:** UI-Design, Adobe XD, Design System
+**Technologien:** UKonzeption, Prototyping, I-Design, Adobe XD, Design System
 
 ---
 
@@ -170,6 +170,6 @@ Weiterentwicklung eines projektübergreifenden Styleguides für den Dialyseberei
 
 Design einer zentralen, digitalisierten Patientenübersicht für den medizinischen Alltag. Fokus auf intuitive Bedienung und schnelle Informationszugänge.
 
-**Meine Rolle:** UI-Designer  
+**Meine Rolle:** UX-Berater & UI-Designer  
 **Technologien:** Konzeption, Prototyping, UI-Design/Feindesign, Adobe XD
 

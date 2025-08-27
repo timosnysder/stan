@@ -11,7 +11,7 @@ description: Fachbetrieb für Flüssigkunststoffe
 **Kunde:** <a href="https://antrifttaler.de" target="_blank">Antrifftaler Flüssigkunststoffe - Spezialist für Flüssigkunststofflösungen</a>
 
 **Zielgruppe:** B2B-Segment (Architekten, Handwerker, Fachbetriebe)  
-**Rolle:** UX Research & Design, UI Designer, Frontend Developer
+**Rolle:** UX Research & Design, UI Designer, Developer
 
 ## Challenge & Problemstellung
 
