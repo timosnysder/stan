@@ -1,0 +1,96 @@
+---
+import DefaultLayout from '@layouts/DefaultLayout.astro'
+import { Icon } from 'astro-icon/components'
+
+export interface Props extends Omit<astroHTML.JSX.DialogHTMLAttributes, "class"> {
+	title: string
+	class?: string
+}
+const { title, class: classList, ...attrs } = Astro.props
+---
+
+<dialog
+	class:list={[
+		"w-[90dvw] bg-transparent backdrop:bg-neutral-950/70 backdrop:backdrop-blur-sm md:w-[75dvw] lg:w-[50dvw]",
+		classList
+	]}
+	{...attrs}
+	aria-label={title}>
+	<form
+		class="grid grid-cols-1 grid-rows-[auto,_1fr,_auto] divide-y-[1px] divide-neutral-300 rounded-lg border border-neutral-300 bg-transparent dark:divide-neutral-700 dark:border-neutral-700 dark:bg-neutral-900"
+		method="dialog">
+		<header
+			class="flex items-center justify-between rounded-t-lg bg-neutral-100 px-4 py-3 dark:bg-neutral-950">
+			<h3 class="text-2xl font-medium">{title}</h3>
+			<button
+				class="rounded-full p-2 text-neutral-600 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus-visible:outline-primary-500"
+				autofocus 
+        value="Close">
+				<span class="sr-only">Close</span>
+				<Icon class="size-6" aria-hidden="true" name="lucide:circle-x" />
+			</button>
+		</header>
+		<div class="max-h-[70dvh] bg-neutral-50 p-4 dark:bg-neutral-900">
+			<slot />
+		</div>
+		<footer
+			class="flex items-center justify-end gap-2 rounded-b-lg bg-neutral-100 px-4 py-3 dark:bg-neutral-950">
+			<button
+				class="rounded border-2 border-neutral-600 bg-neutral-600 px-4 py-2 text-white hover:border-neutral-700 hover:bg-neutral-700 hover:shadow-lg"
+        value="Yes"
+				>Yes</button
+			>
+			<button
+				class="rounded border-2 border-neutral-600 bg-transparent px-4 py-2 text-neutral-600 hover:border-neutral-700 hover:text-neutral-700 hover:shadow-lg"
+        value="No"
+				>No</button
+			>
+		</footer>
+	</form>
+</dialog>
+
+<style>
+	:root {
+		--opening-duration: 0.3s;
+	}
+
+	dialog[open] {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	dialog {
+		opacity: 0;
+		transform: scale(0);
+		transition:
+			opacity var(--opening-duration) ease-out,
+			transform var(--opening-duration) ease-out,
+			overlay var(--opening-duration) ease-out allow-discrete,
+			display var(--opening-duration) ease-out allow-discrete;
+	}
+
+	@starting-style {
+		dialog[open] {
+			opacity: 0;
+			transform: scale(0);
+		}
+	}
+
+	dialog::backdrop {
+		opacity: 0;
+		transition:
+			opacity var(--opening-duration) ease-out,
+			overlay var(--opening-duration) ease-out allow-discrete,
+			display var(--opening-duration) ease-out allow-discrete;
+	}
+
+	dialog[open]::backdrop {
+		opacity: 1;
+	}
+
+	@starting-style {
+		dialog[open]::backdrop {
+			opacity: 0;
+		}
+	}
+</style>
