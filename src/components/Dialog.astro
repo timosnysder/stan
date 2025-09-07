@@ -8,10 +8,35 @@ export interface Props extends Omit<astroHTML.JSX.DialogHTMLAttributes, "class">
 }
 const { title, class: classList, ...attrs } = Astro.props
 ---
+<!-- For using the dialog element paste this: -->
+ <h1 class="text-4xl font-black">Build an Astro Modal Dialog Component with Tailwind CSS</h1>
+<button class="bg-indigo-600 px-4 py-2 rounded text-white shadow-lg" id="btnShowModal" type="button">Show Modal</button>
+<Dialog id="dlgAstro" title="Hello Astro Community!">
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/73YQrlY7D6OvVteM8X4Pud/DiGA-UI?page-id=139%3A675&node-id=269-14408&viewport=296%2C349%2C0.12&scaling=scale-down&content-scaling=responsive&starting-point-node-id=583%3A2949&embed-host=share" allowfullscreen></iframe>
+</Dialog>
+<div id="result"></div>
+
+<script>
+  const button = document.getElementById("btnShowModal") as HTMLButtonElement
+  const dialog = document.getElementById("dlgAstro") as HTMLDialogElement
+  const div = document.getElementById("result") as HTMLDivElement
+	button.addEventListener("click", () => {
+		dialog.showModal()
+		div.innerText = ""
+	})
+  dialog.addEventListener("close", (event) => {
+    const dlg = event.target as HTMLDialogElement
+    div.innerText = `Modal Result: ${dlg.returnValue} button`
+  })
+</script>
+
+<!-- End of snippet -->
+
 
 <dialog
 	class:list={[
 		"w-[90dvw] bg-transparent backdrop:bg-neutral-950/70 backdrop:backdrop-blur-sm md:w-[75dvw] lg:w-[50dvw]",
+		"fixed inset-0 m-auto max-h-fit", // Zentrierungs-Klassen hinzugefügt
 		classList
 	]}
 	{...attrs}
@@ -30,7 +55,7 @@ const { title, class: classList, ...attrs } = Astro.props
 				<Icon class="size-6" aria-hidden="true" name="lucide:circle-x" />
 			</button>
 		</header>
-		<div class="max-h-[70dvh] bg-neutral-50 p-4 dark:bg-neutral-900">
+		<div class="max-h-[70dvh] overflow-y-auto bg-neutral-50 p-4 dark:bg-neutral-900">
 			<slot />
 		</div>
 		<footer
@@ -54,14 +79,12 @@ const { title, class: classList, ...attrs } = Astro.props
 		--opening-duration: 0.3s;
 	}
 
-	dialog[open] {
-		opacity: 1;
-		transform: scale(1);
-	}
-
 	dialog {
+		/* Zentrierungs-CSS hinzugefügt */
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(0);
 		opacity: 0;
-		transform: scale(0);
 		transition:
 			opacity var(--opening-duration) ease-out,
 			transform var(--opening-duration) ease-out,
@@ -69,10 +92,15 @@ const { title, class: classList, ...attrs } = Astro.props
 			display var(--opening-duration) ease-out allow-discrete;
 	}
 
+	dialog[open] {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1); /* Zentriert und skaliert */
+	}
+
 	@starting-style {
 		dialog[open] {
 			opacity: 0;
-			transform: scale(0);
+			transform: translate(-50%, -50%) scale(0);
 		}
 	}
 
@@ -91,6 +119,32 @@ const { title, class: classList, ...attrs } = Astro.props
 	@starting-style {
 		dialog[open]::backdrop {
 			opacity: 0;
+		}
+	}
+
+	/* Zusätzliche Sicherstellung der Zentrierung */
+	dialog {
+		margin: 0; /* Entfernt Standard-Margins */
+	}
+
+	/* Responsive Anpassungen */
+	@media (max-width: 768px) {
+		dialog {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 90vw;
+			max-width: none;
+		}
+		
+		dialog[open] {
+			transform: translate(-50%, -50%) scale(1);
+		}
+		
+		@starting-style {
+			dialog[open] {
+				transform: translate(-50%, -50%) scale(0);
+			}
 		}
 	}
 </style>

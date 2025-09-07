@@ -76,6 +76,8 @@ Das WordPress Network ist so aufgebaut, dass weitere Märkte oder Tochterunterne
 
 Ein perfektes Beispiel dafür, dass gute Entwicklung nicht immer bedeutet, alles neu zu machen. Manchmal ist es die Kunst, Bestehendes intelligent zu erweitern und dabei den Fokus auf echte Nutzbarkeit zu legen. 
 
+---
+
 "Same same but different" - genau so sollte smart Development funktionieren.
 
 

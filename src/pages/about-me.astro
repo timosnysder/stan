@@ -47,14 +47,6 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
       </p>
       </div>
       <h3>Technologie im Dienst des Menschen</h3>
-
-       <h1 class="text-4xl font-black">Build an Astro Modal Dialog Component with Tailwind CSS</h1>
-          <button class="bg-indigo-600 px-4 py-2 rounded text-white shadow-lg" id="btnShowModal" type="button">Show Modal</button>
-          <Dialog id="dlgAstro" title="Hello Astro Community!">
-            Amet laboris nisi cillum adipisicing irure anim enim aute velit. Exercitation officia duis nostrud irure reprehenderit proident fugiat reprehenderit consectetur ullamco ea. Deserunt ea reprehenderit reprehenderit veniam veniam qui ullamco consequat et elit. Ipsum consectetur ullamco officia enim ex. Aliquip reprehenderit duis proident Lorem nostrud dolor excepteur sint. Consequat reprehenderit ex reprehenderit Lorem eiusmod.
-          </Dialog>
-          <div id="result"></div>
-          
       <p>
         All die Tools und Methoden, die ich über die Jahre entwickelt habe - von UX Research über Barrierefreiheit bis hin zum Desing und AI gestützter Entwicklung - das sind eigentlich nur Werkzeuge. Das Wichtige passiert zwischen den Zeilen: Es geht darum, Menschen zu verstehen. Ihre Bedürfnisse, ihre Ängste, ihre Träume.
         <br />
@@ -79,19 +71,7 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
 </DefaultLayout>
 
 
-<script>
-  const button = document.getElementById("btnShowModal") as HTMLButtonElement
-  const dialog = document.getElementById("dlgAstro") as HTMLDialogElement
-  const div = document.getElementById("result") as HTMLDivElement
-	button.addEventListener("click", () => {
-		dialog.showModal()
-		div.innerText = ""
-	})
-  dialog.addEventListener("close", (event) => {
-    const dlg = event.target as HTMLDialogElement
-    div.innerText = `Modal Result: ${dlg.returnValue} button`
-  })
-</script>
+
 
 <style lang="scss">
 .claim-svg {

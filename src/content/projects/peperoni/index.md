@@ -16,7 +16,7 @@ Als Selbständiger für die Werbeagentur Fa. Peperoni zu arbeiten, bedeutete ech
 **Frontend & Digital:** Statische One-Pager für schnelle, wirkungsvolle Kampagnenseiten  
 **Video Production:** Schnitt kurzer Werbefilme, Effekt-Integration und Banner-Optimierung für Online-Einsatz  
 **Konzeption:** Storyboard-Entwicklung von der ersten Idee bis zur finalen Umsetzung  
-**UX & Accessibility:** Informationsarchitektur und barrierefreie Gestaltung für komplexe Websites
+**UX & UI:** Informationsarchitektur und Gestaltung für komplexe Websites
 
 ## Projekteinblicke
 
@@ -63,8 +63,7 @@ Das vierteljährlich erscheinende Magazin "Los!" war ein perfektes Beispiel für
 
 Die Kampagne für die GASAG war ein Vollprogramm, bei dem ich den kompletten kreativen Prozess begleiten durfte. Von der ersten Konzeptidee über das Storyboard bis hin zum finalen Cutting und der digitalen Schaltung war ich mittendrin.
 
-**Konzeptentwicklung:** Kreative Ideenfindung für Energieversorger-Kommunikation  
-**Storyboard:** Visuelle Planung der Werbefilme mit detaillierter Szenenaufteilung  
+**Konzeptentwicklung:** Kreative Ideenfindung für Energieversorger-Kommunikation   
 **Video Production:** Schnitt und Effekt-Integration für verschiedene Online-Formate  
 **Digital Advertising:** Banner-Optimierung und Schaltung digitaler Ads  
 **Performance:** Kontinuierliche Optimierung basierend auf Kampagnen-Analytics
@@ -102,12 +101,10 @@ Die Kampagne für die GASAG war ein Vollprogramm, bei dem ich den kompletten kre
 
 ### Berliner Bäderbetriebe - Komplette digitale Neuausrichtung
 
-Das umfangreichste Projekt war die komplette Überarbeitung der digitalen Präsenz der Berliner Bäderbetriebe. Hier konnte ich meine UX-Expertise voll ausspielen und eine völlig neue Informationsarchitektur entwickeln.
+Ein Projekt war die Überarbeitung der digitalen Präsenz der Berliner Bäderbetriebe. Hier konnte ich meine UX-Expertise voll ausspielen und eine völlig neue Informationsarchitektur entwickeln.
 
 **Informationsarchitektur:** Komplette Neustrukturierung der Website-Navigation und Content-Hierarchie  
-**User Research:** Analyse der vielfältigen Nutzergruppen - von Familien bis Leistungssportlern  
-**UX Design:** Nutzerorientierte Gestaltung der Customer Journey für verschiedene Anliegen (Öffnungszeiten, Kurse, Tickets)  
-**Accessibility:** Umfassende Barrierefreiheit für alle Berliner Bürger, unabhängig von körperlichen Einschränkungen  
+**UX Design:** Nutzerorientierte Gestaltung der Customer Journey für verschiedene Anliegen (Öffnungszeiten, Kurse, Tickets)    
 **Content Strategy:** Logische Strukturierung der umfangreichen Informationen zu Bädern, Kursen und Services
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -155,6 +152,5 @@ Die Berliner Bäderbetriebe zeigten, dass ich auch bei großen, komplexen Websit
 ### Video & Motion Design
 Der Bereich Video Production erweiterte mein Skillset erheblich. Storyboard-Entwicklung, Schnitt und Effekt-Integration sind Skills, die als Frontend-Entwickler selten sind, aber bei crossmedialen Kampagnen extrem wertvoll.
 
-## Warum diese Erfahrung wertvoll war
-
+---
 Die Zeit bei Fa. Peperoni lehrte mich, dass gute digitale Lösungen oft dann entstehen, wenn man über den Tellerrand des reinen Web-Developments hinausblickt. Die Kombination aus technischer Umsetzung, konzeptioneller Arbeit und verschiedenen Kreativbereichen schärfte meinen Blick für ganzheitliche Kommunikationslösungen.
