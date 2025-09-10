@@ -97,7 +97,7 @@ Strategische Konzeptentwicklung für einen sicheren Messenger-Dienst im deutsche
 ### ⚕️ Medizintechnik Interface Design
 **2022 • Drägerwerk AG & Co. KGaA**
 
-Konzeptentwicklung und Prototyping für innovative Medizintechnik-Lösungen. Wireframing komplexer Benutzeroberflächen für professionelle Anwender.
+Konzeptentwicklung und Prototyping in Design Sprints mit anschließender Diskussion über diese Medizintechnik-Lösungen. 
 
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
   <Image
@@ -115,6 +115,9 @@ Konzeptentwicklung und Prototyping für innovative Medizintechnik-Lösungen. Wir
     class="h-[250px] w-full rounded-lg object-cover"
   />
 </div>
+
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/doR9vNQTeQx3R58WbeGCkF/PIH_Health?page-id=0%3A1&node-id=40-6050&p=f&viewport=-2902%2C-3274%2C0.61&scaling=scale-down&content-scaling=fixed&starting-point-node-id=40%3A6050&embed-host=share" allowfullscreen></iframe>
 
 **Meine Rolle:** Konzept & UX-Designer  
 **Technologien:** Konzeption, Prototyping, Figma
