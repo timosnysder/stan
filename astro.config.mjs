@@ -6,11 +6,16 @@ import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath } from 'url'
 import path from 'path'
 
+import robotsTxt from 'astro-robots-txt';
+import robotsConfig from './robots-txt.config';
+
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
   compressHTML: true,
   site: 'https://vita.sichtachsen.net/',
-  integrations: [mdx(), icon(), compress()],
+  integrations: [mdx(), icon(), compress(), robotsTxt(robotsConfig), sitemap()],
   vite: {
     css: {
       preprocessorOptions: {

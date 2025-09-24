@@ -5,6 +5,7 @@ categories:
   - "Rolle: Founder"
 author: Timo Schneider
 description: Webentwickung & Interface Design
+
 ---
 
 
@@ -123,7 +124,11 @@ Erfolgreiche Projekte erfordern nicht nur technische Expertise, sondern auch ein
 </div>
 
 
+
 *Diese Methoden sind das Ergebnis von 24 Jahren Erfahrung in der Produktentwicklung – von der ersten Idee bis zur erfolgreichen Markteinführung. Jedes Projekt ist einzigartig, aber mein systematischer Ansatz bleibt konstant: verstehen, konzipieren, umsetzen, optimieren.*
 
 
+
+
 ---
+
