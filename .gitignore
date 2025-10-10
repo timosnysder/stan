@@ -34,3 +34,5 @@ package-lock.json
 
 # Large video files
 public/casestudies/kidstrain/KidsTrain_3min_Teaser.mp4
+# oder alle mp4s ignorieren
+*.mp4
