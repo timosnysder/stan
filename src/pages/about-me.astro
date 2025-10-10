@@ -56,17 +56,17 @@ const { src = '/sichtachsen.mp4' }: Props = Astro.props
       </p>
     </div>
 <!-- my video claim:  -->
-    <div class="claim-svg hidden justify-self-center flex-row md:block my-24">
-      <video muted autoplay transition:persist loop="true">
-        <source
-          src={src}  
-          width={536} 
-          height={302}
-          type="video/mp4"
-          aria-controls="hidden"
-        />
-      </video>
-    </div> 
+      <div class="claim-svg hidden justify-self-center flex-row md:block my-24">
+        <video muted autoplay transition:persist loop="true">
+          <source
+            src={src}  
+            width={536} 
+            height={302}
+            type="video/mp4"
+            aria-controls="hidden"
+          />
+        </video>
+      </div> 
   </section>
 </DefaultLayout>
 
