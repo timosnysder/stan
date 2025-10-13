@@ -16,13 +16,13 @@ Besondere Schwerpunkte meiner Arbeit lagen in der UX-Konzeption für den Healthc
 ### Methoden & Expertise
 
 **Analyse & Beratung**  
-Anforderungsanalyse • User Experience Maps • Design Thinking • Personas • Card Sorting • Use Cases • Story- und Impact Mapping • Feldbeobachtung
+Anforderungsanalyse • User Experience Maps • Design Thinking • Personas • Card Sorting • User Flows • Use Cases • Story- und Impact Mapping • Feldbeobachtung • Heuristiken • Card Sorting und Site Maps.
 
 **Konzeption & Design**  
 Ideenvisualisierung • Prototyping • Paper Prototyping • Design Systeme • Systemarchitektur • Wireframing • Mockups • Responsive Design • UX Research • Informations- und Navigationsarchitektur
 
 **Evaluation & Testing**  
-Usability Tests • Expertentests • Heatmap-Analyse • Tracking Software
+Usability Tests • Expertentests • Walkthrough • Heatmap-Analyse • Tracking Software 
 
 **Tools & Software**  
 Figma • Adobe Creative Cloud (XD, Illustrator, InDesign, Photoshop) • Axure • Sketch • VScode • daVinci Resolve • LLM (ChatGPT/Bard)
