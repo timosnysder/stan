@@ -32,7 +32,6 @@ package-lock.json
 # cursor rules
 .cursor/rules
 
-# Large video files
-public/casestudies/kidstrain/KidsTrain_3min_Teaser.mp4
-# oder alle mp4s ignorieren
-*.mp4/public/casestudies/kidstrain/KidsTrainTeaser.mp4
+# Large video files / *.mp4
+*.mp4
+
